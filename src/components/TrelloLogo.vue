@@ -15,9 +15,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-    .logo {
-      display: block;
-      width: 200px;
-      margin: 40px auto;
-    }
+
 </style>

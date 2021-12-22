@@ -19,7 +19,10 @@
               </a>
             </template>
             <template #b>
-              <a href="#">
+              <a
+                href="#"
+                @click.prevent="$router.push('/login')"
+              >
                 Log In
               </a>
             </template>
@@ -49,5 +52,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.signup {
+  &__container {
+    &__logo {
+      display: block;
+      margin: 40px auto;
+      width: 200px;
+    }
+  }
+}
 </style>

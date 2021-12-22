@@ -2,11 +2,7 @@
   <div class="login">
     <div class="container login__page__container">
       <div class="login__page__container__logo">
-        <img
-          class="login__page__container__logo__img"
-          src="@/assets/images/trello-logo-blue.svg"
-          alt="trello-logo-blue"
-        >
+        <trello-logo />
       </div>
       <auth-card>
         <template #title>
@@ -22,7 +18,10 @@
                 Can't log in?</a>
             </template>
             <template #b>
-              <a href="#">
+              <a
+                href="#"
+                @click.prevent="$router.push('/signup')"
+              >
                 Sign up for an account
               </a>
             </template>
@@ -49,11 +48,14 @@ import { defineComponent } from 'vue'
 import dottedInlineList from '@/components/dottedInlineList.vue'
 import AuthCard from '@/components/AuthCard.vue'
 import LoginForm from '@/components/LoginForm.vue'
+import TrelloLogo from '@/components/TrelloLogo.vue'
+
 export default defineComponent({
   components: {
     dottedInlineList,
     AuthCard,
-    LoginForm
+    LoginForm,
+    TrelloLogo
   },
   data () {
     return {}
@@ -65,10 +67,10 @@ export default defineComponent({
 .login {
   &__page__container {
     color: #5e6c84;
-    &__logo__img {
+    &__logo {
       display: block;
-      width: 200px;
       margin: 40px auto;
+      width: 200px;
     }
   }
 }
