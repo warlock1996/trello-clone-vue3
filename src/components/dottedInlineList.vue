@@ -1,12 +1,12 @@
 <template>
-    <ul class="dotted-list">
-        <li class="dotted-list__item">
-            <slot name="a"></slot>
-        </li>
-        <li class="dotted-list__item last">
-            <slot name="b"></slot>
-        </li>
-    </ul>
+  <ul class="dotted-list">
+    <li class="dotted-list__item">
+      <slot name="a" />
+    </li>
+    <li class="dotted-list__item last">
+      <slot name="b" />
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">

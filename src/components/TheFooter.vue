@@ -1,36 +1,39 @@
 <template>
-    <footer class="footer">
-        <hr class="footer__divider"/>
-        <div class="footer__atlassian_logo mb-4">
-            <img src="@/assets/images/atlassian-logo-blue-small.svg" alt="atlassion-logo-blue-small">
+  <footer class="footer">
+    <hr class="footer__divider">
+    <div class="footer__atlassian_logo mb-4">
+      <img
+        src="@/assets/images/atlassian-logo-blue-small.svg"
+        alt="atlassion-logo-blue-small"
+      >
+    </div>
+    <div class="footer__links">
+      <ul class="footer__links__list">
+        <div class="footer__links__list--item">
+          <a href="#">Templates</a>
         </div>
-        <div class="footer__links">
-            <ul class="footer__links__list">
-                <div class="footer__links__list--item">
-                    <a href="#">Templates</a>
-                </div>
-                <div class="footer__links__list--item">
-                    <a href="#">Pricing</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Apps</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Jobs</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Blog</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Developers</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">About</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Help</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Cookie</a>
-                </div> <div class="footer__links__list--item">
-                    <a href="#">Settings</a>
-                </div>
-            </ul>
+        <div class="footer__links__list--item">
+          <a href="#">Pricing</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Apps</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Jobs</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Blog</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Developers</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">About</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Help</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Cookie</a>
+        </div> <div class="footer__links__list--item">
+          <a href="#">Settings</a>
         </div>
-    </footer>
+      </ul>
+    </div>
+  </footer>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'

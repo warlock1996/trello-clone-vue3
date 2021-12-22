@@ -1,5 +1,5 @@
 <template>
-   <component :is="layout"></component>
+  <component :is="layout" />
 </template>
 
 <script lang="ts">
@@ -7,18 +7,14 @@ import { defineComponent } from 'vue'
 
 import defaultLayout from '@/layouts/default.vue'
 export default defineComponent({
+  components: {
+    defaultLayout
+  },
   data () {
     return {
       layout: defaultLayout
     }
-  },
-  components: {
-    defaultLayout
   }
 })
 
 </script>
-
-<style lang="scss">
-
-</style>
