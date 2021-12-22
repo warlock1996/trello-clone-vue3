@@ -16,10 +16,11 @@ export default defineComponent({})
 
 <style lang="scss" scoped>
 .dotted-list {
-  display: inline-block;
+  display: block;
   list-style: none;
   padding: 0px;
   margin: 0px;
+  text-align: center;
   &__item {
     display: inline;
     padding: 5px;
@@ -28,7 +29,7 @@ export default defineComponent({})
       position: relative;
       &::before {
         position: absolute;
-        left: 0;
+        left: -2%;
         top: 50%;
         content: "";
         width: 3px;
@@ -40,5 +41,4 @@ export default defineComponent({})
     }
   }
 }
-
 </style>

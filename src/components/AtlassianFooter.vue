@@ -43,8 +43,11 @@ export default defineComponent({})
 <style lang="scss" scoped>
 .footer {
   text-align: center;
+  position: relative;
+  z-index: 2;
   &__divider {
-    margin: 30px 450px;
+    max-width: 400px;
+    margin: 40px auto;
     color: #5e6c84;
   }
   &__atlassian_logo {
