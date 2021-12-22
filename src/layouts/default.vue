@@ -1,8 +1,8 @@
 <template>
   <div class="default">
     <router-view class="default__view" />
-    <atlassian-footer />
-    <global-footer />
+    <!-- <atlassian-footer />
+    <global-footer /> -->
   </div>
 </template>
 <script lang="ts">
@@ -12,7 +12,9 @@ import AtlassianFooter from '@/components/AtlassianFooter.vue'
 
 export default defineComponent({
   components: {
+    // eslint-disable-next-line
     GlobalFooter,
+    // eslint-disable-next-line
     AtlassianFooter
   }
 })
