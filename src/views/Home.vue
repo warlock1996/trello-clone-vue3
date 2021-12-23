@@ -12,7 +12,9 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon" />
+          <span class="navbar-toggler-icon shadow-0">
+            <i class="bi bi-three-dots" />
+          </span>
         </button>
         <div
           id="navbarNav"
@@ -42,11 +44,15 @@
       <div class="container home__herosection__container">
         <div class="row align-items-center home__herosection__container__row">
           <div class="col-lg-7 col-md-12 home__herosection__container__row__col">
-            <h1>Trello helps teams move work forward.</h1>
-            <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Trello.</p>
+            <h1 class="text-center text-md-start">
+              Trello helps teams move work forward.
+            </h1>
+            <p class="text-center text-md-start">
+              Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
+            </p>
             <form class="d-flex gap-2">
               <input
-                class="form-control form-control-lg w-50"
+                class="form-control form-control-lg w-50 d-none d-md-block"
                 type="email"
                 placeholder="Email"
               >
