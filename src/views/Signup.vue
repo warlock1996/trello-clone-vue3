@@ -30,6 +30,14 @@
         </template>
       </auth-card>
     </div>
+    <atlassian-footer>
+      <template #logo-slot>
+        <img
+          src="@/assets/images/atlassian-logo-blue-small.svg"
+          alt="atlassion-logo-blue-small"
+        >
+      </template>
+    </atlassian-footer>
   </div>
 </template>
 <script lang="ts">
@@ -38,12 +46,16 @@ import dottedInlineList from '@/components/dottedInlineList.vue'
 import TrelloLogo from '@/components/TrelloLogo.vue'
 import AuthCard from '@/components/AuthCard.vue'
 import SignupForm from '@/components/SignupForm.vue'
+import AtlassianFooter from '@/components/AtlassianFooter.vue'
+
 export default defineComponent({
   components: {
     dottedInlineList,
     AuthCard,
     SignupForm,
-    TrelloLogo
+    TrelloLogo,
+    AtlassianFooter
+
   },
   data () {
     return {}

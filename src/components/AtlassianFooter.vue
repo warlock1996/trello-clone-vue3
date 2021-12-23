@@ -1,43 +1,56 @@
 <template>
-  <footer class="footer">
-    <hr class="footer__divider">
-    <div class="footer__atlassian_logo mb-4">
-      <img
-        src="@/assets/images/atlassian-logo-blue-small.svg"
-        alt="atlassion-logo-blue-small"
-      >
+  <footer
+    class="footer"
+    :class="$attrs.root"
+  >
+    <hr
+      class="footer__divider"
+      :class="$attrs.divider"
+    >
+    <div
+      class="d-flex flex-column"
+      :class="$attrs.class"
+    >
+      <div class="footer__atlassian_logo mb-3">
+        <slot name="logo-slot" />
+      </div>
+      <div class="footer__links mb-3">
+        <ul class="footer__links__list">
+          <div class="footer__links__list--item">
+            <a href="#">Templates</a>
+          </div>
+          <div class="footer__links__list--item">
+            <a href="#">Pricing</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Apps</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Jobs</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Blog</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Developers</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">About</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Help</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Cookie</a>
+          </div> <div class="footer__links__list--item">
+            <a href="#">Settings</a>
+          </div>
+        </ul>
+      </div>
     </div>
-    <div class="footer__links">
-      <ul class="footer__links__list">
-        <div class="footer__links__list--item">
-          <a href="#">Templates</a>
-        </div>
-        <div class="footer__links__list--item">
-          <a href="#">Pricing</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Apps</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Jobs</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Blog</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Developers</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">About</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Help</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Cookie</a>
-        </div> <div class="footer__links__list--item">
-          <a href="#">Settings</a>
-        </div>
-      </ul>
+    <div class="footer__extra">
+      <slot name="extra" />
     </div>
   </footer>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-export default defineComponent({})
+export default defineComponent({
+  inheritAttrs: false
+})
 </script>
 
 <style lang="scss" scoped>
@@ -46,14 +59,15 @@ export default defineComponent({})
   position: relative;
   z-index: 2;
   &__divider {
+    width: 400px;
     max-width: 400px;
     margin: 40px auto;
     color: #5e6c84;
   }
   &__atlassian_logo {
-    img {
+      display: block;
+      margin: auto;
       width: 150px;
-    }
   }
   &__links {
     &__list {

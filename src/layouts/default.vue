@@ -1,8 +1,7 @@
 <template>
   <div class="default">
     <router-view class="default__view" />
-    <!-- <atlassian-footer />
-    <global-footer /> -->
+    <!-- <global-footer />  -->
   </div>
 </template>
 <script lang="ts">
