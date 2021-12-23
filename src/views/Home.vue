@@ -41,7 +41,7 @@
     <section class="home__herosection">
       <div class="container home__herosection__container">
         <div class="row align-items-center home__herosection__container__row">
-          <div class="col-md-7 home__herosection__container__row__col">
+          <div class="col-lg-7 col-md-12 home__herosection__container__row__col">
             <h1>Trello helps teams move work forward.</h1>
             <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Trello.</p>
             <form class="d-flex gap-2">
@@ -55,7 +55,7 @@
               </button>
             </form>
           </div>
-          <div class="col-md-5 col-lg-4 offset-lg-1 home__herosection__container__row__col">
+          <div class="col-lg-4 d-none d-lg-block offset-lg-1 home__herosection__container__row__col">
             <img
               class="img-fluid home__herosection__container__row__col__img"
               src="@/assets/images/hero.png"
@@ -74,7 +74,8 @@
               Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows. Manage projects, organize tasks, and build team spirit—all in one place.
             </p>
             <button class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn">
-              Start doing -->
+              Start doing
+              <i class="bi bi-arrow-right" />
             </button>
             <img
               class="img-fluid home__centeredsection__container__img"
@@ -109,7 +110,7 @@
     <section class="home__featuresection">
       <div class="container home__featuresection__container">
         <div class="row home__featuresection__container__row home__featuresection__container__row--padhalf">
-          <div class="col-md-7 home__featuresection__container__row__col">
+          <div class="col-md-12 col-lg-7 home__featuresection__container__row__col">
             <h2>
               Features to help your team succeed
             </h2>
@@ -120,14 +121,14 @@
           <div class="col home__featuresection__container__row__col" />
         </div>
         <div class="row home__featuresection__container__row">
-          <div class="col-md-7 home__featuresection__container__row__col">
+          <div class="col-md-5 home__featuresection__container__row__col">
             <img
               src="@/assets/images/view.svg"
               alt="view"
               class="img-fluid"
             >
           </div>
-          <div class="col-md-5 home__featuresection__container__row__col">
+          <div class="col-md-7 home__featuresection__container__row__col">
             <h6 class="home__featuresection__container__row__col__view">
               CHOOSE A VIEW
             </h6>
@@ -211,14 +212,14 @@
           </div>
         </div>
         <div class="row home__featuresection__container__row">
-          <div class="col-md-7 home__featuresection__container__row__col">
+          <div class="col-md-5 home__featuresection__container__row__col">
             <img
               src="@/assets/images/automation.png"
               alt="view"
               class="img-fluid"
             >
           </div>
-          <div class="col-md-5 home__featuresection__container__row__col">
+          <div class="col-md-7 home__featuresection__container__row__col">
             <h6 class="home__featuresection__container__row__col__view">
               MEET YOUR NEW BUTLER
             </h6>
@@ -307,6 +308,7 @@
           <div class="col">
             <div class="d-flex gap-5">
               <img
+                class="d-none d-lg-block"
                 src="@/assets/images/tag.svg"
                 alt="tag"
               >
@@ -324,6 +326,7 @@
           <div class="col">
             <div class="d-flex gap-5">
               <img
+                class="d-none d-lg-block"
                 src="@/assets/images/compass.svg"
                 alt="tag"
               >
@@ -347,23 +350,23 @@
       <div class="container py-5 home__signupsection__container">
         <div class="row">
           <div class="col">
-            <div class="card py-5 home__signupsection__container__card">
-              <div class="row justify-content-center py-4">
-                <div class="col-6">
-                  <h3>
+            <div class="card py-5 px-3 py-lg-6 home__signupsection__container__card">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6">
+                  <h3 class="m-0 mb-5">
                     Sign up and get started with Trello today. A world of productive teamwork awaits!
                   </h3>
                 </div>
               </div>
-              <div class="row justify-content-center py-4">
+              <div class="row justify-content-center">
                 <div class="col-6">
                   <form class="d-flex gap-2">
                     <input
-                      class="form-control form-control-lg w-75"
+                      class="form-control d-none d-md-block form-control-lg w-75"
                       type="email"
                       placeholder="Email"
                     >
-                    <button class="btn btn-info text-white form-control-lg flex-grow-1 p-0">
+                    <button class="btn btn-info text-white form-control-lg flex-grow-1">
                       Sign up
                     </button>
                   </form>
@@ -376,24 +379,30 @@
     </section>
     <section class="home__sectionribbon">
       <div class="container home__sectionribbon__container">
-        <div class="row align-items-center">
-          <div class="col offset-3">
-            <p class="m-0">
+        <div class="row align-items-center justify-content-end">
+          <div class="col-xl-5 offset-xl-2">
+            <p class="mb-0 text-xl-end text-center">
               Trello also works great on your smaller screen.
             </p>
           </div>
-          <div class="col">
-            <div class="d-flex gap-2 justify-content-end">
-              <img
-                src="@/assets/images/apple.svg"
-                alt="apple"
-                class="img-fluid"
-              >
-              <img
-                src="@/assets/images/google.svg"
-                alt="google"
-                class="img-fluid"
-              >
+          <div class="col-xl-5">
+            <div class="row justify-content-end py-2">
+              <div class="col">
+                <img
+                  src="@/assets/images/apple.svg"
+                  alt="apple"
+                  width="250px"
+                  class="img-fluid w-100"
+                >
+              </div>
+              <div class="col">
+                <img
+                  src="@/assets/images/google.svg"
+                  alt="google"
+                  width="250px"
+                  class="img-fluid w-100"
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -486,8 +495,8 @@ export default defineComponent({
         }
         &__centeredsection {
             text-align: center;
-            padding-top: 100px;
-            padding-bottom: 100px;
+            padding-top: 80px;
+            padding-bottom: 80px;
             &__container__img {
                 display: block;
                 margin: auto;
