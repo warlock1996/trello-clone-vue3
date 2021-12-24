@@ -29,8 +29,8 @@ jobs:
       - name: install deps
         run: npm i --global
       
-      - name: install vue-cli
-        run: npm i @vue/cli --global
+      - name: install vue-cli-service
+        run: npm i @vue/cli-service --global
         
       - name: build project
         run: npm run build
