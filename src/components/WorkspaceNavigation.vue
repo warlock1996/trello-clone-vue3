@@ -50,34 +50,86 @@
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >Workspaces</a>
+            <workspace-dropdown :title="'Workspaces'">
+              <template #content>
+                <div class="dropdown-header">
+                  <div class="my-1">
+                    Current workspace
+                  </div>
+                </div>
+                <div class="ws p-2">
+                  <workspace-title :title="'Trello workspace'" />
+                </div>
+                <div class="dropdown-header my-1">
+                  Your Workspaces
+                </div>
+                <div class="yws p-2">
+                  <workspace-title :title="'Trello workspace'" />
+                </div>
+                <div class="dropdown-header my-1">
+                  Guest Workspaces
+                </div>
+                <div class="yws p-2">
+                  <workspace-title :title="'Guest workspace'" />
+                </div>
+              </template>
+            </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               Recent
             </a>
+            <workspace-dropdown :title="'Recent boards'" />
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               Starred
+
             </a>
+            <workspace-dropdown :title="'Starred'">
+              <template #content>
+                <div class="d-flex flex-column">
+                  <img
+                    src="@/assets/images/starred.svg"
+                    alt="starred "
+                  >
+                  <p class="text-center">
+                    Star important boards to access them quickly and easily.
+                  </p>
+                </div>
+              </template>
+            </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               Templates
             </a>
+            <workspace-dropdown :title="'Templates'" />
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start active">
             <a
@@ -100,32 +152,69 @@
               >
             </div>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start">
+          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
-              class="nav-link text-white"
+              class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               <i class="bi bi-info-circle" />
             </a>
+            <workspace-dropdown
+              :title="'Information'"
+              class="dropdown-menu-end"
+            >
+              <template #content>
+                <div class="d-flex flex-column">
+                  <img
+                    src="@/assets/images/info.png"
+                    alt="starred "
+                  >
+                  <p class="text-center">
+                    It’s easy to get your team up and running with Trello playbooks
+                  </p>
+                  <a
+                    class="text-center"
+                    href="#"
+                  >Get a new tip.</a>
+                </div>
+              </template>
+            </workspace-dropdown>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start">
+          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
-              class="nav-link text-white"
+              class="nav-link text-white dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               <i class="bi bi-bell" />
             </a>
+            <workspace-dropdown
+              :title="'Notifications'"
+              class="dropdown-menu-end"
+            />
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last">
+          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
             <a
-              class="nav-link"
+              class="nav-link dropdown-toggle"
               aria-current="page"
               href="#"
+              data-bs-toggle="dropdown"
+              role="button"
+              aria-expanded="false"
             >
               AA
             </a>
+            <workspace-dropdown
+              :title="'Account'"
+              class="dropdown-menu-end"
+            />
           </li>
         </ul>
       </div>
@@ -134,9 +223,13 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@vue/runtime-core'
+import WorkspaceDropdown from '@/components/WorkspaceDropown.vue'
+import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 
-}
+export default defineComponent({
+  components: { WorkspaceDropdown, WorkspaceTitle }
+})
 </script>
 
 <style lang="scss" scoped>
