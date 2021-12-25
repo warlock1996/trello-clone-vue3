@@ -4,7 +4,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
+    component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
+    meta: {
+      layout: 'defaultLayout'
+    }
   },
   {
     path: '/login',
@@ -19,7 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/workspace',
     name: 'workspace',
-    component: () => import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue')
+    component: () => import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),
+    meta: {
+      layout: 'workspaceLayout'
+    }
   }
 ]
 

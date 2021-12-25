@@ -1,142 +1,9 @@
 <template>
   <div class="workspace">
-    <nav class="workspace__nav navbar navbar-expand-md py-1">
-      <div class="workspace__nav__container container-fluid justify-content-end">
-        <button
-          class="workspace__nav__container__collapser navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon shadow-0">
-            <i class="bi bi-three-dots text-white" />
-          </span>
-        </button>
-        <div
-          id="navbarNav"
-          class="workspace__nav__container__navbar__nav collapse navbar-collapse"
-        >
-          <ul class="workspace__nav__container__navbar__nav__list navbar-nav align-items-center flex-grow-1 gap-2">
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start">
-              <a
-                class="nav-link text-white p-0"
-                aria-current="page"
-                href="#"
-              >
-                <img
-                  src="@/assets/svgs/switch.svg"
-                  alt="switch"
-                  width="20"
-                  height="20"
-                >
-              </a>
-            </li><li class="workspace__nav__container__navbar__nav__list__item nav-item text-start">
-              <a
-                class="nav-link text-white"
-                aria-current="page"
-                href="#"
-              >
-                <img
-                  class="workspace__nav__container__img"
-                  src="@/assets/images/workspace-logo.gif"
-                  alt="workspace-logo"
-                >
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start dropdown">
-              <a
-                class="nav-link text-white dropdown-toggle"
-                aria-current="page"
-                href="#"
-              >Workspaces</a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start dropdown">
-              <a
-                class="nav-link text-white dropdown-toggle"
-                aria-current="page"
-                href="#"
-              >
-                Recent
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start dropdown">
-              <a
-                class="nav-link text-white dropdown-toggle"
-                aria-current="page"
-                href="#"
-              >
-                Starred
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start dropdown">
-              <a
-                class="nav-link text-white dropdown-toggle"
-                aria-current="page"
-                href="#"
-              >
-                Templates
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start active">
-              <a
-                class="nav-link text-white"
-                aria-current="page"
-                href="#"
-              >
-                Create
-              </a>
-            </li>
-          </ul>
-          <ul class="workspace__nav__container__navbar__nav__list navbar-nav align-items-center gap-1">
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start ">
-              <div class="input-wrapper">
-                <i class="bi bi-search" />
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                  placeholder="Search"
-                >
-              </div>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start">
-              <a
-                class="nav-link text-white"
-                aria-current="page"
-                href="#"
-              >
-                <i class="bi bi-info-circle" />
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start">
-              <a
-                class="nav-link text-white"
-                aria-current="page"
-                href="#"
-              >
-                <i class="bi bi-bell" />
-              </a>
-            </li>
-            <li class="workspace__nav__container__navbar__nav__list__item nav-item text-start last">
-              <a
-                class="nav-link"
-                aria-current="page"
-                href="#"
-              >
-                AA
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container workspace__container mt-5">
-      <div class="row justify-content-start">
+    <div class="container workspace__container pt-5">
+      <div class="row justify-content-start g-0">
         <div class="col-md-auto offset-md-1">
-          <ul class="list-group workspace__container__list">
+          <ul class="list-group px-2 workspace__container__list">
             <li class="list-group-item d-flex gap-2 border-0 px-2">
               <i class="bi bi-kanban" />
               <span>Boards</span>
@@ -152,12 +19,75 @@
           </ul>
         </div>
         <div class="col">
-          <div class="d-flex gap-3 flex-wrap">
-            <board />
-            <board />
-            <board />
-            <board />
-          </div>
+          <section class="py-2 mb-5 workspace__container__recent">
+            <div class="d-flex align-items-end gap-2 justify-content-start workspace__container__recent__title">
+              <i class="bi bi-clock" />
+              <span>Recently viewed</span>
+            </div>
+            <div class="workspace__container__recent_boards d-flex gap-2 flex-wrap justify-content-between my-2">
+              <board />
+              <board />
+              <board />
+              <board />
+              <board />
+            </div>
+          </section>
+          <section class="py-2 mb-5 workspace__container__owner">
+            <div class="d-flex align-items-end gap-2 justify-content-start workspace__container__owner__title">
+              <h3 class="my-2">
+                YOUR WORKSPACES
+              </h3>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <div class="trello d-flex gap-2 align-items-center justify-content-between">
+                  <div class="symbol">
+                    T
+                  </div>
+                  <h3 class="m-0">
+                    Trello workspaces
+                  </h3>
+                </div>
+              </div>
+              <div class="col">
+                <div class="buttons d-flex gap-2 align-items-center justify-content-end">
+                  <ul class="list-group flex-row gap-2">
+                    <li class="list-group-item d-flex gap-1">
+                      <i class="bi bi-kanban" />
+                      Boards
+                    </li>
+                    <li class="list-group-item d-flex gap-2">
+                      <i class="bi bi-table" />
+                      Workspace table
+                    </li>
+                    <li class="list-group-item d-flex gap-2">
+                      <i class="bi bi-person" />
+                      Members
+                    </li>
+                    <li class="list-group-item d-flex gap-2">
+                      <i class="bi bi-gear" />
+                      Settings
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2 flex-wrap justify-content-between my-2">
+              <board />
+              <board />
+              <board />
+              <board />
+              <board />
+            </div>
+          </section>
+          <section class="py-2 mb-5  workspace__container__guest">
+            <div class="d-flex align-items-center gap-2 justify-content-start workspace__container__guest__title">
+              <h3 class="my-2">
+                GUEST WORKSPACES
+              </h3>
+              <i class="bi bi-info-circle" />
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -177,71 +107,41 @@ export default defineComponent({
 
 <style lang="scss" scoped>
     .workspace {
-        &__nav {
-            background: #026AA7;
-            font-size: 14px;
-        &__container {
-            &__img {
-                width: 75px;
-            }
-            &__navbar__nav {
-                &__list {
-                    &__item {
-                        &:hover {
-                            background: rgba(255, 255, 255, 0.3);
-                            border-radius: 3px;
-                        }
-                        .input-wrapper {
-                                position: relative;
-                                color: white;
-                                border-radius: 3px;
-                                border: 1px solid rgba(255, 255, 255, 0.25);
-                                background-color: rgba(255, 255, 255, 0.3);
-                                &:focus {
-                                    background: #fff;
-                                }
-                            i {
-                                position: absolute;
-                                top: 50%;
-                                left: 12px;
-                                transform: translate(-50%, -50%);
-                            }
-                            input {
-                                padding-left: 24px;
-                                border-radius: none;
-                                border: none;
-                                color: white;
-                                background-color: transparent;
-                                &::placeholder {
-                                    color: white;
-                                }
-                                 &:focus {
-                                    color: gray;
-                                    background: #fff;
-                                }
-                            }
-                        }
-                        &.last a {
-                            background-color: #DFE1E6;
-                            color: black;
-                            border-radius: 50%;
-                            padding: 8px;
-                        }
-                    }
-                }
-            }
+        --page-bg: #f4f5f7;
+        --base-clr: #172b4d;
+        --active-clr: #0079BF;
+        --list-item-clr: #091e42;
+        --list-item-bg-hover: rgba(9, 30, 66, 0.08);
+        --workspaces-title-clr: #5e6c84;
+        --workspaces-link-bg: #091e420a;
 
-        }
+        min-height: 100vh;
+
+        background: var(--page-bg);
+
+        // page reset styles
+        h3 {
+            font-size: 16px;
         }
         &__container {
+          position: relative;
             &__list {
+                position: sticky;
+                top: 50px;
                 width: 240px;
                 font-size: 14px;
                 font-weight: 500;
                 li {
+                    background: transparent;
                     color: #172b4d;
                     font-weight: bold;
                     &:hover {
+                        color: #091e42;
+                        background: rgba(9, 30, 66, 0.08);
+                        border-radius: 4px;
+                        cursor: pointer;
+                    }
+                    .active {
                         color: #0079BF;
                         background: #E4F0F6;
                         border-radius: 4px;
@@ -250,13 +150,52 @@ export default defineComponent({
                 }
 
             }
+            &__recent {
+              &__title {
+                color: var(--base-clr);
+                font-weight: 700;
+                i {
+                    font-size: 20px;
+                }
+              }
+            }
+            &__owner, &__guest {
+                h3 {
+                    color: var(--workspaces-title-clr);
+                    font-weight: 700;
+                }
+            }
+            &__owner {
+                .trello {
+                    .symbol {
+                        border-radius: 3px;
+                        height: 32px;
+                        width: 32px;
+                        background: linear-gradient(#b22865, #cd5a91);
+                        font-size: 20px;
+                        text-align: center;
+                        color: #fff;
+                    }
+                }
+                .buttons {
+                    .list-group {
+                        border: none;
+                        font-size: 14px;
+                        color: var(--base-clr);
+                        i {
+                          color: var(--base-clr)
+                        }
+                        li {
+                        background: #091e420a;
+                        border: none;
+                        &:hover {
+                            background: #091e4214;
+                        }
+                        }
+                    }
+                }
+            }
         }
-    }
 
-    .row {
-        border: 1px solid red;
-        .col {
-            border: 1px solid gray;
-        }
     }
 </style>

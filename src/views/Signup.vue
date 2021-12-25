@@ -38,6 +38,7 @@
         >
       </template>
     </atlassian-footer>
+    <global-footer />
   </div>
 </template>
 <script lang="ts">
@@ -47,6 +48,7 @@ import TrelloLogo from '@/components/TrelloLogo.vue'
 import AuthCard from '@/components/AuthCard.vue'
 import SignupForm from '@/components/SignupForm.vue'
 import AtlassianFooter from '@/components/AtlassianFooter.vue'
+import GlobalFooter from '@/components/GlobalFooter.vue'
 
 export default defineComponent({
   components: {
@@ -54,7 +56,8 @@ export default defineComponent({
     AuthCard,
     SignupForm,
     TrelloLogo,
-    AtlassianFooter
+    AtlassianFooter,
+    GlobalFooter
 
   },
   data () {

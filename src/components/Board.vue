@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body p-2">
       <div class="card-title">
-        <h5>Project 1</h5>
+        Project 1
       </div>
     </div>
   </div>
@@ -18,8 +18,17 @@ export default defineComponent({
 
 <style lang="scss" scoped>
     .card {
-        background: rgb(131, 140, 145);
         width: 180px;
         height: 100px;
+        border-radius: 3px;
+        &-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+        &-body {
+            border-radius: 3px;
+            background: rgb(131, 140, 145);
+        }
     }
 </style>

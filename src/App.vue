@@ -1,18 +1,23 @@
 <template>
-  <component :is="layout" />
+  <div class="layout-wrap">
+    <component :is="layout" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 import defaultLayout from '@/layouts/default.vue'
+import workspaceLayout from '@/layouts/workspace.vue'
+
 export default defineComponent({
   components: {
-    defaultLayout
+    defaultLayout,
+    workspaceLayout
   },
   data () {
     return {
-      layout: defaultLayout
+      layout: workspaceLayout
     }
   }
 })
@@ -20,6 +25,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+
+.layout-wrap {
+  position: relative;
+  z-index: 1000;
+}
 
 @font-face {
     font-family: CharlieDisplay-Regular;

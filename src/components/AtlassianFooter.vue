@@ -59,7 +59,7 @@ export default defineComponent({
   position: relative;
   z-index: 2;
   &__divider {
-    width: 400px;
+    width: 320px;
     max-width: 400px;
     margin: 40px auto;
     color: #5e6c84;
