@@ -28,7 +28,10 @@ export default defineComponent({
         }
         &-body {
             border-radius: 3px;
-            background: rgb(131, 140, 145);
+            background: #97a0af;
+            &:hover {
+              background: rgb(131, 140, 145);
+            }
         }
     }
 </style>

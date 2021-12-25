@@ -15,5 +15,21 @@
  $input-height: 44px;
  $input-font-size: 14px;
 
+ $dropdown-padding-x: 12px; 
+ $dropdown-padding-y: 12px; 
+ $dropdown-box-shadow: 0 0 7px -1px #0000004d;
+ $dropdown-bg: #ffffff;
+ $dropdown-border-radius: 3px;
+ $dropdown-font-size: 14px;
+ $dropdown-header-color: #5e6c84;
+ $dropdown-color: #5e6c84;
+ $dropdown-divider-bg: #5e6c84;
+ $dropdown-min-width: 304px;
+ $dropdown-divider-margin-y: 8px;
+ $dropdown-border-width:0;
+ $dropdown-link-color: #172b4d;
+ $dropdown-link-hover-bg: #091e4214;
+ $dropdown-header-padding: 0;   
+
 
   @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
