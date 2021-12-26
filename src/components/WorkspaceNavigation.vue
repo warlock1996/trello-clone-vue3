@@ -280,7 +280,7 @@
                   >
                     User name
                   </li>
-                  <li class="dropdown-divider mx-2" />
+                  <hr class="dropdown-divider mx-2">
                   <li
                     class="dropdown-item px-3 py-2"
                     role="button"
@@ -305,7 +305,7 @@
                   >
                     Settings
                   </li>
-                  <li class="dropdown-divider mx-2" />
+                  <hr class="dropdown-divider mx-2">
                   <li
                     class="dropdown-item px-3 py-2"
                     role="button"
@@ -324,7 +324,7 @@
                   >
                     Shortcuts
                   </li>
-                  <li class="dropdown-divider mx-2" />
+                  <hr class="dropdown-divider mx-2">
                   <li
                     class="dropdown-item px-3 py-2"
                     role="button"

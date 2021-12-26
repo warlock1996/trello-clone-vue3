@@ -6,9 +6,9 @@
           <workspace-side-menu />
         </div>
         <div class="col">
-          <section class="py-2 mb-5 workspace__container__recent">
+          <section class="py-2 mb-4 workspace__container__recent">
             <div
-              class="d-flex align-items-end gap-2 justify-content-start workspace__container__recent__title"
+              class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title"
             >
               <i class="bi bi-clock" />
               <span>Recently viewed</span>
@@ -25,9 +25,9 @@
           </section>
           <section class="py-2 mb-5 workspace__container__owner">
             <div
-              class="d-flex align-items-end gap-2 justify-content-start workspace__container__owner__title"
+              class="d-flex align-items-end gap-2 justify-content-start my-4 workspace__container__owner__title"
             >
-              <h3 class="my-2">
+              <h3>
                 YOUR WORKSPACES
               </h3>
             </div>
@@ -46,26 +46,32 @@
               </div>
               <div class="col">
                 <div
-                  class="buttons d-flex gap-2 align-items-center justify-content-end"
+                  class="d-flex gap-2 align-items-center justify-content-end"
                 >
-                  <ul class="list-group flex-row gap-2">
-                    <li class="list-group-item d-flex gap-1">
+                  <action-button>
+                    <template #icon>
                       <i class="bi bi-kanban" />
-                      Boards
-                    </li>
-                    <li class="list-group-item d-flex gap-2">
+                    </template>
+                    Boards
+                  </action-button>
+                  <action-button>
+                    <template #icon>
                       <i class="bi bi-table" />
-                      Workspace table
-                    </li>
-                    <li class="list-group-item d-flex gap-2">
+                    </template>
+                    Workspace table
+                  </action-button>
+                  <action-button>
+                    <template #icon>
                       <i class="bi bi-person" />
-                      Members
-                    </li>
-                    <li class="list-group-item d-flex gap-2">
+                    </template>
+                    Members
+                  </action-button>
+                  <action-button>
+                    <template #icon>
                       <i class="bi bi-gear" />
-                      Settings
-                    </li>
-                  </ul>
+                    </template>
+                    Settings
+                  </action-button>
                 </div>
               </div>
             </div>
@@ -79,9 +85,9 @@
           </section>
           <section class="py-2 mb-5 workspace__container__guest">
             <div
-              class="d-flex align-items-center gap-2 justify-content-start workspace__container__guest__title"
+              class="d-flex align-items-center gap-2 justify-content-start my-4 workspace__container__guest__title"
             >
-              <h3 class="my-2">
+              <h3>
                 GUEST WORKSPACES
               </h3>
               <i class="bi bi-info-circle" />
@@ -97,11 +103,13 @@
 import { defineComponent } from 'vue'
 import Board from '@/components/Board.vue'
 import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
+import ActionButton from '@/components/ActionButton.vue'
 
 export default defineComponent({
   components: {
     Board,
-    WorkspaceSideMenu
+    WorkspaceSideMenu,
+    ActionButton
   }
 })
 </script>
@@ -153,23 +161,6 @@ export default defineComponent({
           font-size: 20px;
           text-align: center;
           color: #fff;
-        }
-      }
-      .buttons {
-        .list-group {
-          border: none;
-          font-size: 14px;
-          color: var(--base-clr);
-          i {
-            color: var(--base-clr);
-          }
-          li {
-            background: #091e420a;
-            border: none;
-            &:hover {
-              background: #091e4214;
-            }
-          }
         }
       }
     }
