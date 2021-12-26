@@ -23,29 +23,26 @@
 import { defineComponent } from 'vue'
 export default defineComponent({
   data () {
-    return {
-
-    }
+    return {}
   }
 })
 </script>
 
 <style lang="scss" scoped>
- .global__footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    z-index: 1;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-    &__img {
-      max-width: 400px;
-      &.right {
-        display: block;
-        margin-left: auto;
-      }
+.global__footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  &__img {
+    max-width: 400px;
+    &.right {
+      display: block;
+      margin-left: auto;
     }
   }
-
+}
 </style>

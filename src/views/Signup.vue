@@ -14,17 +14,13 @@
         <template #footer>
           <dotted-inline-list>
             <template #a>
-              <a href="#">
-                Already have an account?
-              </a>
+              <a href="#"> Already have an account? </a>
             </template>
             <template #b>
               <a
                 href="#"
                 @click.prevent="$router.push('/login')"
-              >
-                Log In
-              </a>
+              > Log In </a>
             </template>
           </dotted-inline-list>
         </template>
@@ -58,7 +54,6 @@ export default defineComponent({
     TrelloLogo,
     AtlassianFooter,
     GlobalFooter
-
   },
   data () {
     return {}

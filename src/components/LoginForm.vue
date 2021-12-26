@@ -34,17 +34,12 @@
 <script>
 import { defineComponent } from 'vue'
 
-export default defineComponent({
-
-})
-
+export default defineComponent({})
 </script>
 
 <style lang="scss" scoped>
-
 .login-form__methods {
-    font-size: 14px;
-    text-align: center;
+  font-size: 14px;
+  text-align: center;
 }
-
 </style>

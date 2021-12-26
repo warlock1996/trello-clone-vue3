@@ -43,12 +43,16 @@
     <section class="home__herosection">
       <div class="container home__herosection__container">
         <div class="row align-items-center home__herosection__container__row">
-          <div class="col-lg-7 col-md-12 home__herosection__container__row__col">
+          <div
+            class="col-lg-7 col-md-12 home__herosection__container__row__col"
+          >
             <h1 class="text-center text-md-start">
               Trello helps teams move work forward.
             </h1>
             <p class="text-center text-md-start">
-              Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
+              Collaborate, manage projects, and reach new productivity peaks.
+              From high rises to the home office, the way your team works is
+              unique—accomplish it all with Trello.
             </p>
             <form class="d-flex gap-2">
               <input
@@ -61,7 +65,9 @@
               </button>
             </form>
           </div>
-          <div class="col-lg-4 d-none d-lg-block offset-lg-1 home__herosection__container__row__col">
+          <div
+            class="col-lg-4 d-none d-lg-block offset-lg-1 home__herosection__container__row__col"
+          >
             <img
               class="img-fluid home__herosection__container__row__col__img"
               src="@/assets/images/hero.png"
@@ -77,9 +83,13 @@
           <div class="col-md-10">
             <h2>It’s more than work. It’s a way of working together.</h2>
             <p class="home__centeredsection__container__description">
-              Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows. Manage projects, organize tasks, and build team spirit—all in one place.
+              Start with a Trello board, lists, and cards. Customize and expand
+              with more features as your teamwork grows. Manage projects,
+              organize tasks, and build team spirit—all in one place.
             </p>
-            <button class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn">
+            <button
+              class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn"
+            >
               Start doing
               <i class="bi bi-arrow-right" />
             </button>
@@ -89,9 +99,12 @@
               alt="board"
             >
             <p class="home__centeredsection__container__description">
-              Join over 1,000,000 teams worldwide that are using Trello to get more done.
+              Join over 1,000,000 teams worldwide that are using Trello to get
+              more done.
             </p>
-            <div class="d-flex gap-5 flex-wrap justify-content-center home__centeredsection__container__logos">
+            <div
+              class="d-flex gap-5 flex-wrap justify-content-center home__centeredsection__container__logos"
+            >
               <img
                 src="@/assets/svgs/google.svg"
                 alt="google"
@@ -115,13 +128,18 @@
     </section>
     <section class="home__featuresection">
       <div class="container home__featuresection__container">
-        <div class="row home__featuresection__container__row home__featuresection__container__row--padhalf">
-          <div class="col-md-12 col-lg-7 home__featuresection__container__row__col">
-            <h2>
-              Features to help your team succeed
-            </h2>
+        <div
+          class="row home__featuresection__container__row home__featuresection__container__row--padhalf"
+        >
+          <div
+            class="col-md-12 col-lg-7 home__featuresection__container__row__col"
+          >
+            <h2>Features to help your team succeed</h2>
             <p class="home__featuresection__container__row__col__description">
-              Powering a productive team means using a powerful tool (and plenty of snacks). From meetings and projects to events and goal setting, Trello’s intuitive features give any team the ability to quickly set up and customize workflows for just about anything.
+              Powering a productive team means using a powerful tool (and plenty
+              of snacks). From meetings and projects to events and goal setting,
+              Trello’s intuitive features give any team the ability to quickly
+              set up and customize workflows for just about anything.
             </p>
           </div>
           <div class="col home__featuresection__container__row__col" />
@@ -142,7 +160,9 @@
               The board is just the beginning
             </h2>
             <p class="home__featuresection__container__row__col__description">
-              Lists and cards are the building blocks of organizing work on a Trello board. Grow from there with task assignments, timelines, productivity metrics, calendars, and more.
+              Lists and cards are the building blocks of organizing work on a
+              Trello board. Grow from there with task assignments, timelines,
+              productivity metrics, calendars, and more.
             </p>
             <button
               class="btn btn-transparent border-0 shadow-none p-0"
@@ -159,7 +179,9 @@
               class="collapse"
             >
               <p>
-                You and your team can start up a Trello board in seconds. With the ability to view board data from many different angles, the entire team stays up-to-date in the way that suits them best:
+                You and your team can start up a Trello board in seconds. With
+                the ability to view board data from many different angles, the
+                entire team stays up-to-date in the way that suits them best:
               </p>
               <ul>
                 <li>Use a Timeline view for project planning</li>
@@ -179,7 +201,10 @@
               Cards contain everything you need
             </h2>
             <p class="home__featuresection__container__row__col__description">
-              Trello cards are your portal to more organized work—where every single part of your task can be managed, tracked, and shared with teammates. Open any card to uncover an ecosystem of checklists, due dates, attachments, conversations, and more.
+              Trello cards are your portal to more organized work—where every
+              single part of your task can be managed, tracked, and shared with
+              teammates. Open any card to uncover an ecosystem of checklists,
+              due dates, attachments, conversations, and more.
             </p>
             <button
               class="btn btn-transparent border-0 shadow-none p-0"
@@ -196,11 +221,13 @@
               class="collapse"
             >
               <p>
-                Spin up a Trello card with a click, then uncover everything it can hold. Break down bigger card tasks into steps with file attachment previews, reminders, checklists and comments—emoji reactions included! Plus, gain powerful perspective by seeing all cards by list and status at the board level.
+                Spin up a Trello card with a click, then uncover everything it
+                can hold. Break down bigger card tasks into steps with file
+                attachment previews, reminders, checklists and comments—emoji
+                reactions included! Plus, gain powerful perspective by seeing
+                all cards by list and status at the board level.
               </p>
-              <p>
-                Your team can:
-              </p>
+              <p>Your team can:</p>
               <ul>
                 <li>Manage deadlines</li>
                 <li>Provide and track feedback</li>
@@ -233,7 +260,10 @@
               No-code automation
             </h2>
             <p class="home__featuresection__container__row__col__description">
-              Let the robots do the work—so your team can focus on work that matters. With Trello’s built-in automation, Butler, reduce the number of tedious tasks (and clicks) on your project board by harnessing the power of automation across your entire team.
+              Let the robots do the work—so your team can focus on work that
+              matters. With Trello’s built-in automation, Butler, reduce the
+              number of tedious tasks (and clicks) on your project board by
+              harnessing the power of automation across your entire team.
             </p>
             <button
               class="btn btn-transparent border-0 shadow-none p-0"
@@ -250,7 +280,8 @@
               class="collapse"
             >
               <p>
-                Butler uses natural language commands to automate just about any task in Trello:
+                Butler uses natural language commands to automate just about any
+                task in Trello:
               </p>
               <ul>
                 <li>Automate common actions like moving lists</li>
@@ -270,7 +301,10 @@
               Integrate top work tools
             </h2>
             <p class="home__featuresection__container__row__col__description">
-              Easily connect the apps your team already uses into your Trello workflow, or add a Power-Up that helps fine-tune one specific need. With hundreds of Power-Ups available, your team’s workflow wishes are covered.
+              Easily connect the apps your team already uses into your Trello
+              workflow, or add a Power-Up that helps fine-tune one specific
+              need. With hundreds of Power-Ups available, your team’s workflow
+              wishes are covered.
             </p>
             <button
               class="btn btn-transparent border-0 shadow-none p-0"
@@ -287,7 +321,9 @@
               class="collapse"
             >
               <p>
-                From Reporting to Custom Fields to your beloved software integrations—we’ve got functionalities, your favorites, and more!
+                From Reporting to Custom Fields to your beloved software
+                integrations—we’ve got functionalities, your favorites, and
+                more!
               </p>
               <ul>
                 <li>Confluence</li>
@@ -321,7 +357,8 @@
               <div>
                 <h3>See our pricing</h3>
                 <p>
-                  Whether you’re a team of 2 or 2,000, there’s a Trello tailor-made for your organization.
+                  Whether you’re a team of 2 or 2,000, there’s a Trello
+                  tailor-made for your organization.
                 </p>
                 <button class="btn btn-outline-primary">
                   Trello pricing
@@ -337,11 +374,10 @@
                 alt="tag"
               >
               <div>
-                <h3>
-                  Take a Trello tour
-                </h3>
+                <h3>Take a Trello tour</h3>
                 <p>
-                  Explore the world of boards and beyond in Trello. Dive deeper into our most popular features.
+                  Explore the world of boards and beyond in Trello. Dive deeper
+                  into our most popular features.
                 </p>
                 <button class="btn btn-outline-primary">
                   Tour Trello
@@ -356,11 +392,14 @@
       <div class="container py-5 home__signupsection__container">
         <div class="row">
           <div class="col">
-            <div class="card py-5 px-3 py-lg-6 home__signupsection__container__card">
+            <div
+              class="card py-5 px-3 py-lg-6 home__signupsection__container__card"
+            >
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6">
                   <h3 class="m-0 mb-5">
-                    Sign up and get started with Trello today. A world of productive teamwork awaits!
+                    Sign up and get started with Trello today. A world of
+                    productive teamwork awaits!
                   </h3>
                 </div>
               </div>
@@ -372,7 +411,9 @@
                       type="email"
                       placeholder="Email"
                     >
-                    <button class="btn btn-info text-white form-control-lg flex-grow-1">
+                    <button
+                      class="btn btn-info text-white form-control-lg flex-grow-1"
+                    >
                       Sign up
                     </button>
                   </form>
@@ -441,103 +482,103 @@ export default defineComponent({
   components: {
     TrelloLogo,
     AtlassianFooter
-
   }
 })
 </script>
 
 <style lang="scss" scoped>
-    .home {
-      h1 {
-        font-family: CharlieDisplay-Semibold;
-        font-size: 48px;
+.home {
+  h1 {
+    font-family: CharlieDisplay-Semibold;
+    font-size: 48px;
+  }
+  h2 {
+    font-family: CharlieDisplay-Semibold;
+    font-size: 36px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  p {
+    font-family: CharlieText-Regular;
+    font-size: 20px;
+  }
+  button[data-bs-toggle="collapse"] {
+    font-size: 24px;
+    font-family: CharlieDisplay-Semibold;
+  }
+  .collapse p {
+    font-size: 18px;
+  }
+  ul li {
+    font-family: CharlieText-Regular;
+    font-size: 18px;
+  }
+  position: relative;
+  &__nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    &__container {
+      &__logo {
+        width: 125px;
       }
-      h2 {
-        font-family: CharlieDisplay-Semibold;
-        font-size: 36px;
-      }
-      h3 {
-        font-size: 24px;
-      }
-      p {
-        font-family: CharlieText-Regular;
-        font-size: 20px;
-      }
-      button[data-bs-toggle="collapse"] {
-        font-size: 24px;
-        font-family: CharlieDisplay-Semibold;
-      }
-      .collapse p {
-        font-size: 18px;
-      }
-        ul li {
-          font-family: CharlieText-Regular;
-          font-size: 18px;
-        }
-        position: relative;
-        &__nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            &__container {
-                &__logo {
-                    width: 125px;
-                }
-            }
-        }
-        &__herosection {
-            padding-top: 100px;
-            padding-bottom: 100px;
-             background: linear-gradient(0deg, #fff, #eae6ff 100%);;
-            &__container {
-                &__row {
-                    &__col {
-                        &__img {
-                            width: 450px;
-                        }
-                    }
-                }
-            }
-        }
-        &__centeredsection {
-            text-align: center;
-            padding-top: 80px;
-            padding-bottom: 80px;
-            &__container__img {
-                display: block;
-                margin: auto;
-            }
-        }
-        &__featuresection {
-            &__container {
-                &__row {
-                    padding-top: 48px;
-                    padding-bottom: 48px;
-                    &--padhalf {
-                        padding-top: 24px;
-                        padding-bottom: 24px;
-                    }
-                }
-            }
-        }
-        &__signupsection {
-            &__container {
-                &__card {
-                    text-align: center;
-                    background-image: url('/assets/images/background.svg'),linear-gradient(0deg, #4c9aff, #403294 100%);
-                    background-position: center top;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    border-radius: 8px;
-                    color: #fff;
-                    }
-            }
-        }
-        &__pricesection{
-          &__container {
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
+    }
+  }
+  &__herosection {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background: linear-gradient(0deg, #fff, #eae6ff 100%);
+    &__container {
+      &__row {
+        &__col {
+          &__img {
+            width: 450px;
           }
         }
+      }
     }
+  }
+  &__centeredsection {
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    &__container__img {
+      display: block;
+      margin: auto;
+    }
+  }
+  &__featuresection {
+    &__container {
+      &__row {
+        padding-top: 48px;
+        padding-bottom: 48px;
+        &--padhalf {
+          padding-top: 24px;
+          padding-bottom: 24px;
+        }
+      }
+    }
+  }
+  &__signupsection {
+    &__container {
+      &__card {
+        text-align: center;
+        background-image: url("/assets/images/background.svg"),
+          linear-gradient(0deg, #4c9aff, #403294 100%);
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 8px;
+        color: #fff;
+      }
+    }
+  }
+  &__pricesection {
+    &__container {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+  }
+}
 </style>

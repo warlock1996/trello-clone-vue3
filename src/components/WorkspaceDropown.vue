@@ -1,7 +1,7 @@
 <template>
   <div
     class="dropdown-menu shadow"
-    style="width: 300px;"
+    style="width: 300px"
   >
     <div class="d-flex align-items-baseline">
       <div class="title text-center flex-grow-1">
@@ -27,10 +27,7 @@ export default defineComponent({
       default: 'Workspaces'
     }
   }
-
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -18,8 +18,12 @@
         id="navbarNav"
         class="workspacenav__container__navbar__nav collapse navbar-collapse"
       >
-        <ul class="workspacenav__container__navbar__nav__list navbar-nav align-items-center flex-grow-1 gap-2">
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start">
+        <ul
+          class="workspacenav__container__navbar__nav__list navbar-nav align-items-center flex-grow-1 gap-2"
+        >
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start"
+          >
             <a
               class="nav-link text-white p-0"
               aria-current="page"
@@ -32,7 +36,10 @@
                 height="20"
               >
             </a>
-          </li><li class="workspacenav__container__navbar__nav__list__item nav-item text-start">
+          </li>
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start"
+          >
             <a
               class="nav-link text-white"
               aria-current="page"
@@ -45,7 +52,9 @@
               >
             </a>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -53,7 +62,13 @@
               data-bs-toggle="dropdown"
               role="button"
               aria-expanded="false"
-            >Workspaces</a>
+            >Workspaces
+              <img
+                class="caret-down"
+                src="@/assets/svgs/caret-down.svg"
+                alt="caret-down"
+              >
+            </a>
             <workspace-dropdown :title="'Workspaces'">
               <template #content>
                 <div class="dropdown-header">
@@ -88,7 +103,9 @@
               </template>
             </workspace-dropdown>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -98,10 +115,17 @@
               aria-expanded="false"
             >
               Recent
+              <img
+                class="caret-down"
+                src="@/assets/svgs/caret-down.svg"
+                alt="caret-down"
+              >
             </a>
             <workspace-dropdown :title="'Recent boards'" />
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -111,7 +135,11 @@
               aria-expanded="false"
             >
               Starred
-
+              <img
+                class="caret-down"
+                src="@/assets/svgs/caret-down.svg"
+                alt="caret-down"
+              >
             </a>
             <workspace-dropdown :title="'Starred'">
               <template #content>
@@ -127,7 +155,9 @@
               </template>
             </workspace-dropdown>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -137,10 +167,17 @@
               aria-expanded="false"
             >
               Templates
+              <img
+                class="caret-down"
+                src="@/assets/svgs/caret-down.svg"
+                alt="caret-down"
+              >
             </a>
             <workspace-dropdown :title="'Templates'" />
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start active">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start active"
+          >
             <a
               class="nav-link text-white"
               aria-current="page"
@@ -150,8 +187,12 @@
             </a>
           </li>
         </ul>
-        <ul class="workspacenav__container__navbar__nav__list navbar-nav align-items-center gap-1">
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start ">
+        <ul
+          class="workspacenav__container__navbar__nav__list navbar-nav align-items-center gap-1"
+        >
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start"
+          >
             <div class="input-wrapper">
               <i class="bi bi-search" />
               <input
@@ -161,7 +202,9 @@
               >
             </div>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -183,7 +226,8 @@
                     alt="starred "
                   >
                   <p class="text-center">
-                    It’s easy to get your team up and running with Trello playbooks
+                    It’s easy to get your team up and running with Trello
+                    playbooks
                   </p>
                   <a
                     class="text-center"
@@ -193,7 +237,9 @@
               </template>
             </workspace-dropdown>
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown"
+          >
             <a
               class="nav-link text-white dropdown-toggle"
               aria-current="page"
@@ -209,7 +255,9 @@
               class="dropdown-menu-end"
             />
           </li>
-          <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
+          <li
+            class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown"
+          >
             <a
               class="nav-link dropdown-toggle"
               aria-current="page"
@@ -304,63 +352,73 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-     .workspacenav {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background: #026AA7;
-            font-size: 14px;
-          &__container {
-              &__img {
-                  width: 75px;
-              }
-              &__navbar__nav {
-                  &__list {
-                      &__item {
-                          &:hover {
-                              background: rgba(255, 255, 255, 0.3);
-                              border-radius: 3px;
-                          }
-                          .input-wrapper {
-                                  position: relative;
-                                  color: white;
-                                  border-radius: 3px;
-                                  border: 1px solid rgba(255, 255, 255, 0.25);
-                                  background-color: rgba(255, 255, 255, 0.3);
-                                  &:focus {
-                                      background: #fff;
-                                  }
-                              i {
-                                  position: absolute;
-                                  top: 50%;
-                                  left: 12px;
-                                  transform: translate(-50%, -50%);
-                              }
-                              input {
-                                  padding-left: 24px;
-                                  border-radius: none;
-                                  border: none;
-                                  color: white;
-                                  background-color: transparent;
-                                  &::placeholder {
-                                      color: white;
-                                  }
-                                  &:focus {
-                                      color: gray;
-                                      background: #fff;
-                                  }
-                              }
-                          }
-                          &.last a {
-                              background-color: #DFE1E6;
-                              color: black;
-                              border-radius: 50%;
-                              padding: 8px;
-                          }
-                      }
-                  }
-              }
+.workspacenav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #026aa7;
+  font-size: 14px;
 
+  .dropdown-toggle {
+    &::after {
+      border: 0;
+      margin: 0;
+    }
+    .caret-down {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  &__container {
+    &__img {
+      width: 75px;
+    }
+    &__navbar__nav {
+      &__list {
+        &__item {
+          &:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+          }
+          .input-wrapper {
+            position: relative;
+            color: white;
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background-color: rgba(255, 255, 255, 0.3);
+            &:focus {
+              background: #fff;
+            }
+            i {
+              position: absolute;
+              top: 50%;
+              left: 12px;
+              transform: translate(-50%, -50%);
+            }
+            input {
+              padding-left: 24px;
+              border-radius: none;
+              border: none;
+              color: white;
+              background-color: transparent;
+              &::placeholder {
+                color: white;
+              }
+              &:focus {
+                color: gray;
+                background: #fff;
+              }
+            }
+          }
+          &.last a {
+            background-color: #dfe1e6;
+            color: black;
+            border-radius: 50%;
+            padding: 8px;
           }
         }
+      }
+    }
+  }
+}
 </style>

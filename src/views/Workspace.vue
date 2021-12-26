@@ -7,11 +7,15 @@
         </div>
         <div class="col">
           <section class="py-2 mb-5 workspace__container__recent">
-            <div class="d-flex align-items-end gap-2 justify-content-start workspace__container__recent__title">
+            <div
+              class="d-flex align-items-end gap-2 justify-content-start workspace__container__recent__title"
+            >
               <i class="bi bi-clock" />
               <span>Recently viewed</span>
             </div>
-            <div class="workspace__container__recent_boards d-flex gap-2 flex-wrap justify-content-between my-2">
+            <div
+              class="workspace__container__recent_boards d-flex gap-2 flex-wrap justify-content-between my-2"
+            >
               <board />
               <board />
               <board />
@@ -20,14 +24,18 @@
             </div>
           </section>
           <section class="py-2 mb-5 workspace__container__owner">
-            <div class="d-flex align-items-end gap-2 justify-content-start workspace__container__owner__title">
+            <div
+              class="d-flex align-items-end gap-2 justify-content-start workspace__container__owner__title"
+            >
               <h3 class="my-2">
                 YOUR WORKSPACES
               </h3>
             </div>
             <div class="row">
               <div class="col-auto">
-                <div class="trello d-flex gap-2 align-items-center justify-content-between">
+                <div
+                  class="trello d-flex gap-2 align-items-center justify-content-between"
+                >
                   <div class="symbol">
                     T
                   </div>
@@ -37,7 +45,9 @@
                 </div>
               </div>
               <div class="col">
-                <div class="buttons d-flex gap-2 align-items-center justify-content-end">
+                <div
+                  class="buttons d-flex gap-2 align-items-center justify-content-end"
+                >
                   <ul class="list-group flex-row gap-2">
                     <li class="list-group-item d-flex gap-1">
                       <i class="bi bi-kanban" />
@@ -67,8 +77,10 @@
               <board />
             </div>
           </section>
-          <section class="py-2 mb-5  workspace__container__guest">
-            <div class="d-flex align-items-center gap-2 justify-content-start workspace__container__guest__title">
+          <section class="py-2 mb-5 workspace__container__guest">
+            <div
+              class="d-flex align-items-center gap-2 justify-content-start workspace__container__guest__title"
+            >
               <h3 class="my-2">
                 GUEST WORKSPACES
               </h3>
@@ -95,72 +107,72 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-    .workspace {
-        --page-bg: #f4f5f7;
-        --base-clr: #172b4d;
-        --active-clr: #0079BF;
-        --list-item-clr: #091e42;
-        --list-item-bg-hover: rgba(9, 30, 66, 0.08);
-        --workspaces-title-clr: #5e6c84;
-        --workspaces-link-bg: #091e420a;
+.workspace {
+  --page-bg: #f4f5f7;
+  --base-clr: #172b4d;
+  --active-clr: #0079bf;
+  --list-item-clr: #091e42;
+  --list-item-bg-hover: rgba(9, 30, 66, 0.08);
+  --workspaces-title-clr: #5e6c84;
+  --workspaces-link-bg: #091e420a;
 
-        min-height: 100vh;
+  min-height: 100vh;
 
-        background: var(--page-bg);
+  background: var(--page-bg);
 
-        // page reset styles
-        h3 {
-            font-size: 16px;
+  // page reset styles
+  h3 {
+    font-size: 16px;
+  }
+  &__container {
+    position: relative;
+
+    &__recent {
+      &__title {
+        color: var(--base-clr);
+        font-weight: 700;
+        i {
+          font-size: 20px;
         }
-        &__container {
-          position: relative;
-
-            &__recent {
-              &__title {
-                color: var(--base-clr);
-                font-weight: 700;
-                i {
-                    font-size: 20px;
-                }
-              }
-            }
-            &__owner, &__guest {
-                h3 {
-                    color: var(--workspaces-title-clr);
-                    font-weight: 700;
-                }
-            }
-            &__owner {
-                .trello {
-                    .symbol {
-                        border-radius: 3px;
-                        height: 32px;
-                        width: 32px;
-                        background: linear-gradient(#b22865, #cd5a91);
-                        font-size: 20px;
-                        text-align: center;
-                        color: #fff;
-                    }
-                }
-                .buttons {
-                    .list-group {
-                        border: none;
-                        font-size: 14px;
-                        color: var(--base-clr);
-                        i {
-                          color: var(--base-clr)
-                        }
-                        li {
-                        background: #091e420a;
-                        border: none;
-                        &:hover {
-                            background: #091e4214;
-                        }
-                        }
-                    }
-                }
-            }
-        }
-
+      }
     }
+    &__owner,
+    &__guest {
+      h3 {
+        color: var(--workspaces-title-clr);
+        font-weight: 700;
+      }
+    }
+    &__owner {
+      .trello {
+        .symbol {
+          border-radius: 3px;
+          height: 32px;
+          width: 32px;
+          background: linear-gradient(#b22865, #cd5a91);
+          font-size: 20px;
+          text-align: center;
+          color: #fff;
+        }
+      }
+      .buttons {
+        .list-group {
+          border: none;
+          font-size: 14px;
+          color: var(--base-clr);
+          i {
+            color: var(--base-clr);
+          }
+          li {
+            background: #091e420a;
+            border: none;
+            &:hover {
+              background: #091e4214;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

@@ -21,21 +21,29 @@
           </div>
           <div class="footer__links__list--item">
             <a href="#">Pricing</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Apps</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Jobs</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Blog</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Developers</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">About</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Help</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Cookie</a>
-          </div> <div class="footer__links__list--item">
+          </div>
+          <div class="footer__links__list--item">
             <a href="#">Settings</a>
           </div>
         </ul>
@@ -65,9 +73,9 @@ export default defineComponent({
     color: #5e6c84;
   }
   &__atlassian_logo {
-      display: block;
-      margin: auto;
-      width: 150px;
+    display: block;
+    margin: auto;
+    width: 150px;
   }
   &__links {
     &__list {
@@ -79,8 +87,8 @@ export default defineComponent({
         display: inline;
         margin: auto 5px;
         a {
-            color: #5e6c84;
-            font-size: 14px;
+          color: #5e6c84;
+          font-size: 14px;
           text-decoration: none;
           &:hover {
             text-decoration: underline;

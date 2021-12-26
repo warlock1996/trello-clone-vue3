@@ -18,36 +18,32 @@
 <script>
 import { defineComponent } from 'vue'
 
-export default defineComponent({
-
-})
+export default defineComponent({})
 </script>
 
 <style lang="scss" scoped>
 .workspace-sidemenu {
-
-                position: sticky;
-                top: 50px;
-                width: 240px;
-                font-size: 14px;
-                font-weight: 500;
-                li {
-                    background: transparent;
-                    color: #172b4d;
-                    font-weight: bold;
-                    &:hover {
-                        color: #091e42;
-                        background: rgba(9, 30, 66, 0.08);
-                        border-radius: 4px;
-                        cursor: pointer;
-                    }
-                    &.active {
-                       background-color: #E4F0F6;
-                       color: #0079BF;
-                       border-radius: 4px;
-                       cursor: pointer;
-                    }
-                }
-
-            }
+  position: sticky;
+  top: 50px;
+  width: 240px;
+  font-size: 14px;
+  font-weight: 500;
+  li {
+    background: transparent;
+    color: #172b4d;
+    font-weight: bold;
+    &:hover {
+      color: #091e42;
+      background: rgba(9, 30, 66, 0.08);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &.active {
+      background-color: #e4f0f6;
+      color: #0079bf;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
 </style>

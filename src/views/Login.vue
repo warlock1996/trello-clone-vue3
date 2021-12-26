@@ -14,8 +14,7 @@
         <template #footer>
           <dotted-inline-list>
             <template #a>
-              <a href="#">
-                Can't log in?</a>
+              <a href="#"> Can't log in?</a>
             </template>
             <template #b>
               <a
@@ -34,9 +33,7 @@
             <a href="#">Privacy Policy</a>
           </template>
           <template #b>
-            <a href="#">
-              Terms of Service
-            </a>
+            <a href="#"> Terms of Service </a>
           </template>
         </dotted-inline-list>
       </div>
@@ -69,7 +66,6 @@ export default defineComponent({
     TrelloLogo,
     AtlassianFooter,
     GlobalFooter
-
   },
   data () {
     return {}

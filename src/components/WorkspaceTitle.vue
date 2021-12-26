@@ -24,20 +24,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-    .letter {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        background: linear-gradient(#b22865, #cd5a91);
-        font-weight: bold;
-        color: #ffffff;
-    }
-    .title {
-        font-size: 14px;
-        color: #172b4d;
-        font-weight: 600;
-    }
+.letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  background: linear-gradient(#b22865, #cd5a91);
+  font-weight: bold;
+  color: #ffffff;
+}
+.title {
+  font-size: 14px;
+  color: #172b4d;
+  font-weight: 600;
+}
 </style>

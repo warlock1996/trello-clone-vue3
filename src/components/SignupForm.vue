@@ -30,9 +30,7 @@
           By signing up, you confirm that you've read and accepted our
           <a href="#">Terms of Service</a>
           and
-          <a href="#">
-            Privacy Policy.
-          </a>
+          <a href="#"> Privacy Policy. </a>
         </p>
       </div>
       <div class="d-grid d-block mb-3">
@@ -50,25 +48,18 @@
 <script>
 import { defineComponent } from 'vue'
 
-export default defineComponent({
-
-})
-
+export default defineComponent({})
 </script>
 
 <style lang="scss" scoped>
-
-.signup-form
-{
+.signup-form {
   &__note {
     font-size: 12px;
-    color: #5E6C84;
+    color: #5e6c84;
   }
   &__methods {
     font-size: 14px;
     text-align: center;
-
-}
   }
-
+}
 </style>
