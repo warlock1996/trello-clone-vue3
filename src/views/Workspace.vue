@@ -3,20 +3,7 @@
     <div class="container workspace__container pt-5">
       <div class="row justify-content-start g-0">
         <div class="col-md-auto offset-md-1">
-          <ul class="list-group px-2 workspace__container__list">
-            <li class="list-group-item d-flex gap-2 border-0 px-2">
-              <i class="bi bi-kanban" />
-              <span>Boards</span>
-            </li>
-            <li class="list-group-item d-flex gap-2 border-0 px-2">
-              <i class="bi bi-box-seam" />
-              <span>Templates</span>
-            </li>
-            <li class="list-group-item d-flex gap-2 border-0 px-2">
-              <i class="bi bi-house-door" />
-              <span>Home</span>
-            </li>
-          </ul>
+          <workspace-side-menu />
         </div>
         <div class="col">
           <section class="py-2 mb-5 workspace__container__recent">
@@ -95,12 +82,14 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue'
 import Board from '@/components/Board.vue'
+import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
 
 export default defineComponent({
   components: {
-    Board
+    Board,
+    WorkspaceSideMenu
   }
 })
 </script>
@@ -125,31 +114,7 @@ export default defineComponent({
         }
         &__container {
           position: relative;
-            &__list {
-                position: sticky;
-                top: 50px;
-                width: 240px;
-                font-size: 14px;
-                font-weight: 500;
-                li {
-                    background: transparent;
-                    color: #172b4d;
-                    font-weight: bold;
-                    &:hover {
-                        color: #091e42;
-                        background: rgba(9, 30, 66, 0.08);
-                        border-radius: 4px;
-                        cursor: pointer;
-                    }
-                    .active {
-                        color: #0079BF;
-                        background: #E4F0F6;
-                        border-radius: 4px;
-                        cursor: pointer;
-                    }
-                }
 
-            }
             &__recent {
               &__title {
                 color: var(--base-clr);

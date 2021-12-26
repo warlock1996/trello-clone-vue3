@@ -61,19 +61,28 @@
                     Current workspace
                   </div>
                 </div>
-                <div class="ws p-2">
+                <div
+                  class="ws px-2 dropdown-item"
+                  role="button"
+                >
                   <workspace-title :title="'Trello workspace'" />
                 </div>
                 <div class="dropdown-header my-1">
                   Your Workspaces
                 </div>
-                <div class="yws p-2">
+                <div
+                  class="yws px-2 dropdown-item"
+                  role="button"
+                >
                   <workspace-title :title="'Trello workspace'" />
                 </div>
                 <div class="dropdown-header my-1">
                   Guest Workspaces
                 </div>
-                <div class="yws p-2">
+                <div
+                  class="yws px-2 dropdown-item"
+                  role="button"
+                >
                   <workspace-title :title="'Guest workspace'" />
                 </div>
               </template>
@@ -213,8 +222,70 @@
             </a>
             <workspace-dropdown
               :title="'Account'"
-              class="dropdown-menu-end"
-            />
+              class="dropdown-menu-end p-0"
+            >
+              <template #content>
+                <ul class="list-group">
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    User name
+                  </li>
+                  <li class="dropdown-divider mx-2" />
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Profile and visibility
+                  </li>
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Activity
+                  </li>
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Cards
+                  </li>
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Settings
+                  </li>
+                  <li class="dropdown-divider mx-2" />
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Settings
+                  </li>
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Help
+                  </li>
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Shortcuts
+                  </li>
+                  <li class="dropdown-divider mx-2" />
+                  <li
+                    class="dropdown-item px-3 py-2"
+                    role="button"
+                  >
+                    Log out
+                  </li>
+                </ul>
+              </template>
+            </workspace-dropdown>
           </li>
         </ul>
       </div>
@@ -223,7 +294,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue'
 import WorkspaceDropdown from '@/components/WorkspaceDropown.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 

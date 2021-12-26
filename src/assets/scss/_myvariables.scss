@@ -28,8 +28,19 @@
  $dropdown-divider-margin-y: 8px;
  $dropdown-border-width:0;
  $dropdown-link-color: #172b4d;
+ $dropdown-link-active-color: #172b4d;
  $dropdown-link-hover-bg: #091e4214;
+ $dropdown-link-active-bg: #091e4221 ;
  $dropdown-header-padding: 0;   
 
 
   @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
+  @mixin caret-down {
+  border-top: 0;
+  border-right: $caret-width solid transparent;
+  border-bottom: 0;
+  border-left: $caret-width solid transparent;
+}

@@ -3,7 +3,7 @@
     class="dropdown-menu shadow"
     style="width: 300px;"
   >
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-baseline">
       <div class="title text-center flex-grow-1">
         {{ title }}
       </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
