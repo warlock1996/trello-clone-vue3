@@ -31,7 +31,34 @@
  $dropdown-link-active-color: #172b4d;
  $dropdown-link-hover-bg: #04060a14;
  $dropdown-link-active-bg: #091e4221 ;
- $dropdown-header-padding: 0;   
+ $dropdown-header-padding: 0;  
+ 
+ 
+
+$list-group-color:                  #172b4d;
+$list-group-bg:                     transparent;
+$list-group-border-color:           transparent;
+$list-group-border-width:           0;
+$list-group-border-radius:          0;
+
+$list-group-item-padding-y:         6px;
+$list-group-item-padding-x:         12px;
+// $list-group-item-bg-scale:          -80% !default;
+// $list-group-item-color-scale:       40% !default;
+
+// $list-group-hover-bg:               $gray-100 !default;
+// $list-group-active-color:           $component-active-color !default;
+// $list-group-active-bg:              $component-active-bg !default;
+// $list-group-active-border-color:    $list-group-active-bg !default;
+
+// $list-group-disabled-color:         $gray-600 !default;
+// $list-group-disabled-bg:            $list-group-bg !default;
+
+$list-group-action-color:           #172b4d;
+$list-group-action-hover-color:     #172b4d;
+
+$list-group-action-active-color:    #172b4d;
+$list-group-action-active-bg:       #E4F0F6;
 
 
   @import "../../../node_modules/bootstrap/scss/bootstrap.scss";

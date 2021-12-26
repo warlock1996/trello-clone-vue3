@@ -49,25 +49,25 @@
                   class="d-flex gap-2 align-items-center justify-content-end"
                 >
                   <action-button>
-                    <template #icon>
+                    <template #prefix>
                       <i class="bi bi-kanban" />
                     </template>
                     Boards
                   </action-button>
                   <action-button>
-                    <template #icon>
+                    <template #prefix>
                       <i class="bi bi-table" />
                     </template>
                     Workspace table
                   </action-button>
                   <action-button>
-                    <template #icon>
+                    <template #prefix>
                       <i class="bi bi-person" />
                     </template>
                     Members
                   </action-button>
                   <action-button>
-                    <template #icon>
+                    <template #prefix>
                       <i class="bi bi-gear" />
                     </template>
                     Settings

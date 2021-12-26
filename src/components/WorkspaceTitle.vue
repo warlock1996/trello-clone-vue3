@@ -1,10 +1,17 @@
 <template>
   <div class="d-flex justify-content-start align-items-center gap-2">
-    <div class="letter">
+    <div class="letter rounded-1">
       {{ title[0] }}
     </div>
     <div class="title flex-grow-1">
-      {{ title }}
+      <div class="d-flex flex-column">
+        <div>
+          {{ title }}
+        </div>
+        <div v-if="subtitle.length">
+          {{ subtitle }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +25,11 @@ export default defineComponent({
       required: true,
       type: String,
       default: 'workspaces'
+    },
+    subtitle: {
+      required: false,
+      type: String,
+      default: ''
     }
   }
 })

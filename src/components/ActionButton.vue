@@ -1,8 +1,9 @@
 <template>
   <button class="action-button px-2 py-1">
     <div class="d-flex gap-2 align-items-center justify-content-between">
-      <slot name="icon" />
+      <slot name="prefix" />
       <slot />
+      <slot name="suffix" />
     </div>
   </button>
 </template>
@@ -10,7 +11,10 @@
 <script>
 import { defineComponent } from 'vue'
 
-export default defineComponent({})
+export default defineComponent({
+
+})
+
 </script>
 
 <style lang="scss" scoped>

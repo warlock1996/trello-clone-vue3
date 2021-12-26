@@ -26,6 +26,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       layout: 'workspaceLayout'
     }
+  },
+  {
+    path: '/kanban',
+    name: 'kanban',
+    component: () => import(/* webpackChunkName: "Kanban" */ '../views/Kanban.vue'),
+    meta: {
+      layout: 'workspaceLayout'
+    }
   }
 ]
 
