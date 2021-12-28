@@ -1,6 +1,6 @@
 <template>
   <button class="action-button px-2 py-1">
-    <div class="d-flex gap-2 align-items-center justify-content-between">
+    <div class="d-flex gap-2 align-items-center justify-content-start">
       <slot name="prefix" />
       <slot />
       <slot name="suffix" />

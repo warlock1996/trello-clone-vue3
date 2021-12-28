@@ -1,0 +1,68 @@
+<template>
+  <div
+    class="task-list d-flex align-items-start justify-content-start gap-2 flex-wrap px-3 py-2"
+  >
+    <kanban-task-list v-for="n in 4" :key="n" />
+    <div class="task-list__form p-1 rounded-1" :class="{ bg: showAddForm }">
+      <action-button
+        v-if="!showAddForm"
+        @click="showAddForm = true"
+        class="task-list__form__btn p-2 w-100 justify-content-start"
+      >
+        <template #prefix>
+          <i class="bi bi-plus"></i>
+        </template>
+        Add another list
+      </action-button>
+      <kanban-add-form
+        v-else
+        :input-type="'input'"
+        :button-text="'Add list'"
+        :show-sub-menu="false"
+        @close="showAddForm = false"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { defineComponent } from 'vue'
+import KanbanTaskList from '@/components/KanbanTaskList.vue'
+import KanbanAddForm from '@/components/KanbanAddForm.vue'
+import ActionButton from './ActionButton.vue'
+export default defineComponent({
+  components: {
+    KanbanTaskList,
+    KanbanAddForm,
+    ActionButton
+  },
+  data () {
+    return {
+      showAddForm: false
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+.task-list {
+  &__form {
+    width: 280px;
+    background: #ffffff3d;
+    &.bg {
+      background: #ebecf0 !important;
+    }
+    &:hover {
+      background: #ffffff52;
+    }
+    &__btn {
+      background: transparent;
+      font-size: 14px;
+      color: #ffffff;
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}
+</style>

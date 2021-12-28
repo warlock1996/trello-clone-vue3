@@ -25,7 +25,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data () {
     return {
-      show: false
+      show: true
     }
   }
 })

@@ -6,7 +6,11 @@
       >
         <action-button class="ab">
           <template #prefix>
-            <i class="bi bi-kanban" />
+            <img
+              src="@/assets/svgs/kanban.svg"
+              alt="kanban"
+            >
+            <!-- <i class="bi bi-kanban" /> -->
           </template>
           Board
           <template #suffix>
