@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="task-list__tasks mb-2">
-        <task-card
+        <kanban-task-card
           :task="{
             title: 'some task',
             description: 2,
@@ -37,11 +37,13 @@
 <script>
 import { defineComponent } from 'vue'
 import ListInput from '@/components/ListInput.vue'
-import TaskCard from '@/components/TaskCard.vue'
+import KanbanTaskCard from '@/components/KanbanTaskCard.vue'
+
 export default defineComponent({
   components: {
     ListInput,
-    TaskCard
+    KanbanTaskCard
+
   }
 })
 </script>

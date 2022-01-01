@@ -1,33 +1,34 @@
 <template>
-  <div class="task-card card rounded-2" role="button">
-    <div class="task-card__cover">
-      <img src="@/assets/images/board.png" class="img-fluid" alt="board" />
-    </div>
+  <div class="task-card card rounded-2" role="button" data-bs-toggle="modal" data-bs-target="#taskCardModal">
     <div
-      class="task-card__body card-body rounded-2 py-1 px-2"
+      class="task-card__body card-body rounded-2 p-0"
       @mouseover="showEditIcon = true"
       @mouseout="showEditIcon = false"
     >
+    <div class="task-card__body__cover">
+      <img src="@/assets/images/board.png" class="img-fluid" alt="board" />
+    </div>
       <i
         v-show="showEditIcon"
         class="bi bi-pencil task-card__body__editicon"
       ></i>
       <div
-        class="task-card__body__labels d-flex flex-wrap gap-2 justify-content-start align-items-center mb-1"
+        @click="squeezeLbls = !squeezeLbls"
+        class="task-card__body__labels d-flex flex-wrap gap-2 justify-content-start align-items-center mb-1 py-1 px-2"
       >
-        <span class="bg-primary px-4 py-2 rounded-2"></span>
-        <span class="bg-danger px-4 py-2 rounded-2"></span>
-        <span class="bg-warning px-4 py-2 rounded-2"></span>
-        <span class="bg-warning px-4 py-2 rounded-2"></span>
-        <span class="bg-warning px-4 py-2 rounded-2"></span>
+        <span class="bg-primary rounded-2" :class="{'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls}"></span>
+        <span class="bg-danger rounded-2" :class="{'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls}"></span>
+        <span class="bg-warning rounded-2" :class="{'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls}"></span>
+        <span class="bg-warning rounded-2" :class="{'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls}"></span>
+        <span class="bg-warning rounded-2" :class="{'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls}"></span>
       </div>
       <div
-        class="task-card__body__title card-title d-flex justify-content-between align-items-center mb-1"
+        class="task-card__body__title card-title d-flex justify-content-between align-items-center mb-1 py-1 px-2"
       >
         <span> {{ task.title }} </span>
       </div>
       <div
-        class="task-card__body__actions d-flex flex-wrap gap-3 justify-content-start mb-1"
+        class="task-card__body__actions d-flex flex-wrap gap-3 justify-content-start mb-1 py-1 px-2"
       >
         <div
           class="task-card__body__actions__subscribe d-flex gap-1 justify-content-start align-items-center"
@@ -60,12 +61,16 @@
       </div>
     </div>
   </div>
+    <kanban-task-modal></kanban-task-modal>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-
+import KanbanTaskModal from '@/components/KanbanTaskModal.vue'
 export default defineComponent({
+  components: {
+    KanbanTaskModal
+  },
   props: {
     task: {
       type: Object,
@@ -74,7 +79,8 @@ export default defineComponent({
   },
   data () {
     return {
-      showEditIcon: false
+      showEditIcon: false,
+      squeezeLbls: false
     }
   }
 })
@@ -106,8 +112,9 @@ export default defineComponent({
       padding-top: 2px;
       padding-bottom: 2px;
       border-radius: 3px;
+      background: #f4f5f7;
       &:hover {
-        background: #091e4214;
+        background: #ebecf0;
       }
     }
     &__actions {

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="kanban-sider h-100 w-100"
+    class="kanban-sider h-100"
+    :class="{'w-100': show}"
     role="button"
     @click="show = !show"
   >
@@ -25,7 +26,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data () {
     return {
-      show: true
+      show: false
     }
   }
 })
@@ -35,12 +36,14 @@ export default defineComponent({
 .kanban-sider {
   background: rgba(193, 199, 208, 0.2);
   border-right: 1px solid rgba(54, 58, 64, 0.24);
+  width: 16px;
+  transition: width 0.1s ease-in-out;
   &:hover {
     background: #ffffff52;
   }
   &__content {
       background: #FAFBFC;
-      width: 300px;
+      width: fit-content;
   }
   &__caret {
     display: flex;

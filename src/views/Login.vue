@@ -51,7 +51,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import dottedInlineList from '@/components/dottedInlineList.vue'
+import DottedInlineList from '@/components/DottedInlineList.vue'
 import AuthCard from '@/components/AuthCard.vue'
 import LoginForm from '@/components/LoginForm.vue'
 import TrelloLogo from '@/components/TrelloLogo.vue'
@@ -60,7 +60,7 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
 
 export default defineComponent({
   components: {
-    dottedInlineList,
+    DottedInlineList,
     AuthCard,
     LoginForm,
     TrelloLogo,

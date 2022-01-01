@@ -2,19 +2,26 @@
   <div class="list-input-form d-flex flex-column gap-2">
     <textarea
       v-if="inputType === 'textarea'"
+      v-model="value"
       type="text"
-      autofocus
+      ref="textarea"
+      @keydown.enter="$emit('submit')"
+      :style="textAreaStyles"
       placeholder="Enter a title for this card"
       class="list-input-form__textarea shadow-0 w-100 rounded-1 p-2"
     />
     <input
       v-else
+      v-model="value"
+       ref="input"
       type="text"
+      @keydown.enter="$emit('submit')"
       class="form-control"
       placeholder="Enter list title"
     />
     <div class="list-input-form__actions d-flex gap-2 align-items-center">
       <button
+       @click="$emit('submit')"
         class="list-input-form__actions__btn btn btn-primary shadow-none border-0"
       >
         {{ buttonText }}
@@ -39,7 +46,12 @@ export default defineComponent({
   props: {
     inputType: {
       type: String,
-      default: 'textarea'
+      default: 'textarea',
+      validator: (v) => ['textarea', 'input'].includes(v)
+    },
+    defaultValue: {
+      type: String,
+      default: ''
     },
     showSubMenu: {
       type: Boolean,
@@ -48,7 +60,20 @@ export default defineComponent({
     buttonText: {
       type: String,
       default: 'Add card'
+    },
+    textAreaStyles: {
+      type: Object,
+      default: () => ({})
     }
+  },
+  data () {
+    return {
+      value: ''
+    }
+  },
+  mounted () {
+    this.value = this.defaultValue
+    this.$refs[this.inputType].focus()
   }
 })
 </script>

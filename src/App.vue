@@ -29,6 +29,11 @@ export default defineComponent({
   z-index: 1000;
 }
 
+// temp
+.modal-backdrop {
+  display: none;
+}
+
 @font-face {
   font-family: CharlieDisplay-Regular;
   src: url("./assets/fonts/CharlieDisplay-Regular.ttf") format("truetype");
