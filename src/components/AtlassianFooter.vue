@@ -15,7 +15,7 @@
         <slot name="logo-slot" />
       </div>
       <div class="footer__links mb-3">
-        <ul class="footer__links__list">
+        <ul class="footer__links__list d-flex flex-wrap gap-2 justify-content-center">
           <div class="footer__links__list--item">
             <a href="#">Templates</a>
           </div>
