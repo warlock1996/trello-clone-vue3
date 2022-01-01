@@ -3,7 +3,7 @@
   <div class="taskmodal__dialog modal-dialog modal-lg">
     <div class="taskmodal__dialog__content modal-content border-0 rounded-1">
       <div class="taskmodal__dialog__content__header modal-header d-flex justify-content-center" role="button">
-        <img src="@/assets/images/board.png" class="img-fluid w-50" alt="board">
+        <img src="@/assets/images/google.svg" class="img-fluid w-50" alt="board">
         <i class="bi bi-x taskmodal__dialog__content__header__close rounded-circle" role="button" data-bs-dismiss="modal"></i>
       </div>
       <div class="taskmodal__dialog__content__body modal-body ">
@@ -47,7 +47,7 @@
               <div class="w-100">
                 <p class="taskmodal__dialog__content__body__desc__title">Description</p>
                 <div class="w-100">
-                  <p class="taskmodal__dialog__content__body__desc__text" role="button" v-if="!showDescriptionBox" @click="showDescriptionBox = true">
+                  <p class="taskmodal__dialog__content__body__desc__text px-3 py-2 rounded-2" role="button" v-if="!showDescriptionBox" @click="showDescriptionBox = true">
                   some description text
                   </p>
                   <kanban-add-form
@@ -310,6 +310,8 @@ export default defineComponent({
               &__text {
                 font-size: 14px;
                 color: #172b4d;
+                background: #091e420a;
+                height: 80px;
               }
           }
           &__attachments {
