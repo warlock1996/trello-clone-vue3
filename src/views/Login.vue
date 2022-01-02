@@ -75,8 +75,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .login {
-  position: relative;
   &__page__container {
+    position: relative;
+    z-index: 2;
     color: #5e6c84;
     &__logo {
       display: block;

@@ -4,7 +4,7 @@
       <div class="home__nav__container container-fluid">
         <trello-logo class="home__nav__container__logo navbar-brand" />
         <button
-          class="home__nav__container__collapser navbar-toggler"
+          class="home__nav__container__collapser navbar-toggler shadow-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -26,12 +26,13 @@
                 class="nav-link active"
                 aria-current="page"
                 href="#"
+                @click.prevent="$router.push('/login')"
               >Login</a>
             </li>
             <li class="home__nav__container__navbar__nav__list__item nav-item">
               <button
                 class="btn btn-primary"
-                @click="$router.push('/signup')"
+                @click.prevent="$router.push('/signup')"
               >
                 Signup
               </button>
@@ -60,7 +61,7 @@
                 type="email"
                 placeholder="Email"
               >
-              <button class="btn btn-primary form-control-lg flex-grow-1 p-0">
+              <button @click.prevent="$router.push('/signup')" class="btn btn-primary form-control-lg flex-grow-1 p-0">
                 Sign up—it’s free!
               </button>
             </form>
@@ -88,6 +89,7 @@
               organize tasks, and build team spirit—all in one place.
             </p>
             <button
+            @click.prevent="$router.push('/signup')"
               class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn"
             >
               Start doing
@@ -412,6 +414,7 @@
                       placeholder="Email"
                     >
                     <button
+                      @click.prevent="$router.push('/signup')"
                       class="btn btn-info text-white form-control-lg flex-grow-1"
                     >
                       Sign up

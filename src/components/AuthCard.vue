@@ -33,6 +33,7 @@ export default defineComponent({
   @media screen and (max-width: 768px) {
     box-shadow: none;
     border: none !important;
+    padding: 12px 20px;
   }
   &__body {
     max-width: 400px;

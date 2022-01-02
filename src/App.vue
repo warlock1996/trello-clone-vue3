@@ -1,24 +1,18 @@
 <template>
   <div class="layout-wrap">
-    <component :is="layout" />
+    <component :is="$route.meta.layout"></component>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
 import defaultLayout from '@/layouts/default.vue'
 import workspaceLayout from '@/layouts/workspace.vue'
 
 export default defineComponent({
   components: {
-    defaultLayout,
-    workspaceLayout
-  },
-  data () {
-    return {
-      layout: workspaceLayout
-    }
+    default: defaultLayout,
+    workspace: workspaceLayout
   }
 })
 </script>

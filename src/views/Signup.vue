@@ -64,6 +64,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .signup {
   &__container {
+    position: relative;
+    z-index: 2;
     &__logo {
       display: block;
       margin: 40px auto;
