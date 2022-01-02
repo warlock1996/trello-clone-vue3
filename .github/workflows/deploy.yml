@@ -36,4 +36,4 @@ jobs:
         run: npm install surge --global
         
       - name: deploy to surge domain
-        run: surge ./dist trello-clone-vuejs3.surge.sh ${{ secrets.SURGE_TOKEN }}
+        run: surge ./dist trello-clone-vuejs3.surge.sh --token ${{ secrets.SURGE_TOKEN }}
