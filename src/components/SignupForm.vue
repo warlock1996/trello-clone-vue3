@@ -6,7 +6,7 @@
         type="text"
         name="name"
         placeholder="Enter full name"
-      >
+      />
       <input
         class="form-control mb-3"
         type="email"

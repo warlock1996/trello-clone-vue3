@@ -1,5 +1,5 @@
 <template>
-   <div class="comment-input__wrapper d-flex flex-column gap-0 py-2 px-3 border border-1 rounded-2 w-100" :class="{ 'focus-shadow' : isFocused }">
+   <div class="comment-input__wrapper d-flex flex-column gap-0 py-2 px-3 border border-1 rounded-2 w-100" :class="{ 'focus-shadow' : isFocused || value.length }">
         <textarea v-model="value" :rows="lines" @focus="isFocused = true" @blur="isFocused = false" placeholder="Write a comment..." class="comment-input__wrapper__textarea form-control border-0 shadow-none p-0" />
         <div v-if="isFocused || value.length" class="comment-input__wrapper__actions d-flex justify-content-between align-items-center pt-3">
             <button :disabled="value.length === 0" class="comment-input__wrapper__actions__btn btn shadow-none border-0 rounded-1">Save</button>
@@ -40,7 +40,8 @@ export default defineComponent({
         position: relative;
         font-size: 14px;
         background: #ffffff;
-        transition: height 1s;
+        height: 40px;
+        transition: height .1s;
         &__textarea {
             background: #ffffff;
             color: #172b4d;
@@ -74,17 +75,23 @@ export default defineComponent({
             }
              &__icons {
                  i {
-                     font-size: 16px;
-                     color: #42526e;
-                     &:hover {
-                         background: #091e4214;
+                     &:before {
+                         font-size: 16px;
+                         color: #42526e;
+
                      }
+                    &:hover {
+                        cursor: pointer;
+                        background: #091e4214;
+                    }
                  }
              }
          }
+
+        &.focus-shadow {
+            height: 90px;
+            box-shadow: 0 4px 8px -2px #091e4240;
+        }
     }
 
-    .focus-shadow {
-        box-shadow: 0 4px 8px -2px #091e4240;
-    }
 </style>

@@ -271,6 +271,7 @@
             <workspace-dropdown
               :title="'Account'"
               class="dropdown-menu-end p-0"
+              :header-classes="'py-1 px-3'"
             >
               <template #content>
                 <ul class="list-group">
