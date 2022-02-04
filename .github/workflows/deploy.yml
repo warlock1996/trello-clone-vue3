@@ -30,8 +30,11 @@ jobs:
         run: npm ci
       
       - name: build project
-        run: npx vue-cli-service build 
-        
+        run: npx vue-cli-service build
+
+      - name: create 200.html in dist   
+        run:  cd dist; echo '<h1>redirectin....</h1>' > 200.html; cd .. 
+
       - name: Installing Surge
         run: npm install surge --global
         
