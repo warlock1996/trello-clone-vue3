@@ -1,11 +1,11 @@
 <template>
   <div class="workspace">
     <div class="container workspace__container pt-5">
-      <div class="row justify-content-start g-0">
+      <div class="row justify-content-start">
         <div class="col-md-auto offset-md-1">
-          <workspace-side-menu />
+          <workspace-side-menu class="d-none d-lg-block" />
         </div>
-        <div class="col">
+        <div class="col-auto">
           <section class="py-2 mb-4 workspace__container__recent">
             <div
               class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title"
@@ -14,9 +14,8 @@
               <span>Recently viewed</span>
             </div>
             <div
-              class="workspace__container__recent_boards d-flex gap-2 flex-wrap justify-content-between my-2"
+              class="workspace__container__recent_boards d-flex gap-3 flex-wrap justify-content-start my-2"
             >
-              <board />
               <board />
               <board />
               <board />
@@ -27,22 +26,14 @@
             <div
               class="d-flex align-items-end gap-2 justify-content-start my-4 workspace__container__owner__title"
             >
-              <h3>
-                YOUR WORKSPACES
-              </h3>
+              <h3 class="mb-0">YOUR WORKSPACES</h3>
             </div>
             <div class="row">
               <div class="col-auto">
-                <div
-                  class="trello d-flex gap-2 align-items-center justify-content-between"
-                >
-                  <div class="symbol">
-                    T
-                  </div>
-                  <h3 class="m-0">
-                    Trello workspaces
-                  </h3>
-                </div>
+                <workspace-title
+                  title="Trello workspaces"
+                  :title-styles="{ fontSize: '16px' }"
+                ></workspace-title>
               </div>
               <div class="col">
                 <div
@@ -75,21 +66,21 @@
                 </div>
               </div>
             </div>
-            <div class="d-flex gap-2 flex-wrap justify-content-between my-2">
+            <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
               <board />
               <board />
               <board />
               <board />
-              <board />
+            </div>
+            <div class="d-flex gap-3 mt-3 flex-wrap justify-content-start my-2">
+              <create-new-board />
             </div>
           </section>
           <section class="py-2 mb-5 workspace__container__guest">
             <div
               class="d-flex align-items-center gap-2 justify-content-start my-4 workspace__container__guest__title"
             >
-              <h3>
-                GUEST WORKSPACES
-              </h3>
+              <h3 class="mb-0">GUEST WORKSPACES</h3>
               <i class="bi bi-info-circle" />
             </div>
           </section>
@@ -103,12 +94,16 @@
 import { defineComponent } from 'vue'
 import Board from '@/components/Board.vue'
 import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
+import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
+import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 
 export default defineComponent({
   components: {
     Board,
+    WorkspaceTitle,
     WorkspaceSideMenu,
+    CreateNewBoard,
     ActionButton
   }
 })

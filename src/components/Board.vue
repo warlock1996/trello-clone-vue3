@@ -6,13 +6,8 @@
     @mouseleave="bookmark = false"
   >
     <div class="card-body border-0 p-2">
-      <div class="card-title">
-        Project 1
-      </div>
-      <div
-        v-if="bookmark"
-        class="bookmark"
-      >
+      <div class="card-title">Project 1</div>
+      <div v-if="bookmark" class="bookmark">
         <i class="bi bi-star" />
       </div>
     </div>
@@ -33,7 +28,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .card {
-  width: 180px;
+  width: 190px;
   height: 100px;
   border-radius: 3px;
   &-title {
@@ -43,9 +38,9 @@ export default defineComponent({
   }
   &-body {
     border-radius: 3px;
-    background: #97a0af;
+    background: rgb(131, 140, 145);
     &:hover {
-      background: rgb(131, 140, 145);
+      background: #97a0af;
     }
     position: relative;
     .bookmark {

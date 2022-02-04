@@ -5,7 +5,7 @@
     </div>
     <div class="title flex-grow-1">
       <div class="d-flex flex-column">
-        <div>
+        <div :style="titleStyles">
           {{ title }}
         </div>
         <div v-if="subtitle.length">
@@ -26,6 +26,10 @@ export default defineComponent({
       type: String,
       default: 'workspaces'
     },
+    titleStyles: {
+      type: Object,
+      default: () => ({})
+    },
     subtitle: {
       required: false,
       type: String,
@@ -40,8 +44,8 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   font-size: 20px;
   background: linear-gradient(#b22865, #cd5a91);
   font-weight: bold;

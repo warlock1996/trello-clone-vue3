@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <nav class="home__nav navbar navbar-expand-md bg-transparent">
-      <div class="home__nav__container container-fluid">
+    <nav
+      class="home__nav navbar navbar-expand-md p-3"
+      :class="{ 'bg-white': scrollPos > 200 }"
+    >
+      <div class="home__nav__container container-fluid p-0">
         <trello-logo class="home__nav__container__logo navbar-brand" />
         <button
           class="home__nav__container__collapser navbar-toggler shadow-none"
@@ -27,14 +30,15 @@
                 aria-current="page"
                 href="#"
                 @click.prevent="$router.push('/login')"
-              >Login</a>
+                >Log in</a
+              >
             </li>
             <li class="home__nav__container__navbar__nav__list__item nav-item">
               <button
-                class="btn btn-primary"
+                class="btn btn-primary fw-bold"
                 @click.prevent="$router.push('/signup')"
               >
-                Signup
+                Sign up
               </button>
             </li>
           </ul>
@@ -60,8 +64,11 @@
                 class="form-control form-control-lg w-50 d-none d-md-block"
                 type="email"
                 placeholder="Email"
+              />
+              <button
+                @click.prevent="$router.push('/signup')"
+                class="btn btn-primary form-control-lg flex-grow-1 p-0"
               >
-              <button @click.prevent="$router.push('/signup')" class="btn btn-primary form-control-lg flex-grow-1 p-0">
                 Sign up—it’s free!
               </button>
             </form>
@@ -73,7 +80,7 @@
               class="img-fluid home__herosection__container__row__col__img"
               src="@/assets/images/hero.png"
               alt="hero"
-            >
+            />
           </div>
         </div>
       </div>
@@ -89,7 +96,7 @@
               organize tasks, and build team spirit—all in one place.
             </p>
             <button
-            @click.prevent="$router.push('/signup')"
+              @click.prevent="$router.push('/signup')"
               class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn"
             >
               Start doing
@@ -99,7 +106,7 @@
               class="img-fluid home__centeredsection__container__img"
               src="@/assets/images/board.png"
               alt="board"
-            >
+            />
             <p class="home__centeredsection__container__description">
               Join over 1,000,000 teams worldwide that are using Trello to get
               more done.
@@ -107,22 +114,10 @@
             <div
               class="d-flex gap-5 flex-wrap justify-content-center home__centeredsection__container__logos"
             >
-              <img
-                src="@/assets/svgs/google.svg"
-                alt="google"
-              >
-              <img
-                src="@/assets/svgs/tender.svg"
-                alt="tender"
-              >
-              <img
-                src="@/assets/svgs/squarespace.svg"
-                alt="sqaurespace"
-              >
-              <img
-                src="@/assets/svgs/costco.svg"
-                alt="costco"
-              >
+              <img src="@/assets/svgs/google.svg" alt="google" />
+              <img src="@/assets/svgs/tender.svg" alt="tender" />
+              <img src="@/assets/svgs/squarespace.svg" alt="sqaurespace" />
+              <img src="@/assets/svgs/costco.svg" alt="costco" />
             </div>
           </div>
         </div>
@@ -148,11 +143,7 @@
         </div>
         <div class="row home__featuresection__container__row">
           <div class="col-md-5 home__featuresection__container__row__col">
-            <img
-              src="@/assets/images/view.svg"
-              alt="view"
-              class="img-fluid"
-            >
+            <img src="@/assets/images/view.svg" alt="view" class="img-fluid" />
           </div>
           <div class="col-md-7 home__featuresection__container__row__col">
             <h6 class="home__featuresection__container__row__col__view">
@@ -176,10 +167,7 @@
             >
               + Learn More
             </button>
-            <div
-              id="boardCollpase"
-              class="collapse"
-            >
+            <div id="boardCollpase" class="collapse">
               <p>
                 You and your team can start up a Trello board in seconds. With
                 the ability to view board data from many different angles, the
@@ -218,10 +206,7 @@
             >
               + Learn More
             </button>
-            <div
-              id="cardCollapse"
-              class="collapse"
-            >
+            <div id="cardCollapse" class="collapse">
               <p>
                 Spin up a Trello card with a click, then uncover everything it
                 can hold. Break down bigger card tasks into steps with file
@@ -243,7 +228,7 @@
               src="@/assets/images/card-back.svg"
               alt="view"
               class="img-fluid"
-            >
+            />
           </div>
         </div>
         <div class="row home__featuresection__container__row">
@@ -252,7 +237,7 @@
               src="@/assets/images/automation.png"
               alt="view"
               class="img-fluid"
-            >
+            />
           </div>
           <div class="col-md-7 home__featuresection__container__row__col">
             <h6 class="home__featuresection__container__row__col__view">
@@ -277,10 +262,7 @@
             >
               + Learn More
             </button>
-            <div
-              id="automationCollapse"
-              class="collapse"
-            >
+            <div id="automationCollapse" class="collapse">
               <p>
                 Butler uses natural language commands to automate just about any
                 task in Trello:
@@ -318,10 +300,7 @@
             >
               + Learn More
             </button>
-            <div
-              id="integrationCollapse"
-              class="collapse"
-            >
+            <div id="integrationCollapse" class="collapse">
               <p>
                 From Reporting to Custom Fields to your beloved software
                 integrations—we’ve got functionalities, your favorites, and
@@ -341,7 +320,7 @@
               src="@/assets/images/power-ups.png"
               alt="view"
               class="img-fluid"
-            >
+            />
           </div>
         </div>
       </div>
@@ -355,16 +334,14 @@
                 class="d-none d-lg-block"
                 src="@/assets/images/tag.svg"
                 alt="tag"
-              >
+              />
               <div>
                 <h3>See our pricing</h3>
                 <p>
                   Whether you’re a team of 2 or 2,000, there’s a Trello
                   tailor-made for your organization.
                 </p>
-                <button class="btn btn-outline-primary">
-                  Trello pricing
-                </button>
+                <button class="btn btn-outline-primary">Trello pricing</button>
               </div>
             </div>
           </div>
@@ -374,16 +351,14 @@
                 class="d-none d-lg-block"
                 src="@/assets/images/compass.svg"
                 alt="tag"
-              >
+              />
               <div>
                 <h3>Take a Trello tour</h3>
                 <p>
                   Explore the world of boards and beyond in Trello. Dive deeper
                   into our most popular features.
                 </p>
-                <button class="btn btn-outline-primary">
-                  Tour Trello
-                </button>
+                <button class="btn btn-outline-primary">Tour Trello</button>
               </div>
             </div>
           </div>
@@ -412,7 +387,7 @@
                       class="form-control d-none d-md-block form-control-lg w-75"
                       type="email"
                       placeholder="Email"
-                    >
+                    />
                     <button
                       @click.prevent="$router.push('/signup')"
                       class="btn btn-info text-white form-control-lg flex-grow-1"
@@ -443,7 +418,7 @@
                   alt="apple"
                   width="250px"
                   class="img-fluid w-100"
-                >
+                />
               </div>
               <div class="col">
                 <img
@@ -451,27 +426,21 @@
                   alt="google"
                   width="250px"
                   class="img-fluid w-100"
-                >
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <atlassian-footer
-      class="flex-column-reverse"
-      divider="d-none"
-      root="my-5"
-    >
+    <atlassian-footer class="flex-column-reverse" divider="d-none" root="my-5">
       <template #logo-slot>
         <img
           src="@/assets/images/atlassian-logo-gray-small.svg"
           alt="atlassion-logo-gray-small"
-        >
+        />
       </template>
-      <template #extra>
-        © Copyright 2021. All rights reserved.
-      </template>
+      <template #extra> © Copyright 2021. All rights reserved. </template>
     </atlassian-footer>
   </div>
 </template>
@@ -485,6 +454,16 @@ export default defineComponent({
   components: {
     TrelloLogo,
     AtlassianFooter
+  },
+  data () {
+    return {
+      scrollPos: 0
+    }
+  },
+  mounted () {
+    document.addEventListener('scroll', () => {
+      this.scrollPos = window.scrollY
+    })
   }
 })
 </script>
@@ -526,6 +505,11 @@ export default defineComponent({
       &__logo {
         width: 125px;
       }
+    }
+    transition: background .4s;
+    &.bg-white {
+      background: #ffffff;
+      box-shadow: 0 0 10px rgb(0 0 0 / 30%);
     }
   }
   &__herosection {
