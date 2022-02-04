@@ -5,7 +5,7 @@
     aria-labelledby="taskCardModal"
     aria-hidden="true"
   >
-    <div class="taskmodal__dialog modal-dialog modal-lg">
+    <div class="taskmodal__dialog modal-dialog">
       <div class="taskmodal__dialog__content modal-content border-0 rounded-1">
         <div
           class="taskmodal__dialog__content__header modal-header d-flex justify-content-center"
@@ -60,10 +60,14 @@
                       :name="n"
                     ></avatar>
                     <action-button
-                      class="taskmodal__dialog__content__body__title__members__add rounded-circle"
+                      class="taskmodal__dialog__content__body__title__members__add rounded-circle dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
                     >
                       <i class="bi bi-plus"></i>
                     </action-button>
+                    <workspace-dropdown title="Members">
+                      <members-drop-down-content></members-drop-down-content>
+                    </workspace-dropdown>
                   </div>
                   <!-- member avatars and add icon -->
                 </div>
@@ -76,10 +80,14 @@
                       :bg-color="n"
                     />
                     <action-button
-                      class="taskmodal__dialog__content__body__title__labels__add rounded-circle"
+                      class="taskmodal__dialog__content__body__title__labels__add dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
                     >
                       <i class="bi bi-plus"></i>
                     </action-button>
+                    <workspace-dropdown title="Labels">
+                      <label-drop-down-content></label-drop-down-content>
+                    </workspace-dropdown>
                   </div>
                   <!-- labels and add icon -->
                 </div>
@@ -94,20 +102,21 @@
                   </p>
                   <div class="w-100">
                     <p
-                      class="taskmodal__dialog__content__body__desc__text px-3 py-2 rounded-2"
+                      class="taskmodal__dialog__content__body__desc__text px-3 py-2 rounded-1"
                       role="button"
                       v-if="!showDescriptionBox"
                       @click="showDescriptionBox = true"
                     >
-                      some description text
+                      Add a more detailed description...
                     </p>
                     <kanban-add-form
                       v-else
-                      :input-type="'textarea'"
-                      :button-text="'Save'"
-                      :default-value="'some description text'"
+                      input-type="textarea"
+                      button-text="Save"
+                      text-area-placeholder="Add a more detailed description..."
                       :show-sub-menu="true"
                       :text-area-styles="{
+                        padding: '10px',
                         boxShadow: 'inset 0 0 0 2px #0079bf',
                         height: '120px',
                       }"
@@ -180,9 +189,7 @@
                       </template>
                     </action-button>
                     <workspace-dropdown :title="'Members'">
-                      <template #content>
-                        <members-drop-down-content />
-                      </template>
+                      <members-drop-down-content />
                     </workspace-dropdown>
                     <action-button
                       class="w-100 py-2 dropdown dropdown-toggle"
@@ -194,9 +201,7 @@
                       </template>
                     </action-button>
                     <workspace-dropdown :title="'Labels'">
-                      <template #content>
-                        <label-drop-down-content />
-                      </template>
+                      <label-drop-down-content />
                     </workspace-dropdown>
                     <action-button class="w-100 py-2">
                       <template #prefix>
@@ -214,9 +219,7 @@
                       Dates
                     </action-button>
                     <workspace-dropdown :title="'Dates'">
-                      <template #content>
-                        <dates-drop-down-content />
-                      </template>
+                      <dates-drop-down-content />
                     </workspace-dropdown>
                     <action-button
                       class="w-100 py-2 dropdown dropdown-toggle"
@@ -231,9 +234,7 @@
                       :title="'Attach from...'"
                       class="p-0 mb-2"
                     >
-                      <template #content>
-                        <attachment-drop-down-content />
-                      </template>
+                      <attachment-drop-down-content />
                     </workspace-dropdown>
                   </div>
                 </div>
@@ -252,16 +253,23 @@
                       Move
                     </action-button>
                     <workspace-dropdown :title="'Move card'">
-                      <template #content>
-                        <move-card-drop-down-content></move-card-drop-down-content>
-                      </template>
+                      <task-card-action-form
+                        title="Select destination"
+                        submit-text="Move"
+                      ></task-card-action-form>
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2">
+                    <action-button
+                      class="w-100 py-2 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                    >
                       <template #prefix>
                         <i class="bi bi-clipboard"></i>
                       </template>
                       Copy
                     </action-button>
+                    <workspace-dropdown :title="'Copy card'">
+                      <copy-card-drop-down-content></copy-card-drop-down-content>
+                    </workspace-dropdown>
                     <action-button class="w-100 py-2">
                       <template #prefix>
                         <i class="bi bi-card-image"></i>
@@ -297,7 +305,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'
@@ -310,7 +319,8 @@ import WorkspaceDropdown from '@/components/WorkspaceDropown.vue'
 import MembersDropDownContent from '@/components/MembersDropDownContent.vue'
 import LabelDropDownContent from '@/components/LabelDropDownContent.vue'
 import AttachmentDropDownContent from '@/components/AttachmentDropDownContent.vue'
-import MoveCardDropDownContent from '@/components/MoveCardDropDownContent.vue'
+import TaskCardActionForm from '@/components/TaskCardActionForm.vue'
+import CopyCardDropDownContent from '@/components/CopyCardDropDownContent.vue'
 import DatesDropDownContent from '@/components/DatesDropDownContent.vue'
 
 export default defineComponent({
@@ -326,7 +336,8 @@ export default defineComponent({
     MembersDropDownContent,
     LabelDropDownContent,
     AttachmentDropDownContent,
-    MoveCardDropDownContent,
+    TaskCardActionForm,
+    CopyCardDropDownContent,
     DatesDropDownContent
   },
   data () {
@@ -468,7 +479,7 @@ export default defineComponent({
             font-size: 14px;
             color: #172b4d;
             background: #091e420a;
-            height: 80px;
+            height: 60px;
           }
         }
         &__attachments {

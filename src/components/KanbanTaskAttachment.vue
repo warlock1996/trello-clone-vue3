@@ -5,14 +5,17 @@
           <div class="kanban-task-attachment__details__title">
               Screenshot from 2021-12-29 09-18-57.png
           </div>
-          <div class="kanban-task-attachment__details__links">
-             <span>Added 40 minutes ago - </span>
-             <a href="#">Comment - </a>
-             <a href="#">Delete - </a>
+          <div class="kanban-task-attachment__details__links d-flex gap-1">
+             <span>Added 40 minutes ago</span>
+             <span>-</span>
+             <a href="#">Comment</a>
+             <span>-</span>
+             <a href="#">Delete</a>
+             <span>-</span>
              <a href="#">Edit</a>
           </div>
           <div class="kanban-task-attachment__details__remove">
-              <a href="#"> <i class="bi bi-card-image"></i> Remove Cover  </a>
+              <i class="bi bi-card-image"></i> <a href="#"> Remove Cover  </a>
           </div>
       </div>
   </div>

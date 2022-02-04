@@ -3,7 +3,7 @@
     class="dropdown-menu shadow pt-1"
     style="width: 300px"
   >
-    <div class="dropdown-menu-header d-flex align-items-baseline px-3" :class="headerClasses">
+    <div class="dropdown-menu-header d-flex align-items-center" :class="headerClasses">
       <div class="title text-center flex-grow-1" :class="titleClasses">
         {{ title }}
       </div>
@@ -11,8 +11,8 @@
         <i class="bi bi-x fs-5" />
       </div>
     </div>
-    <hr class="dropdown-divider mx-2">
-    <slot name="content" class="dropdown-menu-content px-3 pb-3" />
+    <hr class="dropdown-divider">
+    <slot class="dropdown-menu-content px-3 pb-3" />
   </div>
 </template>
 

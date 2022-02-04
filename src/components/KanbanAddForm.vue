@@ -7,7 +7,7 @@
       ref="textarea"
       @keydown.enter="$emit('submit')"
       :style="textAreaStyles"
-      placeholder="Enter a title for this card"
+      :placeholder="textAreaPlaceholder"
       class="list-input-form__textarea shadow-0 w-100 rounded-1 p-2"
     />
     <input
@@ -60,6 +60,10 @@ export default defineComponent({
     buttonText: {
       type: String,
       default: 'Add card'
+    },
+    textAreaPlaceholder: {
+      type: String,
+      default: 'Enter a title for this card'
     },
     textAreaStyles: {
       type: Object,

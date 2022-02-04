@@ -24,32 +24,24 @@
           <li
             class="workspacenav__container__navbar__nav__list__item nav-item text-start"
           >
-            <a
-              class="nav-link text-white p-0"
-              aria-current="page"
-              href="#"
-            >
+            <a class="nav-link text-white p-0" aria-current="page" href="#">
               <img
                 src="@/assets/svgs/switch.svg"
                 alt="switch"
                 width="20"
                 height="20"
-              >
+              />
             </a>
           </li>
           <li
             class="workspacenav__container__navbar__nav__list__item nav-item text-start"
           >
-            <a
-              class="nav-link text-white"
-              aria-current="page"
-              href="#"
-            >
+            <a class="nav-link text-white" aria-current="page" href="#">
               <img
                 class="workspacenav__container__img"
                 src="@/assets/images/workspace-logo.gif"
                 alt="workspace-logo"
-              >
+              />
             </a>
           </li>
           <li
@@ -62,45 +54,29 @@
               data-bs-toggle="dropdown"
               role="button"
               aria-expanded="false"
-            >Workspaces
+              data-bs-offset="20,20"
+              >Workspaces
               <img
                 class="caret-down"
                 src="@/assets/svgs/caret-down.svg"
                 alt="caret-down"
-              >
+              />
             </a>
             <workspace-dropdown :title="'Workspaces'">
-              <template #content>
-                <div class="dropdown-header">
-                  <div class="my-1">
-                    Current workspace
-                  </div>
-                </div>
-                <div
-                  class="ws px-2 dropdown-item"
-                  role="button"
-                >
-                  <workspace-title :title="'Trello workspace'" />
-                </div>
-                <div class="dropdown-header my-1">
-                  Your Workspaces
-                </div>
-                <div
-                  class="yws px-2 dropdown-item"
-                  role="button"
-                >
-                  <workspace-title :title="'Trello workspace'" />
-                </div>
-                <div class="dropdown-header my-1">
-                  Guest Workspaces
-                </div>
-                <div
-                  class="yws px-2 dropdown-item"
-                  role="button"
-                >
-                  <workspace-title :title="'Guest workspace'" />
-                </div>
-              </template>
+              <div class="dropdown-header">
+                <div class="my-1">Current workspace</div>
+              </div>
+              <div class="ws px-2 dropdown-item" role="button">
+                <workspace-title :title="'Trello workspace'" />
+              </div>
+              <div class="dropdown-header my-1">Your Workspaces</div>
+              <div class="yws px-2 dropdown-item" role="button">
+                <workspace-title :title="'Trello workspace'" />
+              </div>
+              <div class="dropdown-header my-1">Guest Workspaces</div>
+              <div class="yws px-2 dropdown-item" role="button">
+                <workspace-title :title="'Guest workspace'" />
+              </div>
             </workspace-dropdown>
           </li>
           <li
@@ -119,7 +95,7 @@
                 class="caret-down"
                 src="@/assets/svgs/caret-down.svg"
                 alt="caret-down"
-              >
+              />
             </a>
             <workspace-dropdown :title="'Recent boards'" />
           </li>
@@ -139,20 +115,15 @@
                 class="caret-down"
                 src="@/assets/svgs/caret-down.svg"
                 alt="caret-down"
-              >
+              />
             </a>
             <workspace-dropdown :title="'Starred'">
-              <template #content>
-                <div class="d-flex flex-column">
-                  <img
-                    src="@/assets/images/starred.svg"
-                    alt="starred "
-                  >
-                  <p class="text-center">
-                    Star important boards to access them quickly and easily.
-                  </p>
-                </div>
-              </template>
+              <div class="d-flex flex-column">
+                <img src="@/assets/images/starred.svg" alt="starred " />
+                <p class="text-center">
+                  Star important boards to access them quickly and easily.
+                </p>
+              </div>
             </workspace-dropdown>
           </li>
           <li
@@ -171,18 +142,14 @@
                 class="caret-down"
                 src="@/assets/svgs/caret-down.svg"
                 alt="caret-down"
-              >
+              />
             </a>
             <workspace-dropdown :title="'Templates'" />
           </li>
           <li
             class="workspacenav__container__navbar__nav__list__item nav-item text-start active"
           >
-            <a
-              class="nav-link text-white"
-              aria-current="page"
-              href="#"
-            >
+            <a class="nav-link text-white" aria-current="page" href="#">
               Create
             </a>
           </li>
@@ -199,7 +166,7 @@
                 type="text"
                 class="form-control form-control-sm"
                 placeholder="Search"
-              >
+              />
             </div>
           </li>
           <li
@@ -219,22 +186,14 @@
               :title="'Information'"
               class="dropdown-menu-end"
             >
-              <template #content>
-                <div class="d-flex flex-column">
-                  <img
-                    src="@/assets/images/info.png"
-                    alt="starred "
-                  >
-                  <p class="text-center">
-                    It’s easy to get your team up and running with Trello
-                    playbooks
-                  </p>
-                  <a
-                    class="text-center"
-                    href="#"
-                  >Get a new tip.</a>
-                </div>
-              </template>
+              <div class="d-flex flex-column">
+                <img src="@/assets/images/info.png" alt="starred " />
+                <p class="text-center">
+                  It’s easy to get your team up and running with Trello
+                  playbooks
+                </p>
+                <a class="text-center" href="#">Get a new tip.</a>
+              </div>
             </workspace-dropdown>
           </li>
           <li
@@ -273,67 +232,26 @@
               class="dropdown-menu-end p-0"
               :header-classes="'py-1 px-3'"
             >
-              <template #content>
-                <ul class="list-group">
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    User name
-                  </li>
-                  <hr class="dropdown-divider mx-2">
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Profile and visibility
-                  </li>
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Activity
-                  </li>
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Cards
-                  </li>
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Settings
-                  </li>
-                  <hr class="dropdown-divider mx-2">
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Settings
-                  </li>
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Help
-                  </li>
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Shortcuts
-                  </li>
-                  <hr class="dropdown-divider mx-2">
-                  <li
-                    class="dropdown-item px-3 py-2"
-                    role="button"
-                  >
-                    Log out
-                  </li>
-                </ul>
-              </template>
+              <ul class="list-group">
+                <li class="dropdown-item bg-transparent px-3 py-2 d-flex gap-2 justify-content-start align-items-start" role="button">
+                  <avatar :name="'Arslan Ali'" class="p-4 fw-bold"></avatar>
+                  <div class="d-flex flex-column">
+                    <p class="mb-0">Arslan Ali</p>
+                    <p class="mb-0">post.arslan@outlook.com</p>
+                  </div>
+                </li>
+                <hr class="dropdown-divider mx-2" />
+                <li class="dropdown-item px-3 py-2">Profile and visibility</li>
+                <li class="dropdown-item px-3 py-2" role="button">Activity</li>
+                <li class="dropdown-item px-3 py-2" role="button">Cards</li>
+                <li class="dropdown-item px-3 py-2" role="button">Settings</li>
+                <hr class="dropdown-divider mx-2" />
+                <li class="dropdown-item px-3 py-2" role="button">Settings</li>
+                <li class="dropdown-item px-3 py-2" role="button">Help</li>
+                <li class="dropdown-item px-3 py-2" role="button">Shortcuts</li>
+                <hr class="dropdown-divider mx-2" />
+                <li class="dropdown-item px-3 py-2" role="button">Log out</li>
+              </ul>
             </workspace-dropdown>
           </li>
         </ul>
@@ -346,9 +264,10 @@
 import { defineComponent } from 'vue'
 import WorkspaceDropdown from '@/components/WorkspaceDropown.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
+import Avatar from '@/components/Avatar.vue'
 
 export default defineComponent({
-  components: { WorkspaceDropdown, WorkspaceTitle }
+  components: { WorkspaceDropdown, WorkspaceTitle, Avatar }
 })
 </script>
 
