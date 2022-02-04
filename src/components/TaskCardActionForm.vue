@@ -41,7 +41,7 @@
     <button
       type="submit"
       @click="null"
-      class="taskcard-action-form__submit btn rounded-1 text-white py-1 px-3"
+      class="taskcard-action-form__submit btn-primary-1"
     >
       {{ submitText }}
     </button>
@@ -71,11 +71,8 @@ export default defineComponent({
     font-size: 12px;
   }
   &__submit {
-    font-size: 14px;
     width: fit-content;
-    background: #0079bf;
   }
-
   .labelled-select {
     width: 100%;
     position: relative;

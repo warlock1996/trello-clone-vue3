@@ -2,3 +2,29 @@
 @import './mixin';
 @import './myvariables';
 
+
+%btn-base {
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 3px;
+}
+
+.btn-primary {
+    &-1 {
+        @extend %btn-base;
+        background: $primary-1;
+        &:hover, &:active {
+            background: $primary-2;
+        }
+    }
+    &-2 {
+        @extend %btn-base;
+        background: $primary-2;
+        &:hover, &:active {
+            background: $primary-1;
+        }
+    }
+}

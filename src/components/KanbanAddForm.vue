@@ -13,7 +13,7 @@
     <input
       v-else
       v-model="value"
-       ref="input"
+      ref="input"
       type="text"
       @keydown.enter="$emit('submit')"
       class="form-control"
@@ -21,8 +21,9 @@
     />
     <div class="list-input-form__actions d-flex gap-2 align-items-center">
       <button
-       @click="$emit('submit')"
-        class="list-input-form__actions__btn btn btn-primary shadow-none border-0"
+        @click="$emit('submit')"
+        class="list-input-form__actions__btn btn-primary-1"
+        :class="buttonClasses"
       >
         {{ buttonText }}
       </button>
@@ -61,6 +62,10 @@ export default defineComponent({
       type: String,
       default: 'Add card'
     },
+    buttonClasses: {
+      type: String,
+      default: ''
+    },
     textAreaPlaceholder: {
       type: String,
       default: 'Enter a title for this card'
@@ -98,14 +103,6 @@ export default defineComponent({
     box-shadow: 0 1px 0 #091e4240;
   }
   &__actions {
-    &__btn {
-      background: #0079bf;
-      font-size: 14px;
-      padding: 6px 12px;
-      &:hover {
-        background: #026aa7;
-      }
-    }
     &__icon {
       font-size: 20px;
       color: #6b778c;

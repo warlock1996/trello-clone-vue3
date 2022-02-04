@@ -57,7 +57,7 @@
           :class="{ isFocused: dueDateCheckBox }"
         />
       </div>
-      <button class="date-picker-wrapper__btn w-100 mt-3 rounded-1">
+      <button class="date-picker-wrapper__btn btn-primary-1 w-100 mt-3 rounded-1">
         Save
       </button>
     </div>
@@ -132,18 +132,6 @@ export default defineComponent({
       font-size: 12px;
       font-weight: bold;
       color: #5e6c84;
-    }
-  }
-  &__btn {
-    font-size: 14px;
-    background: #0079bf;
-    color: white;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    padding: 6px 12px;
-    &:hover {
-      background: #026aa7;
     }
   }
 }

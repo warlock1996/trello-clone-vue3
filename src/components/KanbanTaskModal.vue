@@ -113,6 +113,7 @@
                       v-else
                       input-type="textarea"
                       button-text="Save"
+                      button-classes="btn-primary-2"
                       text-area-placeholder="Add a more detailed description..."
                       :show-sub-menu="true"
                       :text-area-styles="{
