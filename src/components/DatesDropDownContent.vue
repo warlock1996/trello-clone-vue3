@@ -57,7 +57,9 @@
           :class="{ isFocused: dueDateCheckBox }"
         />
       </div>
-      <button class="date-picker-wrapper__btn btn-primary-1 w-100 mt-3 rounded-1">
+      <button
+        class="date-picker-wrapper__btn btn-primary-1 w-100 mt-3 rounded-1"
+      >
         Save
       </button>
     </div>
@@ -65,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, watchEffect } from 'vue'
+import { defineComponent, ref, watchEffect } from 'vue'
 import DatePicker from 'vue3-date-time-picker'
 import 'vue3-date-time-picker/dist/main.css'
 

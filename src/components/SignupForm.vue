@@ -2,24 +2,29 @@
   <div class="signup-form">
     <form>
       <input
+        v-model="user.name"
         class="form-control mb-3"
         type="text"
         name="name"
         placeholder="Enter full name"
       />
       <input
+      v-model="user.email"
         class="form-control mb-3"
         type="email"
         name="email"
         placeholder="Enter email"
       >
       <input
+      v-model="user.password"
+
         class="form-control mb-3"
         type="password"
         name="password"
         placeholder="Enter password"
       >
       <input
+      v-model="user.confirmPassword"
         class="form-control mb-3"
         type="password"
         name="password"
@@ -36,7 +41,7 @@
       <div class="d-grid d-block mb-3">
         <button
           class="btn btn-success btn-sm text-white"
-          disabled
+          @click.prevent="handleSignUp"
         >
           Continue
         </button>
@@ -45,10 +50,38 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { signUpService } from '@/services/auth'
 import { defineComponent } from 'vue'
 
-export default defineComponent({})
+export default defineComponent({
+  data () {
+    return {
+      user: {
+        name: 'Some User',
+        email: 'someuser@gmail.com',
+        password: 'ArslanAli123$',
+        confirmPassword: 'ArslanAli123$'
+      }
+    }
+  },
+  inject: ['setLayoutAlertText'],
+  methods: {
+    async handleSignUp () {
+      const res = await signUpService(this.user)
+      if (!res.error) {
+        this.setLayoutAlertText(res.message)
+        this.$router.push(
+          {
+            name: 'Login',
+            params: {
+              email: this.user.email
+            }
+          })
+      }
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>

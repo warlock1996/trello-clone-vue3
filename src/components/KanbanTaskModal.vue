@@ -307,7 +307,6 @@
 </template>
 
 <script lang="ts">
-
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'

@@ -12,9 +12,12 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-
+  data () {
+    return {}
+  },
+  components: {},
+  directives: {}
 })
-
 </script>
 
 <style lang="scss" scoped>
@@ -26,7 +29,7 @@ export default defineComponent({
   border-radius: 3px;
   font-size: 14px;
   &:hover {
-      background: #091e4214;
+    background: #091e4214;
   }
 }
 </style>
