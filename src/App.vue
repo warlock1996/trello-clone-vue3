@@ -6,6 +6,7 @@
       {{ layoutAlertText }}
     </div>
     <component :is="$route.meta.layout"></component>
+    <toast v-if="showToast" :text="toastText"></toast>
   </div>
 </template>
 
@@ -13,22 +14,27 @@
 import { defineComponent } from 'vue'
 import defaultLayout from '@/layouts/default.vue'
 import workspaceLayout from '@/layouts/workspace.vue'
+import Toast from '@/components/Toast.vue'
 
 export default defineComponent({
   components: {
     default: defaultLayout,
-    workspace: workspaceLayout
+    workspace: workspaceLayout,
+    Toast
   },
   data () {
     return {
       showLayoutAlert: false,
       layoutAlertText: '',
-      resetTimeOut: null
+      resetTimeOut: null,
+      toastText: '',
+      showToast: false
     }
   },
   provide () {
     return {
-      setLayoutAlertText: this.setLayoutAlertText
+      setLayoutAlertText: this.setLayoutAlertText,
+      setToast: this.setToast
     }
   },
   methods: {
@@ -39,6 +45,10 @@ export default defineComponent({
         this.layoutAlertText = ''
         this.showLayoutAlert = false
       }, 60000)
+    },
+    setToast (text: string) {
+      this.toastText = text
+      this.showToast = true
     }
   },
   beforeUnmount () {
