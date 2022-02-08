@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
@@ -19,7 +20,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
+    component: () =>
+      import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
     meta: {
       layout: 'default'
     }
@@ -27,7 +29,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/signup',
     name: 'Signup',
-    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
+    component: () =>
+      import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
     meta: {
       layout: 'default'
     }
@@ -35,17 +38,21 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/workspace',
     name: 'workspace',
-    component: () => import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),
+    component: () =>
+      import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),
     meta: {
-      layout: 'workspace'
+      layout: 'workspace',
+      protected: true
     }
   },
   {
     path: '/kanban',
     name: 'kanban',
-    component: () => import(/* webpackChunkName: "Kanban" */ '../views/Kanban.vue'),
+    component: () =>
+      import(/* webpackChunkName: "Kanban" */ '../views/Kanban.vue'),
     meta: {
-      layout: 'workspace'
+      layout: 'workspace',
+      protected: true
     }
   }
 ]
@@ -56,6 +63,17 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  if (!to.meta.protected) {
+    if (Cookies.get('token')) {
+      return next('/workspace')
+    }
+    return next()
+  } else {
+    if (!Cookies.get('token')) {
+      return next('/login')
+    }
+  }
+
   next()
 })
 

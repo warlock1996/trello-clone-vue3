@@ -6,7 +6,9 @@
       {{ layoutAlertText }}
     </div>
     <component :is="$route.meta.layout"></component>
-    <toast v-if="showToast" :text="toastText"></toast>
+    <div class="toast-container position-fixed top-0 end-0">
+      <toast v-for="(n, index) in toasts" :key="index" :text="n"></toast>
+    </div>
   </div>
 </template>
 
@@ -14,21 +16,19 @@
 import { defineComponent } from 'vue'
 import defaultLayout from '@/layouts/default.vue'
 import workspaceLayout from '@/layouts/workspace.vue'
-import Toast from '@/components/Toast.vue'
 
 export default defineComponent({
   components: {
     default: defaultLayout,
-    workspace: workspaceLayout,
-    Toast
+    workspace: workspaceLayout
   },
   data () {
     return {
       showLayoutAlert: false,
       layoutAlertText: '',
       resetTimeOut: null,
-      toastText: '',
-      showToast: false
+      setToastTimeout: null,
+      toasts: []
     }
   },
   provide () {
@@ -47,12 +47,15 @@ export default defineComponent({
       }, 60000)
     },
     setToast (text: string) {
-      this.toastText = text
-      this.showToast = true
+      this.toasts.push(text)
+      this.setToastTimeout = setTimeout(() => {
+        this.toasts.pop()
+      }, 4000)
     }
   },
   beforeUnmount () {
     clearTimeout(this.resetTimeOut)
+    clearTimeout(this.setToastTimeout)
   }
 })
 </script>

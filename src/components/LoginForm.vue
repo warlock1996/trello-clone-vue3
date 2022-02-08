@@ -6,29 +6,26 @@
         class="form-control mb-3"
         type="email"
         name="email"
-        placeholder="Enter email"
-      >
+        placeholder="Enter email" />
       <input
         v-model="user.password"
         class="form-control mb-3"
         type="password"
+        autocomplete="new-password"
         name="password"
-        placeholder="Enter password"
-      >
+        placeholder="Enter password" />
       <div class="d-grid d-block mb-3">
-        <button class="btn btn-success btn-sm text-white" @click.prevent="handleLogin">
+        <button
+          class="btn btn-success btn-sm text-white"
+          :disabled="loginButtonState"
+          @click.prevent="handleLogin">
           Log In
         </button>
       </div>
     </form>
     <div class="login-form__methods mb-3">
-      <div class="mb-3">
-        OR
-      </div>
-      <a
-        class="mb-3"
-        href="#"
-      >Log in with SSO</a>
+      <div class="mb-3">OR</div>
+      <a class="mb-3" href="#">Log in with SSO</a>
     </div>
   </div>
 </template>
@@ -44,7 +41,8 @@ export default defineComponent({
       user: {
         email: 'post.arslan@outlook.com',
         password: 'ArslanAli123$'
-      }
+      },
+      loginButtonState: false
     }
   },
   mounted () {
@@ -52,9 +50,13 @@ export default defineComponent({
   },
   methods: {
     async handleLogin () {
+      this.loginButtonState = true
       const res = await loginService(this.user)
-      if (!res.error) Cookies.set('token', res.token)
-      this.$router.push('/workspace')
+      if (!res.error) {
+        Cookies.set('token', res.token)
+        this.loginButtonState = false
+        this.$router.push('/workspace')
+      }
     }
   }
 })
