@@ -19,7 +19,7 @@
             <template #b>
               <a
                 href="#"
-                @click.prevent="$router.push('/signup')"
+                @click.prevent="$router.push('/account/signup')"
               >
                 Sign up for an account
               </a>
