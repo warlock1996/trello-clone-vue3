@@ -5,40 +5,29 @@
         <div class="col-md-auto offset-md-1">
           <workspace-side-menu class="d-none d-lg-block" />
         </div>
-        <div class="col-auto">
+        <div class="col-md-8">
           <section class="py-2 mb-4 workspace__container__recent">
-            <div
-              class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title"
-            >
+            <div class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title">
               <i class="bi bi-clock" />
               <span>Recently viewed</span>
             </div>
-            <div
-              class="workspace__container__recent_boards d-flex gap-3 flex-wrap justify-content-start my-2"
-            >
+            <div class="workspace__container__recent_boards d-flex gap-3 flex-wrap justify-content-start my-2">
+              <!-- <board />
               <board />
               <board />
-              <board />
-              <board />
+              <board /> -->
             </div>
           </section>
-          <section class="py-2 mb-5 workspace__container__owner">
-            <div
-              class="d-flex align-items-end gap-2 justify-content-start my-4 workspace__container__owner__title"
-            >
+          <section class="py-2 mb-4 workspace__container__owner">
+            <div class="d-flex align-items-end gap-2 justify-content-start my-4 workspace__container__owner__title">
               <h3 class="mb-0">YOUR WORKSPACES</h3>
             </div>
             <div class="row">
               <div class="col-auto">
-                <workspace-title
-                  title="Trello workspaces"
-                  :title-styles="{ fontSize: '16px' }"
-                ></workspace-title>
+                <workspace-title title="Trello workspaces" :title-styles="{ fontSize: '16px' }"></workspace-title>
               </div>
               <div class="col">
-                <div
-                  class="d-flex gap-2 align-items-center justify-content-end"
-                >
+                <div class="d-flex gap-2 align-items-center justify-content-end">
                   <action-button>
                     <template #prefix>
                       <i class="bi bi-kanban" />
@@ -66,22 +55,20 @@
                 </div>
               </div>
             </div>
-            <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
-              <board />
-              <board />
-              <board />
-              <board />
+            <div class="workspace__container__owner__boardsgrid my-2">
+              <board v-for="b in allBoards.createdBoards" :key="b._id" :name="b.name" />
             </div>
             <div class="d-flex gap-3 mt-3 flex-wrap justify-content-start my-2">
               <create-new-board />
             </div>
           </section>
-          <section class="py-2 mb-5 workspace__container__guest">
-            <div
-              class="d-flex align-items-center gap-2 justify-content-start my-4 workspace__container__guest__title"
-            >
+          <section class="py-2 mb-4 workspace__container__guest">
+            <div class="d-flex align-items-center gap-2 justify-content-start my-4 workspace__container__guest__title">
               <h3 class="mb-0">GUEST WORKSPACES</h3>
               <i class="bi bi-info-circle" />
+            </div>
+            <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
+              <board v-for="b in allBoards.invitedBoards" :key="b._id" :name="b.name" />
             </div>
           </section>
         </div>
@@ -90,14 +77,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import Board from '@/components/Board.vue'
 import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
 import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
-
+import { allUserBoardsService } from '@/services/boards'
 export default defineComponent({
   components: {
     Board,
@@ -105,20 +92,28 @@ export default defineComponent({
     WorkspaceSideMenu,
     CreateNewBoard,
     ActionButton
+  },
+  data () {
+    return {
+      allBoards: {}
+    }
+  },
+  mounted () {
+    this.getAllUserBoards()
+  },
+  methods: {
+    async getAllUserBoards () {
+      const res = await allUserBoardsService()
+      if (!res.error) {
+        this.allBoards = res.data
+      }
+    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .workspace {
-  --page-bg: #f4f5f7;
-  --base-clr: #172b4d;
-  --active-clr: #0079bf;
-  --list-item-clr: #091e42;
-  --list-item-bg-hover: rgba(9, 30, 66, 0.08);
-  --workspaces-title-clr: #5e6c84;
-  --workspaces-link-bg: #091e420a;
-
   min-height: 100vh;
 
   background: var(--page-bg);
@@ -147,6 +142,11 @@ export default defineComponent({
       }
     }
     &__owner {
+      &__boardsgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 200px);
+        grid-gap: 12px;
+      }
       .trello {
         .symbol {
           border-radius: 3px;
