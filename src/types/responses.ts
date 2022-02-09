@@ -1,10 +1,11 @@
-export type LoginResponse = {
-  error: boolean,
-  message: string,
-  token: string
+export type GenericResponse<T> = {
+  message: string
+  error?: boolean
+  token?: string
+  data?: T
 }
 
-export type SignUpResponse = {
-  error: boolean,
-  message: string,
+export type AllBoardsResponse = {
+  createdBoards: Record<string, unknown>
+  invitedBoards: Record<string, unknown>
 }
