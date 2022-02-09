@@ -1,10 +1,26 @@
-import axios from 'axios'
+import router from '@/router'
+import axios, { Axios, AxiosError } from 'axios'
+import Cookies from 'js-cookie'
 
-const instance = axios.create({
+export const instance: Axios = axios.create({
   baseURL: 'http://localhost:5000/api'
 })
-// instance.interceptors.request(config => {
 
-// })
+export const auth: Axios = axios.create({
+  baseURL: 'http://localhost:5000/api'
+})
 
-export default instance
+export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> => {
+  switch (error.response.status) {
+    case 401:
+      Cookies.remove('token')
+      router.push({ name: 'Login' })
+      return Promise.reject(new Error('UNAUTHORIZED ACCESS !'))
+    case 500:
+      return Promise.reject(new Error('SERVER ERROR !'))
+    case 404:
+      return Promise.reject(new Error('NOT FOUND ERROR !'))
+  }
+  // for any unknown errors
+  return Promise.reject(new Error('UNKNOWN ERROR !'))
+}

@@ -14,25 +14,38 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
     meta: {
-      layout: 'default'
+      layout: 'default',
+      protected: false
     }
   },
   {
-    path: '/login',
+    path: '/account/login',
     name: 'Login',
     component: () =>
       import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
     meta: {
-      layout: 'default'
+      layout: 'default',
+      protected: false
     }
   },
   {
-    path: '/signup',
+    path: '/account/signup',
     name: 'Signup',
     component: () =>
       import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
     meta: {
-      layout: 'default'
+      layout: 'default',
+      protected: false
+    }
+  },
+  {
+    path: '/account/activate/:hash',
+    name: 'ActivateAccount',
+    component: () =>
+      import(/* webpackChunkName: "Activate" */ '../views/Activate.vue'),
+    meta: {
+      layout: 'default',
+      protected: false
     }
   },
   {
@@ -70,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
     return next()
   } else {
     if (!Cookies.get('token')) {
-      return next('/login')
+      return next('/account/login')
     }
   }
 

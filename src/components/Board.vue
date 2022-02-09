@@ -2,11 +2,11 @@
   <div
     class="card border-0"
     role="button"
+    @click="$router.push('/kanban')"
     @mouseover="bookmark = true"
-    @mouseleave="bookmark = false"
-  >
+    @mouseleave="bookmark = false">
     <div class="card-body border-0 p-2">
-      <div class="card-title">Project 1</div>
+      <div class="card-title">{{ name }}</div>
       <div v-if="bookmark" class="bookmark">
         <i class="bi bi-star" />
       </div>
@@ -18,6 +18,12 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       bookmark: false
