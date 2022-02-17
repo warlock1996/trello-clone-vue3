@@ -64,6 +64,8 @@ export default defineComponent({
 .layout-wrap {
   position: relative;
   z-index: 1000;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .layout-alert {

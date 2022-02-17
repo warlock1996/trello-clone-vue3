@@ -21,6 +21,7 @@ import { defineComponent } from 'vue'
 import WorkspaceDropDown from '@/components/WorkspaceDropown.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import { createBoardService } from '@/services/boards'
+import { useStore } from '@/store'
 
 export default defineComponent({
   components: {
@@ -37,8 +38,9 @@ export default defineComponent({
   methods: {
     async handleCreateBoard () {
       const res = await createBoardService(this.board)
+      const store = useStore()
       if (!res.error) {
-        console.log(res.data)
+        store.workspace.createdBoards.push(res.data)
       }
     }
   }

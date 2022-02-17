@@ -1,13 +1,20 @@
+import { BoardModel } from '@/types/entities'
 import { reactive } from 'vue'
 
 export interface MyStore {
-  layout: unknown
+  workspace: {
+    createdBoards: Array<BoardModel>
+    invitedBoards: Array<BoardModel>
+  }
 }
 
-const store : MyStore = reactive({
-  layout: {}
+const store: MyStore = reactive({
+  workspace: {
+    createdBoards: [],
+    invitedBoards: []
+  }
 })
 
-export const useStore = () : MyStore => {
+export const useStore = (): MyStore => {
   return store
 }

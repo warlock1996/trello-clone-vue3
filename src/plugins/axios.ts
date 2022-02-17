@@ -21,8 +21,8 @@ export default {
 
       const token = Cookies.get('token')
       if (!token) {
-        // controller.abort()
-        // router.push({ name: 'Login' })
+        controller.abort()
+        router.push({ name: 'Login' })
         return
       }
 

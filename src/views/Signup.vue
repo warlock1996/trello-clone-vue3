@@ -63,8 +63,10 @@ export default defineComponent({
     position: relative;
     z-index: 2;
     &__logo {
-      display: block;
-      margin: 40px auto;
+       display: block;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      margin: auto;
       width: 200px;
     }
   }

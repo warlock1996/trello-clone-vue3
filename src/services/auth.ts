@@ -1,4 +1,4 @@
-import { auth, instance } from '@/config/axios'
+import { auth } from '@/config/axios'
 import { GenericResponse } from '@/types/responses'
 
 export const loginService = (payload: unknown): Promise<GenericResponse<unknown>> => {

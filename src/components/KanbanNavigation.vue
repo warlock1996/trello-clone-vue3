@@ -1,37 +1,27 @@
 <template>
   <div class="kanban-nav row py-2 px-3 g-0 align-items-stretch justify-content-start">
     <div class="col-md-6">
-      <div
-        class="d-flex gap-2 flex-wrap justify-content-start align-items-center"
-      >
+      <div class="d-flex gap-2 flex-wrap justify-content-start align-items-center">
         <action-button class="ab">
           <template #prefix>
-            <img
-              src="@/assets/svgs/kanban.svg"
-              alt="kanban"
-            >
+            <img src="@/assets/svgs/kanban.svg" alt="kanban" />
             <!-- <i class="bi bi-kanban" /> -->
           </template>
           Board
           <template #suffix>
-            <img
-              src="@/assets/svgs/caret-down.svg"
-              alt="caret-down"
-            >
+            <img src="@/assets/svgs/caret-down.svg" alt="caret-down" />
           </template>
         </action-button>
         <action-button class="ab">
           <input
             type="text"
-            class="form-control form-control-sm bg-transparent border-0 shadow-0"
-          >
+            :value="board? board.name: ''"
+            class="form-control form-control-sm bg-transparent border-0 shadow-0" />
         </action-button>
         <action-button class="ab">
           <i class="bi bi-star" />
         </action-button>
-        <action-button class="ab flex-grow-sm-1">
-          Trello workspace
-        </action-button>
+        <action-button class="ab flex-grow-sm-1"> Trello workspace </action-button>
         <action-button class="ab">
           <i class="bi bi-lock" />
           Private
@@ -43,9 +33,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div
-        class="d-flex gap-2 flex-wrap justify-content-end align-items-center"
-      >
+      <div class="d-flex gap-2 flex-wrap justify-content-end align-items-center">
         <action-button class="ab">
           <i class="bi bi-lightning-fill" />
           Automation
@@ -70,7 +58,8 @@ import ActionButton from '@/components/ActionButton.vue'
 export default defineComponent({
   components: {
     ActionButton
-  }
+  },
+  inject: ['board']
 })
 </script>
 

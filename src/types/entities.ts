@@ -1,40 +1,44 @@
-export type TaskDate = {
+export interface Model {
+  _id: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface TaskDate {
   dueDate: Date
   startDate: Date
   endDate: Date
 }
 
-export type Comment = {
+export interface Comment {
   _id: string
   comment: string
 }
 
-export type Attachment = {
+export interface Attachment {
   _id: string
   url: string
 }
 
-export type Label = {
+export interface Label {
   _id: string
   text: string
   color: string
 }
 
-export type Permission = {
+export interface Permission {
   board: Record<string, unknown>
   list: Record<string, unknown>
   task: Record<string, unknown>
 }
 
-export type Member = {
-  _id: string
+export interface MemberModel extends Model {
   name: string
   email: string
   permissions: Array<Permission>
 }
 
-export type Task = {
-  _id: string
+export interface TaskModel extends Model {
   task: string
   description?: string
   date?: TaskDate
@@ -45,16 +49,15 @@ export type Task = {
   attachment?: Array<Attachment>
 }
 
-export type List = {
-  _id: string
+export interface ListModel extends Model {
   name: string
-  tasks: Array<Task>
+  tasks: Array<TaskModel>
 }
 
-export type Board = {
+export interface BoardModel extends Model {
   name: string
-  lists: Array<List>
-  members: Array<Member>
-  labels: Array<Label>
-  userId: string
+  lists?: Array<ListModel>
+  members?: Array<MemberModel>
+  labels?: Array<Label>
+  userId?: string
 }

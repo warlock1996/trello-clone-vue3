@@ -1,3 +1,5 @@
+import { BoardModel } from './entities'
+
 export type GenericResponse<T> = {
   message: string
   error?: boolean
@@ -6,6 +8,6 @@ export type GenericResponse<T> = {
 }
 
 export type AllBoardsResponse = {
-  createdBoards: Record<string, unknown>
-  invitedBoards: Record<string, unknown>
+  createdBoards: Array<BoardModel>
+  invitedBoards: Array<BoardModel>
 }

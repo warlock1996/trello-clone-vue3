@@ -56,7 +56,11 @@
               </div>
             </div>
             <div class="workspace__container__owner__boardsgrid my-2">
-              <board v-for="b in allBoards.createdBoards" :key="b._id" :name="b.name" />
+              <board
+                v-for="b in workspaceBoards.createdBoards"
+                :key="b._id"
+                :name="b.name"
+                @click="$router.push({ name: 'kanban', params: { boardId: b._id } })" />
             </div>
             <div class="d-flex gap-3 mt-3 flex-wrap justify-content-start my-2">
               <create-new-board />
@@ -68,7 +72,7 @@
               <i class="bi bi-info-circle" />
             </div>
             <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
-              <board v-for="b in allBoards.invitedBoards" :key="b._id" :name="b.name" />
+              <board v-for="b in workspaceBoards.invitedBoards" :key="b._id" :name="b.name" />
             </div>
           </section>
         </div>
@@ -85,6 +89,8 @@ import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 import { allUserBoardsService } from '@/services/boards'
+import { useStore } from '@/store'
+const store = useStore()
 export default defineComponent({
   components: {
     Board,
@@ -93,19 +99,19 @@ export default defineComponent({
     CreateNewBoard,
     ActionButton
   },
-  data () {
-    return {
-      allBoards: {}
-    }
-  },
   mounted () {
     this.getAllUserBoards()
+  },
+  computed: {
+    workspaceBoards () {
+      return store.workspace
+    }
   },
   methods: {
     async getAllUserBoards () {
       const res = await allUserBoardsService()
       if (!res.error) {
-        this.allBoards = res.data
+        store.workspace = res.data
       }
     }
   }

@@ -21,8 +21,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/account/login',
     name: 'Login',
-    component: () =>
-      import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
     meta: {
       layout: 'default',
       protected: false
@@ -31,8 +30,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/account/signup',
     name: 'Signup',
-    component: () =>
-      import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
     meta: {
       layout: 'default',
       protected: false
@@ -41,8 +39,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/account/activate/:hash',
     name: 'ActivateAccount',
-    component: () =>
-      import(/* webpackChunkName: "Activate" */ '../views/Activate.vue'),
+    component: () => import(/* webpackChunkName: "Activate" */ '../views/Activate.vue'),
     meta: {
       layout: 'default',
       protected: false
@@ -51,18 +48,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/workspace',
     name: 'workspace',
-    component: () =>
-      import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),
+    component: () => import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),
     meta: {
       layout: 'workspace',
       protected: true
     }
   },
   {
-    path: '/kanban',
+    path: '/kanban/:boardId',
     name: 'kanban',
-    component: () =>
-      import(/* webpackChunkName: "Kanban" */ '../views/Kanban.vue'),
+    component: () => import(/* webpackChunkName: "Kanban" */ '../views/Kanban.vue'),
     meta: {
       layout: 'workspace',
       protected: true

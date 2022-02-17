@@ -81,7 +81,9 @@ export default defineComponent({
     color: #5e6c84;
     &__logo {
       display: block;
-      margin: 40px auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      margin: auto;
       width: 200px;
     }
   }

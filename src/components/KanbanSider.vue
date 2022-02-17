@@ -1,32 +1,19 @@
 <template>
-  <div
-    class="kanban-sider h-100"
-    :class="{'w-100': show}"
-    role="button"
-    @click="show = !show"
-  >
-    <div
-      v-if="!show"
-      class="kanban-sider__caret"
-    >
-      <img
-        src="@/assets/svgs/caret-round-right.svg"
-        alt="caret-round-right"
-      >
+  <div class="kanban-sider h-100" :class="{ 'w-100': show }" role="button" @click="$emit('toggleSider')">
+    <div v-if="!show" class="kanban-sider__caret">
+      <img src="@/assets/svgs/caret-round-right.svg" alt="caret-round-right" />
     </div>
-    <slot
-      v-if="show"
-      class="kanban-sider__content"
-    />
+    <slot v-if="show" class="kanban-sider__content" :show="show" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 export default defineComponent({
-  data () {
-    return {
-      show: false
+  props: {
+    show: {
+      type: Boolean,
+      default: true
     }
   }
 })
@@ -42,8 +29,8 @@ export default defineComponent({
     background: #ffffff52;
   }
   &__content {
-      background: #FAFBFC;
-      width: fit-content;
+    background: #fafbfc;
+    width: fit-content;
   }
   &__caret {
     display: flex;
