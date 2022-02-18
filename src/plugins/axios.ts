@@ -14,16 +14,14 @@ export default {
     instance.interceptors.response.use((value) => value.data, errorHandler)
     auth.interceptors.response.use((value) => value.data, errorHandler)
 
-    const controller = new AbortController()
-
     instance.interceptors.request.use((req: AxiosRequestConfig): AxiosRequestConfig => {
+      const controller = new AbortController()
       req.signal = controller.signal
-
       const token = Cookies.get('token')
       if (!token) {
         controller.abort()
-        router.push({ name: 'Login' })
-        return
+        router.push({ name: 'login' })
+        return req
       }
 
       req.headers.Authorization = `Bearer ${token}`

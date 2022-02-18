@@ -1,5 +1,5 @@
 import router from '@/router'
-import axios, { Axios, AxiosError } from 'axios'
+import axios, { Axios, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 
 export const instance: Axios = axios.create({
@@ -15,7 +15,7 @@ export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> 
     switch (error.response.status) {
       case 401:
         Cookies.remove('token')
-        router.push({ name: 'Login' })
+        router.push({ name: 'login' })
         return Promise.reject(new Error('UNAUTHORIZED ACCESS !'))
       case 500:
         return Promise.reject(new Error('SERVER ERROR !'))
@@ -25,6 +25,4 @@ export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> 
   } else if (error.request) {
     return Promise.reject(new Error('NO RESPONSE RECEIVED'))
   }
-  // for any unknown errors
-  return Promise.reject(new Error('UNKNOWN ERROR !'))
 }
