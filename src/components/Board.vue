@@ -2,7 +2,6 @@
   <div
     class="card border-0"
     role="button"
-    @click="$router.push('/kanban')"
     @mouseover="bookmark = true"
     @mouseleave="bookmark = false">
     <div class="card-body border-0 p-2">

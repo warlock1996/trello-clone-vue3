@@ -5,9 +5,7 @@
         <trello-logo />
       </div>
       <auth-card>
-        <template #title>
-          Log In to Trello
-        </template>
+        <template #title> Log In to Trello </template>
         <template #body>
           <login-form />
         </template>
@@ -17,12 +15,7 @@
               <a href="#"> Can't log in?</a>
             </template>
             <template #b>
-              <a
-                href="#"
-                @click.prevent="$router.push('/account/signup')"
-              >
-                Sign up for an account
-              </a>
+              <a href="#" @click.prevent="$router.push({ name: 'signup' })"> Sign up for an account </a>
             </template>
           </dotted-inline-list>
         </template>
@@ -40,10 +33,7 @@
     </div>
     <atlassian-footer>
       <template #logo-slot>
-        <img
-          src="@/assets/images/atlassian-logo-blue-small.svg"
-          alt="atlassion-logo-blue-small"
-        >
+        <img src="@/assets/images/atlassian-logo-blue-small.svg" alt="atlassion-logo-blue-small" />
       </template>
     </atlassian-footer>
     <global-footer />

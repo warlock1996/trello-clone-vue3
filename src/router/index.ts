@@ -11,7 +11,7 @@ declare module 'vue-router' {
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
     meta: {
       layout: 'default',
@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/account/login',
-    name: 'Login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
     meta: {
       layout: 'default',
@@ -29,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/account/signup',
-    name: 'Signup',
+    name: 'signup',
     component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
     meta: {
       layout: 'default',

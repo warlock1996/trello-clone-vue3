@@ -40,17 +40,22 @@ export default defineComponent({
     }
   },
   mounted () {
-    this.getBoardById()
     this.siderState = localStorage.getItem('kanbanSiderMenuState')
   },
   watch: {
-    '$route.params.boardId': function (id) {
-      this.getBoardById(id)
+    '$route.params.boardId': {
+      handler: function (id) {
+        console.log('[in watcher]')
+        this.getBoardById(id)
+      },
+      immediate: true,
+      flush: 'post'
     }
   },
   methods: {
-    async getBoardById () {
-      const res = await getBoardByIdService(this.$route.params.boardId)
+    async getBoardById (id: string) {
+      const res = await getBoardByIdService(id)
+      console.log(res)
       if (!res.error) {
         this.board = res.data
       }

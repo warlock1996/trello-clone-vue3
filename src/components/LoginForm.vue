@@ -55,7 +55,7 @@ export default defineComponent({
       if (!res.error) {
         Cookies.set('token', res.token)
         this.loginButtonState = false
-        this.$router.push('/workspace')
+        this.$router.push({ name: 'workspace' })
       }
     }
   }

@@ -1,4 +1,4 @@
-import { auth } from '@/config/axios'
+import { auth, instance } from '@/config/axios'
 import { GenericResponse } from '@/types/responses'
 
 export const loginService = (payload: unknown): Promise<GenericResponse<unknown>> => {
@@ -11,4 +11,8 @@ export const signUpService = (payload: unknown): Promise<GenericResponse<unknown
 
 export const activationService = (payload: unknown): Promise<GenericResponse<unknown>> => {
   return auth.get('/account/activate/' + payload)
+}
+
+export const logOutService = (): Promise<GenericResponse<unknown>> => {
+  return instance.post('/account/logout')
 }

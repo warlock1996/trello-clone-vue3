@@ -29,14 +29,14 @@
                 class="nav-link active"
                 aria-current="page"
                 href="#"
-                @click.prevent="$router.push({ name: 'Login' })"
+                @click.prevent="$router.push({ name: 'login' })"
                 >Log in</a
               >
             </li>
             <li class="home__nav__container__navbar__nav__list__item nav-item">
               <button
                 class="btn btn-primary fw-bold"
-                @click.prevent="$router.push('/account/signup')"
+                @click.prevent="$router.push({name: 'signup'})"
               >
                 Sign up
               </button>
@@ -66,7 +66,7 @@
                 placeholder="Email"
               />
               <button
-                @click.prevent="$router.push('/account/signup')"
+                @click.prevent="$router.push({name: 'signup'})"
                 class="btn btn-primary form-control-lg flex-grow-1 p-0"
               >
                 Sign up—it’s free!
@@ -96,7 +96,7 @@
               organize tasks, and build team spirit—all in one place.
             </p>
             <button
-              @click.prevent="$router.push('/account/signup')"
+              @click.prevent="$router.push({name: 'signup'})"
               class="btn btn-outline-primary btn-lg mb-3 home__centeredsection__btn"
             >
               Start doing
@@ -389,7 +389,7 @@
                       placeholder="Email"
                     />
                     <button
-                      @click.prevent="$router.push('/account/signup')"
+                      @click.prevent="$router.push({name: 'signup'})"
                       class="btn btn-info text-white form-control-lg flex-grow-1"
                     >
                       Sign up

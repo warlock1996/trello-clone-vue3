@@ -70,7 +70,7 @@ export default defineComponent({
         this.setLayoutAlertText(res.message)
         this.signupButtonState = false
         this.$router.push({
-          name: 'Login',
+          name: 'login',
           params: {
             email: this.user.email
           }

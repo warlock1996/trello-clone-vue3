@@ -15,7 +15,7 @@
               <a href="#"> Already have an account? </a>
             </template>
             <template #b>
-              <a href="#" @click.prevent="$router.push({ name: 'Login' })">
+              <a href="#" @click.prevent="$router.push({ name: 'login' })">
                 Log In
               </a>
             </template>

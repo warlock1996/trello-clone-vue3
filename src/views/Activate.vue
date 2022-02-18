@@ -36,7 +36,7 @@ export default defineComponent({
       if (!res.error) {
         this.isActivating = false
         this.setLayoutAlertText(res.message)
-        this.$router.push({ name: 'Login', params: { email: this.activationEmail.email } })
+        this.$router.push({ name: 'login', params: { email: this.activationEmail.email } })
       }
     }
   }
