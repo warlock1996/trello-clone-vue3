@@ -15,11 +15,13 @@
         <action-button class="ab">
           <input
             type="text"
-            :value="board? board.name: ''"
+            v-model="currentBoard.name"
+            @keyup.enter="handleBoardNameChange"
             class="form-control form-control-sm bg-transparent border-0 shadow-0" />
         </action-button>
-        <action-button class="ab">
-          <i class="bi bi-star" />
+        <action-button class="ab" @click="handleBoardStarredChange">
+          <i v-if="currentBoard.starred" class="bi bi-star-fill text-warning" />
+          <i v-else class="bi bi-star" />
         </action-button>
         <action-button class="ab flex-grow-sm-1"> Trello workspace </action-button>
         <action-button class="ab">
@@ -54,12 +56,38 @@
 <script>
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
+import { useStore } from '@/store'
+import { updateBoardService } from '@/services/boards'
 
+const store = useStore()
 export default defineComponent({
   components: {
     ActionButton
   },
-  inject: ['board']
+  methods: {
+    async handleBoardNameChange () {
+      const res = await updateBoardService(this.currentBoard._id, { name: this.currentBoard.name })
+      if (!res.error) {
+        store.currentBoard = res.data
+      }
+    },
+    async handleBoardStarredChange () {
+      const res = await updateBoardService(this.currentBoard._id, { starred: !this.currentBoard.starred })
+      if (!res.error) {
+        store.currentBoard = res.data
+      }
+    }
+  },
+  computed: {
+    currentBoard: {
+      set (v) {
+        store.currentBoard = v
+      },
+      get () {
+        return store.currentBoard
+      }
+    }
+  }
 })
 </script>
 

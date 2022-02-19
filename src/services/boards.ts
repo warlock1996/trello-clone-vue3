@@ -10,6 +10,10 @@ export const createBoardService = (payload: unknown): Promise<GenericResponse<Bo
   return instance.post('/board/create', payload)
 }
 
-export const getBoardByIdService = (payload: unknown): Promise<GenericResponse<BoardModel>> => {
-  return instance.get('/board/' + payload)
+export const getBoardByIdService = (boardId: string): Promise<GenericResponse<BoardModel>> => {
+  return instance.get('/board/' + boardId)
+}
+
+export const updateBoardService = (boardId: string, payload: unknown): Promise<GenericResponse<BoardModel>> => {
+  return instance.post('/board/edit/' + boardId, payload)
 }
