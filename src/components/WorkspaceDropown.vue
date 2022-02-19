@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="dropdown-menu shadow pt-1"
-    style="width: 300px"
-  >
+  <div class="dropdown-menu shadow pt-1" style="width: 300px" :style="rootStyles">
     <div class="dropdown-menu-header d-flex align-items-center" :class="headerClasses">
       <div class="title text-center flex-grow-1" :class="titleClasses">
         {{ title }}
@@ -11,7 +8,7 @@
         <i class="bi bi-x fs-5" />
       </div>
     </div>
-    <hr class="dropdown-divider">
+    <hr class="dropdown-divider" />
     <slot class="dropdown-menu-content px-3 pb-3" />
   </div>
 </template>
@@ -25,6 +22,10 @@ export default defineComponent({
       required: true,
       type: String,
       default: 'Workspaces'
+    },
+    rootStyles: {
+      required: false,
+      type: Object
     },
     headerClasses: {
       required: false,
@@ -46,11 +47,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  .dropdown-menu {
-    font-size: 14px;
-    font-weight: normal;
-    .icon {
-      cursor: pointer;
-    }
+.dropdown-menu {
+  font-size: 14px;
+  font-weight: normal;
+  .icon {
+    cursor: pointer;
   }
+}
 </style>

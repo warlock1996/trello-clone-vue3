@@ -88,7 +88,6 @@ import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
 import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
-import { allUserBoardsService } from '@/services/boards'
 import { useStore } from '@/store'
 const store = useStore()
 export default defineComponent({
@@ -99,20 +98,9 @@ export default defineComponent({
     CreateNewBoard,
     ActionButton
   },
-  mounted () {
-    this.getAllUserBoards()
-  },
   computed: {
     workspaceBoards () {
       return store.workspace
-    }
-  },
-  methods: {
-    async getAllUserBoards () {
-      const res = await allUserBoardsService()
-      if (!res.error) {
-        store.workspace = res.data
-      }
     }
   }
 })

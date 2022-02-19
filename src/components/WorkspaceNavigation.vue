@@ -65,7 +65,13 @@
               Recent
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Recent boards'" />
+            <workspace-dropdown :title="'Recent boards'" :root-styles="{ height: '300px', overflowY: 'scroll' }">
+              <ul class="list-group-item p-0">
+                <li class="dropdown-item px-3 py-2" v-for="rb in recent" :key="rb._id">
+                  {{ rb.name }}
+                </li>
+              </ul>
+            </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
             <a
@@ -187,10 +193,27 @@ import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 import Avatar from '@/components/Avatar.vue'
 import { logOutService } from '@/services/auth'
 import Cookies from 'js-cookie'
+import { allUserBoardsService } from '@/services/boards'
+import { useStore } from '@/store'
+const store = useStore()
 
 export default defineComponent({
   components: { WorkspaceDropdown, WorkspaceTitle, Avatar },
+  mounted () {
+    this.getAllUserBoards()
+  },
+  computed: {
+    recent () {
+      return store.workspace.createdBoards
+    }
+  },
   methods: {
+    async getAllUserBoards () {
+      const res = await allUserBoardsService()
+      if (!res.error) {
+        store.workspace = res.data
+      }
+    },
     async handleLogOut () {
       const res = await logOutService()
       if (!res.error) {
