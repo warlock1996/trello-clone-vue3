@@ -11,8 +11,14 @@ export default {
 
     instance.defaults.headers.common.Authorization = `Bearer ${Cookies.get('token')}`
 
-    instance.interceptors.response.use((value) => value.data, errorHandler)
-    auth.interceptors.response.use((value) => value.data, errorHandler)
+    instance.interceptors.response.use((value) => {
+      console.log(value.data)
+      return value.data
+    }, errorHandler)
+    auth.interceptors.response.use((value) => {
+      console.log(value.data)
+      return value.data
+    }, errorHandler)
 
     instance.interceptors.request.use((req: AxiosRequestConfig): AxiosRequestConfig => {
       const controller = new AbortController()

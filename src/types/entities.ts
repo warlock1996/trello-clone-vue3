@@ -60,4 +60,5 @@ export interface BoardModel extends Model {
   members?: Array<MemberModel>
   labels?: Array<Label>
   userId?: string
+  starred?: boolean
 }

@@ -6,12 +6,19 @@ export interface MyStore {
     createdBoards: Array<BoardModel>
     invitedBoards: Array<BoardModel>
   }
+  currentBoard: BoardModel
 }
 
 const store: MyStore = reactive({
   workspace: {
     createdBoards: [],
     invitedBoards: []
+  },
+  currentBoard: {
+    _id: '',
+    name: '',
+    createdAt: '',
+    updatedAt: ''
   }
 })
 

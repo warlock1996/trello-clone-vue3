@@ -21,6 +21,8 @@ import KanbanSider from '@/components/KanbanSider.vue'
 import KanbanSiderMenu from '@/components/KanbanSiderMenu.vue'
 import KanbanTaskListContainer from '@/components/KanbanTaskListContainer.vue'
 import { getBoardByIdService } from '@/services/boards'
+import { useStore } from '@/store'
+const store = useStore()
 export default defineComponent({
   components: {
     KanbanNavigation,
@@ -34,9 +36,9 @@ export default defineComponent({
       siderState: true
     }
   },
-  provide () {
-    return {
-      board: computed(() => this.board)
+  computed: {
+    currentBoard () {
+      return store.currentBoard
     }
   },
   mounted () {
@@ -45,7 +47,6 @@ export default defineComponent({
   watch: {
     '$route.params.boardId': {
       handler: function (id) {
-        console.log('[in watcher]')
         this.getBoardById(id)
       },
       immediate: true,
@@ -55,9 +56,8 @@ export default defineComponent({
   methods: {
     async getBoardById (id: string) {
       const res = await getBoardByIdService(id)
-      console.log(res)
       if (!res.error) {
-        this.board = res.data
+        store.currentBoard = res.data
       }
     },
     toggleSider () {

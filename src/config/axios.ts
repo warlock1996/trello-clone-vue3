@@ -21,6 +21,8 @@ export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> 
         return Promise.reject(new Error('SERVER ERROR !'))
       case 404:
         return Promise.reject(new Error('NOT FOUND ERROR !'))
+      case 422:
+        return Promise.reject(new Error('INVALID PAYLOAD !'))
     }
   } else if (error.request) {
     return Promise.reject(new Error('NO RESPONSE RECEIVED'))
