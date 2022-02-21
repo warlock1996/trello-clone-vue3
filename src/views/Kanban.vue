@@ -15,14 +15,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import KanbanNavigation from '@/components/KanbanNavigation.vue'
 import KanbanSider from '@/components/KanbanSider.vue'
 import KanbanSiderMenu from '@/components/KanbanSiderMenu.vue'
 import KanbanTaskListContainer from '@/components/KanbanTaskListContainer.vue'
-import { getBoardByIdService } from '@/services/boards'
-import { useStore } from '@/store'
-const store = useStore()
+import { getBoardByIdService } from '@/services/board'
+import { mapState } from 'vuex'
 export default defineComponent({
   components: {
     KanbanNavigation,
@@ -37,12 +36,12 @@ export default defineComponent({
     }
   },
   computed: {
-    currentBoard () {
-      return store.currentBoard
-    }
+    ...mapState({
+      currentBoard: 'currentBoard'
+    })
   },
   mounted () {
-    this.siderState = localStorage.getItem('kanbanSiderMenuState')
+    this.siderState = Boolean(localStorage.getItem('kanbanSiderMenuState'))
   },
   watch: {
     '$route.params.boardId': {
@@ -57,7 +56,7 @@ export default defineComponent({
     async getBoardById (id: string) {
       const res = await getBoardByIdService(id)
       if (!res.error) {
-        store.currentBoard = res.data
+        this.$store.commit('SET_CURRENT_BOARD', res.data)
       }
     },
     toggleSider () {

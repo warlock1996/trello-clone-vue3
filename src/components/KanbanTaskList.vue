@@ -1,49 +1,115 @@
 <template>
-  <div class="task-list card rounded-2 shadow-1 border-0">
+  <div class="task-list card rounded-2 shadow-1 border-0 dropdown">
     <div class="task-list__body card-body rounded-2 p-2">
-      <div
-        class="task-list__body__title card-title d-flex justify-content-between align-items-center"
-      >
+      <div class="task-list__body__title card-title d-flex justify-content-between align-items-center">
         <div class="task-list__title">
           <input
             type="text"
             class="form-control form-control-sm"
-            value="some list"
-          />
+            :value="list.name"
+            @keyup.enter="handleListNameChange" />
         </div>
         <div class="task-list__menu">
-          <i class="bi bi-three-dots" role="button" />
+          <i
+            class="bi bi-three-dots dropdown-toggle btn-icon"
+            role="button"
+            data-bs-toggle="dropdown"
+            data-bs-auto-hide="inside" />
+          <workspace-dropdown title="List actions">
+            <workspace-list :items="listOptionItems" @dataItemClick="handleDeleteList">
+              <template #delete="item">
+                <div class="d-flex gap-2 align-items-center justify-content-start">
+                  <i class="bi bi-trash"></i>
+                  <span>{{ item.value }}</span>
+                </div>
+              </template>
+            </workspace-list>
+          </workspace-dropdown>
         </div>
       </div>
-      <div class="task-list__tasks mb-2">
-        <kanban-task-card
-          :task="{
-            title: 'some task',
-            description: 2,
-            comments: 2,
-            subscribe: 2,
-            attachments: 2,
-            members: 2,
-          }"
-        />
+      <div class="task-list__tasks mb-2" v-if="listTasks.length">
+        <kanban-task-card class="mb-1" v-for="(task, index) in listTasks" :key="index" :task="task" />
       </div>
       <div class="task-list__add">
-        <list-input />
+        <list-input :listId="list._id" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineAsyncComponent, defineComponent } from 'vue'
 import ListInput from '@/components/ListInput.vue'
-import KanbanTaskCard from '@/components/KanbanTaskCard.vue'
+import { updateListService, deleteListService } from '@/services/list'
+import { indexTasksByListService } from '@/services/task'
+import WorkspaceDropdown from './WorkspaceDropdown.vue'
+import WorkspaceList from './WorkspaceList.vue'
+import { TaskModel } from '@/types/entities'
 
 export default defineComponent({
+  props: {
+    list: {
+      type: Object,
+      required: true,
+      default: () => ({})
+    }
+  },
   components: {
     ListInput,
-    KanbanTaskCard
-
+    WorkspaceDropdown,
+    WorkspaceList,
+    KanbanTaskCard: defineAsyncComponent(() => import('@/components/KanbanTaskCard.vue'))
+  },
+  data () {
+    return {
+      listTasks: [],
+      listOptionItems: [
+        {
+          value: 'delete list',
+          slot: 'delete'
+        }
+      ]
+    }
+  },
+  provide () {
+    return {
+      list: this.list,
+      addTaskToList: this.addTaskToList,
+      updateListTask: this.updateListTask
+    }
+  },
+  mounted () {
+    this.indexTasksByList()
+  },
+  methods: {
+    addTaskToList (task: TaskModel) {
+      this.listTasks.push(task)
+    },
+    updateListTask (task: TaskModel) {
+      const taskIndex = this.listTasks.findIndex((lt: TaskModel) => lt._id === task._id)
+      if (taskIndex >= 0) this.listTasks[taskIndex] = task
+    },
+    async indexTasksByList () {
+      const res = await indexTasksByListService(this.$route.params.boardId, this.list._id)
+      if (!res.error) {
+        this.listTasks = res.data
+      }
+    },
+    async handleListNameChange (event: Event) {
+      const target = event.target as HTMLInputElement
+      const res = await updateListService(this.$route.params.boardId, this.list._id, {
+        name: target.value
+      })
+      if (!res.error) {
+        this.$store.commit('UPDATE_CURRENTBOARD_LIST', { listId: this.list._id, data: res.data })
+      }
+    },
+    async handleDeleteList () {
+      const res = await deleteListService(this.$route.params.boardId, this.list._id)
+      if (!res.error) {
+        this.$store.commit('DELETE_CURRENTBOARD_LIST', this.list._id)
+      }
+    }
   }
 })
 </script>

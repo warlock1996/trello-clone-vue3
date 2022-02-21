@@ -67,7 +67,7 @@
             </a>
             <workspace-dropdown :title="'Recent boards'" :root-styles="{ height: '300px', overflowY: 'scroll' }">
               <ul class="list-group-item p-0">
-                <li class="dropdown-item px-3 py-2" v-for="rb in recent" :key="rb._id">
+                <li class="dropdown-item px-3 py-2" v-for="rb in workspace.createdBoards" :key="rb._id">
                   {{ rb.name }}
                 </li>
               </ul>
@@ -188,14 +188,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-import WorkspaceDropdown from '@/components/WorkspaceDropown.vue'
+import WorkspaceDropdown from '@/components/WorkspaceDropdown.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 import Avatar from '@/components/Avatar.vue'
 import { logOutService } from '@/services/auth'
 import Cookies from 'js-cookie'
-import { allUserBoardsService } from '@/services/boards'
-import { useStore } from '@/store'
-const store = useStore()
+import { allUserBoardsService } from '@/services/board'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   components: { WorkspaceDropdown, WorkspaceTitle, Avatar },
@@ -203,15 +202,15 @@ export default defineComponent({
     this.getAllUserBoards()
   },
   computed: {
-    recent () {
-      return store.workspace.createdBoards
-    }
+    ...mapState({
+      workspace: 'workspace'
+    })
   },
   methods: {
     async getAllUserBoards () {
       const res = await allUserBoardsService()
       if (!res.error) {
-        store.workspace = res.data
+        this.$store.commit('SET_ALL_BOARDS', res.data)
       }
     },
     async handleLogOut () {
@@ -233,16 +232,6 @@ export default defineComponent({
   background: #026aa7;
   font-size: 14px;
 
-  .dropdown-toggle {
-    &::after {
-      border: 0;
-      margin: 0;
-    }
-    .caret-down {
-      width: 15px;
-      height: 15px;
-    }
-  }
   &__container {
     &__img {
       width: 75px;

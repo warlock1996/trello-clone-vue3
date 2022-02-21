@@ -1,14 +1,11 @@
 <template>
-  <div
-    class="task-list d-flex align-items-start justify-content-start gap-2 flex-wrap px-3 py-2"
-  >
-    <kanban-task-list v-for="n in 4" :key="n" />
+  <div class="task-list d-flex align-items-start justify-content-start gap-2 flex-wrap px-3 py-2">
+    <kanban-task-list v-for="(list, index) in currentBoard.lists" :key="index" :list="list" />
     <div class="task-list__form p-1 rounded-1" :class="{ bg: showAddForm }">
       <action-button
         v-if="!showAddForm"
         @click="showAddForm = true"
-        class="task-list__form__btn p-2 w-100 justify-content-start"
-      >
+        class="task-list__form__btn p-2 w-100 justify-content-start">
         <template #prefix>
           <i class="bi bi-plus"></i>
         </template>
@@ -20,16 +17,18 @@
         :button-text="'Add list'"
         :show-sub-menu="false"
         @close="showAddForm = false"
-      />
+        @submit="handleCreateList" />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import KanbanTaskList from '@/components/KanbanTaskList.vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'
 import ActionButton from './ActionButton.vue'
+import { createListService } from '@/services/list'
+import { mapState } from 'vuex'
 export default defineComponent({
   components: {
     KanbanTaskList,
@@ -40,6 +39,20 @@ export default defineComponent({
     return {
       showAddForm: false
     }
+  },
+  methods: {
+    async handleCreateList (name: string) {
+      this.showAddForm = false
+      const res = await createListService(this.$route.params.boardId, { name: name })
+      if (!res.error) {
+        this.$store.commit('ADD_CURRENTBOARD_LIST', res.data)
+      }
+    }
+  },
+  computed: {
+    ...mapState({
+      currentBoard: 'currentBoard'
+    })
   }
 })
 </script>

@@ -5,7 +5,6 @@
       v-model="value"
       type="text"
       ref="textarea"
-      @keydown.enter="$emit('submit')"
       :style="textAreaStyles"
       :placeholder="textAreaPlaceholder"
       class="list-input-form__textarea shadow-0 w-100 rounded-1 p-2"
@@ -15,13 +14,13 @@
       v-model="value"
       ref="input"
       type="text"
-      @keydown.enter="$emit('submit')"
+      @keydown.enter="$emit('submit', value)"
       class="form-control"
       placeholder="Enter list title"
     />
     <div class="list-input-form__actions d-flex gap-2 align-items-center">
       <button
-        @click="$emit('submit')"
+        @click="$emit('submit', value)"
         class="list-input-form__actions__btn btn-primary-1"
         :class="buttonClasses"
       >

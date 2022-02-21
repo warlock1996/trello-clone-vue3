@@ -5,27 +5,26 @@
       <p class="mb-0">Create new board</p>
       <p class="mb-0">remaining</p>
     </div>
-    <workspace-drop-down title="Create board">
+    <workspace-dropdown title="Create board">
       <form>
         <label for="board">Board title</label>
         <input id="board" type="text" v-model="board.name" class="form-control mb-3" />
         <action-button @click.prevent="handleCreateBoard">Create</action-button>
       </form>
-    </workspace-drop-down>
+    </workspace-dropdown>
     <i class="bi bi-question-circle position-absolute"></i>
   </action-button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import WorkspaceDropDown from '@/components/WorkspaceDropown.vue'
+import WorkspaceDropdown from '@/components/WorkspaceDropdown.vue'
 import ActionButton from '@/components/ActionButton.vue'
-import { createBoardService } from '@/services/boards'
-import { useStore } from '@/store'
+import { createBoardService } from '@/services/board'
 
 export default defineComponent({
   components: {
-    WorkspaceDropDown,
+    WorkspaceDropdown,
     ActionButton
   },
   data () {
@@ -38,9 +37,8 @@ export default defineComponent({
   methods: {
     async handleCreateBoard () {
       const res = await createBoardService(this.board)
-      const store = useStore()
       if (!res.error) {
-        store.workspace.createdBoards.push(res.data)
+        this.$store.commit('ADD_CREATED_BOARD', res.data)
       }
     }
   }

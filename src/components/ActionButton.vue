@@ -1,10 +1,8 @@
 <template>
-  <button class="action-button px-2 py-1">
-    <div class="d-flex gap-2 align-items-center justify-content-start">
-      <slot name="prefix" />
-      <slot />
-      <slot name="suffix" />
-    </div>
+  <button class="action-button d-flex gap-2 align-items-center justify-content-start px-2 py-1">
+    <slot name="prefix" />
+    <slot />
+    <slot name="suffix" />
   </button>
 </template>
 

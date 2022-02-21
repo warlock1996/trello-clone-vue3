@@ -15,7 +15,8 @@
     "jwt-decode": "^3.1.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vue3-date-time-picker": "^2.5.0"
+    "vue3-date-time-picker": "^2.5.0",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",

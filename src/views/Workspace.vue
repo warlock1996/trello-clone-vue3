@@ -57,7 +57,7 @@
             </div>
             <div class="workspace__container__owner__boardsgrid my-2">
               <board
-                v-for="b in workspaceBoards.createdBoards"
+                v-for="b in workspace.createdBoards"
                 :key="b._id"
                 :name="b.name"
                 @click="$router.push({ name: 'kanban', params: { boardId: b._id } })" />
@@ -72,7 +72,7 @@
               <i class="bi bi-info-circle" />
             </div>
             <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
-              <board v-for="b in workspaceBoards.invitedBoards" :key="b._id" :name="b.name" />
+              <board v-for="b in workspace.invitedBoards" :key="b._id" :name="b.name" />
             </div>
           </section>
         </div>
@@ -88,8 +88,7 @@ import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
 import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
-import { useStore } from '@/store'
-const store = useStore()
+import { mapState } from 'vuex'
 export default defineComponent({
   components: {
     Board,
@@ -99,9 +98,9 @@ export default defineComponent({
     ActionButton
   },
   computed: {
-    workspaceBoards () {
-      return store.workspace
-    }
+    ...mapState({
+      workspace: 'workspace'
+    })
   }
 })
 </script>

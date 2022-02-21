@@ -4,11 +4,7 @@ module.exports = {
     node: true,
     browser: true
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard',
-    '@vue/typescript/recommended'
-  ],
+  extends: ['plugin:vue/vue3-essential', '@vue/standard', '@vue/typescript/recommended'],
   parserOptions: {
     ecmaVersion: 2020
   },

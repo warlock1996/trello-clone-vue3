@@ -28,10 +28,7 @@
           <i class="bi bi-lock" />
           Private
         </action-button>
-        <action-button class="bg-white">
-          <i class="bi bi-person-plus" />
-          Invite
-        </action-button>
+        <invite-drop-down></invite-drop-down>
       </div>
     </div>
     <div class="col-md-6">
@@ -56,37 +53,33 @@
 <script>
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
-import { useStore } from '@/store'
-import { updateBoardService } from '@/services/boards'
+import { updateBoardService } from '@/services/board'
+import InviteDropDown from '@/components/InviteDropDown.vue'
+import { mapState } from 'vuex'
 
-const store = useStore()
 export default defineComponent({
   components: {
-    ActionButton
+    ActionButton,
+    InviteDropDown
   },
   methods: {
     async handleBoardNameChange () {
       const res = await updateBoardService(this.currentBoard._id, { name: this.currentBoard.name })
       if (!res.error) {
-        store.currentBoard = res.data
+        this.$store.commit('SET_CURRENT_BOARD', res.data)
       }
     },
     async handleBoardStarredChange () {
       const res = await updateBoardService(this.currentBoard._id, { starred: !this.currentBoard.starred })
       if (!res.error) {
-        store.currentBoard = res.data
+        this.$store.commit('SET_CURRENT_BOARD', res.data)
       }
     }
   },
   computed: {
-    currentBoard: {
-      set (v) {
-        store.currentBoard = v
-      },
-      get () {
-        return store.currentBoard
-      }
-    }
+    ...mapState({
+      currentBoard: 'currentBoard'
+    })
   }
 })
 </script>

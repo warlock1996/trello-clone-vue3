@@ -3,7 +3,11 @@
     <div class="card-body p-0">
       <div class="d-flex p-2 justify-content-between">
         <workspace-title class="p-0" :title="'Trello workspace'" />
-        <img class="kanban-menu-close rounded-1" @click="$emit('toggleSider')" src="@/assets/svgs/chevron-left.svg" alt="chevron-left" />
+        <img
+          class="kanban-menu-close rounded-1"
+          @click="$emit('toggleSider')"
+          src="@/assets/svgs/chevron-left.svg"
+          alt="chevron-left" />
       </div>
       <hr class="my-2" />
       <kanban-list :items="menuItems" />
@@ -15,7 +19,7 @@
         </div>
         <div class="your-boards__list">
           <kanban-boards-list
-            :items="createdBoards"
+            :items="workspace.createdBoards"
             :show-bookmark="true"
             :show-sub-menu="true"
             :board-bg-color="'rgb(131, 140, 145)'" />
@@ -29,8 +33,7 @@ import { defineComponent } from 'vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 import KanbanList from '@/components/KanbanList.vue'
 import KanbanBoardsList from '@/components/KanbanBoardsList.vue'
-import { useStore } from '@/store'
-const store = useStore()
+import { mapState } from 'vuex'
 
 export default defineComponent({
   components: {
@@ -60,9 +63,9 @@ export default defineComponent({
     }
   },
   computed: {
-    createdBoards () {
-      return store.workspace.createdBoards
-    }
+    ...mapState({
+      workspace: 'workspace'
+    })
   }
 })
 </script>
