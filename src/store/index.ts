@@ -1,12 +1,12 @@
-import { BoardModel } from '@/types/entities'
+import { BoardType } from '@/types/entities'
 import { createStore } from 'vuex'
 
 interface MyStore {
   workspace: {
-    createdBoards: Array<BoardModel>
-    invitedBoards: Array<BoardModel>
+    createdBoards: Array<BoardType>
+    invitedBoards: Array<BoardType>
   }
-  currentBoard: BoardModel
+  currentBoard: BoardType
 }
 
 const store = createStore({

@@ -1,4 +1,4 @@
-import { BoardModel } from './entities'
+import { BoardType } from './entities'
 
 export type GenericResponse<T> = {
   message: string
@@ -8,6 +8,6 @@ export type GenericResponse<T> = {
 }
 
 export type AllBoardsResponse = {
-  createdBoards: Array<BoardModel>
-  invitedBoards: Array<BoardModel>
+  createdBoards: Array<BoardType>
+  invitedBoards: Array<BoardType>
 }

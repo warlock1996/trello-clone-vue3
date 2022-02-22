@@ -1,19 +1,16 @@
 import { instance } from '@/config/axios'
-import { TaskModel } from '@/types/entities'
+import { TaskType } from '@/types/entities'
 import { GenericResponse } from '@/types/responses'
 
 export const indexTaskService = (
   boardId: string,
   listId: string,
   taskId: string
-): Promise<GenericResponse<TaskModel>> => {
+): Promise<GenericResponse<TaskType>> => {
   return instance.get(`/task/index/${boardId}/${listId}/${taskId}`)
 }
 
-export const indexTasksByListService = (
-  boardId: string,
-  listId: string
-): Promise<GenericResponse<Array<TaskModel>>> => {
+export const indexTasksByListService = (boardId: string, listId: string): Promise<GenericResponse<Array<TaskType>>> => {
   return instance.get(`/task/indexTasksByList/${boardId}/${listId}`)
 }
 
@@ -31,7 +28,7 @@ export const createTaskService = (
   listId: string,
   payload: unknown,
   taskId?: string
-): Promise<GenericResponse<TaskModel>> => {
+): Promise<GenericResponse<TaskType>> => {
   return instance.post(`/task/create/${boardId}/${listId}/${taskId || ''}`, payload)
 }
 
@@ -41,7 +38,7 @@ export const editTaskService = (
   taskId: string,
   payload: unknown,
   subtaskId?: string
-): Promise<GenericResponse<TaskModel>> => {
+): Promise<GenericResponse<TaskType>> => {
   return instance.post(`/task/edit/${boardId}/${listId}/${taskId}/${subtaskId || ''}`, payload)
 }
 
@@ -50,6 +47,6 @@ export const deleteTaskService = (
   listId: string,
   taskId: string,
   subtaskId?: string
-): Promise<GenericResponse<TaskModel>> => {
+): Promise<GenericResponse<TaskType>> => {
   return instance.delete(`/task/delete/${boardId}/${listId}/${taskId}/${subtaskId || ''}`)
 }

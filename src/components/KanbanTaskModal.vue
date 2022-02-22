@@ -32,11 +32,11 @@
           <div class="row">
             <div class="col-md-9">
               <section
-                class="taskmodal__dialog__content__body__members__labels d-flex flex-wrap gap-2 justify-content-start align-items-start my-4 ps-4 px-2">
+                class="taskmodal__dialog__content__body__members__labels d-flex flex-wrap gap-2 justify-content-start align-items-start my-4 ps-4">
                 <div class="taskmodal__dialog__content__body__title__members">
                   <p class="mb-1">Members</p>
                   <div class="d-flex flex-wrap gap-1 align-items-center">
-                    <avatar v-for="mem in taskMemberAvatars" :key="mem._id" :name="mem.name"></avatar>
+                    <avatar v-for="mem in taskMembers" :key="mem._id" :name="mem.name"></avatar>
                     <action-button
                       class="taskmodal__dialog__content__body__title__members__add rounded-circle justify-content-center dropdown dropdown-toggle"
                       data-bs-toggle="dropdown">
@@ -56,14 +56,22 @@
                 <div class="taskmodal__dialog__content__body__title__labels">
                   <p class="mb-1">Labels</p>
                   <div class="d-flex flex-wrap gap-1 align-items-center">
-                    <kanban-task-label v-for="lab in task.labels" :key="lab" />
+                    <kanban-task-label
+                      v-for="label in taskLabels"
+                      :key="label._id"
+                      :text="label.text"
+                      :color="label.color" />
                     <action-button
                       class="taskmodal__dialog__content__body__title__labels__add justify-content-center dropdown dropdown-toggle"
                       data-bs-toggle="dropdown">
                       <i class="bi bi-plus"></i>
                     </action-button>
                     <workspace-dropdown title="Labels">
-                      <label-drop-down-content></label-drop-down-content>
+                      <label-drop-down-content
+                        :board-labels="currentBoard.labels"
+                        :task-labels="task.labels"
+                        @addLabel="handleAddLabelToTask"
+                        @removeLabel="handleRemoveLabelFromTask"></label-drop-down-content>
                     </workspace-dropdown>
                   </div>
                   <!-- labels and add icon -->
@@ -128,40 +136,48 @@
                 <div class="taskmodal__dialog__content__body__actions__title">
                   Add to card
                   <div class="d-flex flex-column gap-2 justify-content-start align-items-start">
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-person"></i>
                         Members
                       </template>
                     </action-button>
                     <workspace-dropdown :title="'Members'">
-                      <members-drop-down-content :board-members="currentBoard.members" :task-members="task.members" />
+                      <members-drop-down-content
+                        :board-members="currentBoard.members"
+                        :task-members="task.members"
+                        @addMember="handleAddMemberToTask"
+                        @removeMember="handleRemoveMemberFromTask" />
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-tag"></i>
                         Labels
                       </template>
                     </action-button>
                     <workspace-dropdown :title="'Labels'">
-                      <label-drop-down-content />
+                      <label-drop-down-content
+                        :board-labels="currentBoard.labels"
+                        :task-labels="task.labels"
+                        @addLabel="handleAddLabelToTask"
+                        @removeLabel="handleRemoveLabelFromTask" />
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2">
+                    <action-button class="w-100">
                       <template #prefix>
                         <i class="bi bi-check2-square"></i>
                       </template>
                       Checklist
                     </action-button>
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-clock"></i>
                       </template>
                       Dates
                     </action-button>
                     <workspace-dropdown :title="'Dates'">
-                      <dates-drop-down-content />
+                      <dates-drop-down-content :date="task.date" />
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-paperclip"></i>
                       </template>
@@ -175,7 +191,7 @@
                 <div class="taskmodal__dialog__content__body__actions__title">
                   Actions
                   <div class="d-flex flex-column gap-2 justify-content-start align-items-start">
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-arrow-right"></i>
                       </template>
@@ -184,7 +200,7 @@
                     <workspace-dropdown :title="'Move card'">
                       <task-card-action-form title="Select destination" submit-text="Move"></task-card-action-form>
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
                       <template #prefix>
                         <i class="bi bi-clipboard"></i>
                       </template>
@@ -193,25 +209,25 @@
                     <workspace-dropdown :title="'Copy card'">
                       <copy-card-drop-down-content></copy-card-drop-down-content>
                     </workspace-dropdown>
-                    <action-button class="w-100 py-2">
+                    <action-button class="w-100">
                       <template #prefix>
                         <i class="bi bi-card-image"></i>
                       </template>
                       Make template
                     </action-button>
-                    <action-button class="w-100 py-2">
+                    <action-button class="w-100">
                       <template #prefix>
                         <i class="bi bi-eye"></i>
                       </template>
                       Watch
                     </action-button>
-                    <action-button class="w-100 py-2">
+                    <action-button class="w-100">
                       <template #prefix>
                         <i class="bi bi-archive"></i>
                       </template>
                       Archive
                     </action-button>
-                    <action-button class="w-100 py-2">
+                    <action-button class="w-100">
                       <template #prefix>
                         <i class="bi bi-share"></i>
                       </template>
@@ -246,15 +262,9 @@ import CopyCardDropDownContent from '@/components/CopyCardDropDownContent.vue'
 import DatesDropDownContent from '@/components/DatesDropDownContent.vue'
 import { mapState } from 'vuex'
 import { editTaskService } from '@/services/task'
-import { MemberModel } from '@/types/entities'
+import { LabelType, MemberModel } from '@/types/entities'
 
 export default defineComponent({
-  // props: {
-  //   task: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
   components: {
     ActionButton,
     KanbanAddForm,
@@ -271,7 +281,7 @@ export default defineComponent({
     CopyCardDropDownContent,
     DatesDropDownContent
   },
-  inject: ['updateListTask', 'list', 'task'],
+  inject: ['updateListTask', 'list', 'task', 'taskMembers', 'taskLabels'],
   data () {
     return {
       showDescriptionBox: false
@@ -312,15 +322,28 @@ export default defineComponent({
       if (!res.error) {
         this.updateListTask(res.data)
       }
+    },
+    async handleAddLabelToTask (label: LabelType) {
+      const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, {
+        labels: [...this.task.labels, label._id]
+      })
+      if (!res.error) {
+        this.updateListTask(res.data)
+      }
+    },
+    async handleRemoveLabelFromTask (label: LabelType) {
+      const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, {
+        labels: this.task.labels.filter((lab: string) => lab !== label._id)
+      })
+      if (!res.error) {
+        this.updateListTask(res.data)
+      }
     }
   },
   computed: {
     ...mapState({
       currentBoard: 'currentBoard'
-    }),
-    taskMemberAvatars () {
-      return this.currentBoard.members.filter((mem: MemberModel) => this.task.members.includes(mem._id))
-    }
+    })
   }
 })
 </script>
@@ -372,6 +395,12 @@ export default defineComponent({
             color: #5e6c84;
             font-size: 12px;
             font-weight: 600;
+          }
+          .action-button {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 12px;
+            padding-left: 12px;
           }
         }
         &__icon {

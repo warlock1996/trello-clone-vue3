@@ -23,17 +23,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 import Avatar from '@/components/Avatar.vue'
-import { MemberModel, TaskModel } from '@/types/entities'
+import { MemberModel } from '@/types/entities'
 
 export default defineComponent({
   props: {
     boardMembers: {
-      type: Array as () => Array<MemberModel>
+      type: Array as () => Array<MemberModel>,
+      required: true
     },
     taskMembers: {
-      type: Array as PropType<MemberModel[]>,
+      type: Array,
       required: true
     }
   },

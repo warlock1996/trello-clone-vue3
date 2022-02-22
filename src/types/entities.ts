@@ -4,29 +4,28 @@ export interface Model {
   updatedAt: string
 }
 
-export interface TaskDate {
-  dueDate: Date
+export interface TaskDateType {
   startDate: Date
-  endDate: Date
+  dueDate: Date
 }
 
-export interface Comment {
+export interface CommentType {
   _id: string
   comment: string
 }
 
-export interface Attachment {
+export interface AttachmentType {
   _id: string
   url: string
 }
 
-export interface Label {
+export interface LabelType {
   _id: string
   text: string
   color: string
 }
 
-export interface Permission {
+export interface PermissionType {
   board: Record<string, unknown>
   list: Record<string, unknown>
   task: Record<string, unknown>
@@ -35,30 +34,30 @@ export interface Permission {
 export interface MemberModel extends Model {
   name: string
   email: string
-  permissions: Array<Permission>
+  permissions: Array<PermissionType>
 }
 
-export interface TaskModel extends Model {
+export interface TaskType extends Model {
   task: string
   description?: string
-  date?: TaskDate
+  date?: TaskDateType
   members?: Array<string>
   labels?: Array<string>
   reporter?: Array<string>
-  comments?: Array<Comment>
-  attachment?: Array<Attachment>
+  comments?: Array<CommentType>
+  attachment?: Array<AttachmentType>
 }
 
-export interface ListModel extends Model {
+export interface ListType extends Model {
   name: string
-  tasks: Array<TaskModel>
+  tasks: Array<TaskType>
 }
 
-export interface BoardModel extends Model {
+export interface BoardType extends Model {
   name: string
-  lists?: Array<ListModel>
+  lists?: Array<ListType>
   members?: Array<MemberModel>
-  labels?: Array<Label>
+  labels?: Array<LabelType>
   userId?: string
   starred?: boolean
 }

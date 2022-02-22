@@ -1,6 +1,6 @@
 <template>
-  <div class="avatar d-flex justify-content-center align-items-center p-1 rounded-circle">
-      {{ abbr }}
+  <div class="avatar d-flex justify-content-center align-items-center rounded-circle" :class="dynamicClasses">
+    {{ abbr }}
   </div>
 </template>
 
@@ -12,27 +12,35 @@ export default defineComponent({
     name: {
       type: String,
       required: true
+    },
+    size: {
+      type: String,
+      default: 'medium',
+      validator: (v) => ['medium', 'small'].includes(v)
     }
   },
   computed: {
     abbr () {
       const str = this.name.split(' ')
       return str[0].charAt(0) + str[1].charAt(0)
+    },
+    dynamicClasses () {
+      return { 'p-1': this.size === 'medium', 'p-0': this.size === 'small' }
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-    .avatar {
-        background: #dfe1e6;
-        cursor: pointer;
-        color: #172b4d;
-        font-size: 12px;
-        width: 32px;
-        height: 32px;
-        &:hover {
-            background: #c1c7d0;
-        }
-    }
+.avatar {
+  background: #dfe1e6;
+  cursor: pointer;
+  color: #172b4d;
+  font-size: 12px;
+  width: 32px;
+  height: 32px;
+  &:hover {
+    background: #c1c7d0;
+  }
+}
 </style>

@@ -1,15 +1,16 @@
 <template>
   <div class="date-picker-wrapper d-flex flex-column gap-2">
     <date-picker
-      v-model="date"
+      :modelValue="defaultDate"
+      @update:modelValue="handleDefaultDateChange"
       :inline="true"
       :month-change-on-scroll="false"
       :is24="false"
       :month-name-format="'long'"
-      :auto-apply="true"
       format="MM/d/Y"
-      :week-start="0"
-    >
+      :auto-apply="true"
+      :range="hasRange"
+      :week-start="0">
       <template #calendar-header="{ index }">
         <div class="text-uppercase">
           {{ getDay(index) }}
@@ -18,48 +19,30 @@
     </date-picker>
     <div class="date-picker-wrapper__form">
       <p class="label mb-1" for="startdate">Start date</p>
-      <div
-        class="date-picker-wrapper__form__startdate d-flex gap-2 justify-content-start align-items-center mb-2"
-      >
-        <input
-          v-model="startDateCheckBox"
-          class="form-check-input"
-          type="checkbox"
-          id="startdate"
-        />
+      <div class="date-picker-wrapper__form__startdate d-flex gap-2 justify-content-start align-items-center mb-2">
+        <input v-model="hasRange" class="form-check-input" type="checkbox" id="startdate" />
         <input
           type="text"
+          :value="formatted.startDate"
           class="form-control form-control-sm"
-          :class="{ isFocused: startDateCheckBox }"
-        />
+          :class="{ isFocused: hasRange }" />
       </div>
       <p class="label mb-1" for="duedate">Due date</p>
-      <div
-        class="date-picker-wrapper__form__duedate d-flex gap-2 justify-content-start align-items-center"
-      >
+      <div class="date-picker-wrapper__form__duedate d-flex gap-2 justify-content-start align-items-center">
+        <input v-model="dueDateCheckBox" class="form-check-input" type="checkbox" id="duedate" />
         <input
-          v-model="dueDateCheckBox"
-          class="form-check-input"
-          type="checkbox"
-          id="duedate"
-        />
-        <input
-          v-model="dueDate"
+          :value="formatted.dueDate"
           type="text"
           ref="dueDateStart"
           class="form-control form-control-sm"
-          :class="{ isFocused: dueDateCheckBox }"
-        />
+          :class="{ isFocused: dueDateCheckBox }" />
         <input
-          v-model="dueTime"
+          :value="formatted.dueTime"
           type="text"
           class="form-control form-control-sm"
-          :class="{ isFocused: dueDateCheckBox }"
-        />
+          :class="{ isFocused: dueDateCheckBox }" />
       </div>
-      <button
-        class="date-picker-wrapper__btn btn-primary-1 w-100 mt-3 rounded-1"
-      >
+      <button class="date-picker-wrapper__btn btn-primary-1 w-100 mt-3 rounded-1" @click="handleDateChange">
         Save
       </button>
     </div>
@@ -67,54 +50,89 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue'
+import { editTaskService } from '@/services/task'
+import { TaskDateType } from '@/types/entities'
+import { defineComponent, PropType } from 'vue'
 import DatePicker from 'vue3-date-time-picker'
 import 'vue3-date-time-picker/dist/main.css'
 
-interface days {
-  i: number;
-  d: string;
+interface day {
+  i: number
+  d: string
 }
 
 export default defineComponent({
+  props: {
+    date: {
+      type: Object as PropType<TaskDateType>,
+      required: true,
+      default: () => ({ startDate: '', dueDate: new Date() })
+    }
+  },
   components: {
     DatePicker
   },
-  setup () {
-    const days: Array<days> = [
-      { i: 0, d: 'Sun' },
-      { i: 1, d: 'Mon' },
-      { i: 2, d: 'Tue' },
-      { i: 3, d: 'Wed' },
-      { i: 4, d: 'Thu' },
-      { i: 5, d: 'Fri' },
-      { i: 6, d: 'Sat`' }
-    ]
-
-    const date = ref(new Date())
-    const dueTime = ref(new Date().toLocaleTimeString())
-    const dueDate = ref('')
-    const startDateCheckBox = ref(false)
-    const dueDateCheckBox = ref(true)
-
-    watchEffect(() => {
-      dueDate.value = `${
-        date.value.getMonth() + 1
-      }/${date.value.getDate()}/${date.value.getFullYear()}`
-      dueTime.value = date.value.toLocaleTimeString()
-    })
-
-    const getDay = (day: number) => {
-      return days.find((d) => d.i === day).d
-    }
-
+  inject: ['task', 'list', 'updateListTask'],
+  data () {
     return {
-      getDay,
-      date,
-      dueDate,
-      dueTime,
-      startDateCheckBox,
-      dueDateCheckBox
+      defaultDate: new Date(),
+      dueDateCheckBox: true,
+      hasRange: false,
+      days: [
+        { i: 0, d: 'Sun' },
+        { i: 1, d: 'Mon' },
+        { i: 2, d: 'Tue' },
+        { i: 3, d: 'Wed' },
+        { i: 4, d: 'Thu' },
+        { i: 5, d: 'Fri' },
+        { i: 6, d: 'Sat`' }
+      ]
+    }
+  },
+  computed: {
+    formatted () {
+      const isArray = Array.isArray(this.defaultDate)
+      return {
+        startDate: new Intl.DateTimeFormat('en-US').format(isArray ? this.defaultDate[0] : new Date()),
+        dueDate: new Intl.DateTimeFormat('en-US').format(isArray ? this.defaultDate[1] : this.defaultDate),
+        dueTime: new Intl.DateTimeFormat('en-US', { hour12: true, hour: 'numeric', minute: 'numeric' }).format(
+          isArray ? this.defaultDate[1] : this.defaultDate
+        )
+      }
+    }
+  },
+  watch: {
+    hasRange (v) {
+      if (v) this.defaultDate = [new Date(), new Date(this.date.dueDate)]
+      else this.defaultDate = new Date(this.date.dueDate)
+    }
+  },
+  mounted () {
+    if (this.date.startDate) {
+      this.hasRange = true
+      this.defaultDate = [new Date(this.date.startDate), new Date(this.date.dueDate)]
+    } else {
+      this.defaultDate = new Date(this.date.dueDate)
+    }
+  },
+  methods: {
+    handleDefaultDateChange (date: Array<Date> | Date) {
+      this.defaultDate = date
+    },
+    getDay (day: number) {
+      return this.days.find((d: day) => d.i === day).d
+    },
+    async handleDateChange () {
+      let payload = {}
+      if (this.hasRange) {
+        payload = { date: { startDate: this.defaultDate[0], dueDate: this.defaultDate[1] } }
+      } else {
+        payload = { date: { dueDate: this.defaultDate } }
+      }
+      const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, payload)
+      if (!res.error) {
+        this.updateListTask(res.data)
+      }
     }
   }
 })
@@ -148,6 +166,9 @@ export default defineComponent({
     border: none;
     font-size: 14px;
     justify-content: center;
+    .dp__action_row {
+      display: none;
+    }
     .dp__active_date {
       background: rgb(66, 82, 110);
       border: none;

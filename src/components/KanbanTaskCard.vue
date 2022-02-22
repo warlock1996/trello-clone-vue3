@@ -13,21 +13,26 @@
           <!-- <img src="@/assets/images/board.png" class="img-fluid" alt="board" /> -->
         </div>
         <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
-        <!-- <div
-          @click="squeezeLbls = !squeezeLbls"
-          class="task-card__body__labels d-flex flex-wrap gap-2 justify-content-start align-items-center mb-1 py-1 px-2">
-          <span class="bg-primary rounded-2" :class="{ 'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls }"></span>
-          <span class="bg-danger rounded-2" :class="{ 'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls }"></span>
-          <span class="bg-warning rounded-2" :class="{ 'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls }"></span>
-          <span class="bg-warning rounded-2" :class="{ 'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls }"></span>
-          <span class="bg-warning rounded-2" :class="{ 'px-2 py-1': squeezeLbls, 'px-4 py-2': !squeezeLbls }"></span>
-        </div> -->
+        <div v-if="taskLabels.length" class="d-flex gap-1 px-2 py-1 justify-content-start align-items-center">
+          <kanban-task-label
+            v-for="label in taskLabels"
+            :key="label._id"
+            :text="label.text"
+            :color="label.color"
+            :custom-styles="{
+              height: '10px',
+              minWidth: '10px'
+            }"></kanban-task-label>
+        </div>
         <div class="task-card__body__title card-title d-flex justify-content-between align-items-center mb-1 py-1 px-2">
           <span> {{ task.task }} </span>
         </div>
         <div class="task-card__body__actions d-flex flex-wrap gap-3 justify-content-start mb-1 py-1 px-2">
-          <div class="task-card__body__actions__subscribe d-flex gap-1 justify-content-start align-items-center">
-            <!-- <i class="bi bi-eye"></i> -->
+          <div
+            v-if="task.date.dueDate"
+            class="task-card__body__actions__date bg-warning p-1 rounded-1 text-white d-flex gap-1 justify-content-start align-items-center">
+            <i class="bi bi-clock"></i>
+            {{ new Date(task.date.dueDate).toDateString() }}
           </div>
           <div
             v-if="task.description.length"
@@ -50,7 +55,10 @@
           </div>
           <div
             v-if="task.members.length"
-            class="task-card__body__actions__members d-flex gap-1 justify-content-start align-items-center"></div>
+            class="task-card__body__actions__members d-flex gap-1 ms-auto justify-content-start align-items-center">
+            <avatar v-for="member in taskMembers" size="small" :key="member._id" :name="member.name" class="p-0">
+            </avatar>
+          </div>
         </div>
       </div>
     </div>
@@ -60,11 +68,17 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import { mapState } from 'vuex'
+import { LabelType, MemberModel } from '@/types/entities'
 import KanbanTaskModal from '@/components/KanbanTaskModal.vue'
+import KanbanTaskLabel from '@/components/KanbanTaskLabel.vue'
+import Avatar from '@/components/Avatar.vue'
 
 export default defineComponent({
   components: {
-    KanbanTaskModal
+    KanbanTaskLabel,
+    KanbanTaskModal,
+    Avatar
   },
   props: {
     task: {
@@ -74,7 +88,20 @@ export default defineComponent({
   },
   provide () {
     return {
-      task: computed(() => this.task)
+      task: computed(() => this.task),
+      taskMembers: computed(() => this.taskMembers),
+      taskLabels: computed(() => this.taskLabels)
+    }
+  },
+  computed: {
+    ...mapState({
+      currentBoard: 'currentBoard'
+    }),
+    taskMembers () {
+      return this.currentBoard.members.filter((mem: MemberModel) => this.task.members.includes(mem._id))
+    },
+    taskLabels () {
+      return this.currentBoard.labels.filter((label: LabelType) => this.task.labels.includes(label._id))
     }
   },
   data () {
@@ -123,6 +150,9 @@ export default defineComponent({
       i {
         font-size: 14px;
         font-weight: 700;
+      }
+      &__date {
+        font-size: 12px;
       }
     }
   }

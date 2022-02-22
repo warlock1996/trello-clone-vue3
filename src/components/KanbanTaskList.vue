@@ -44,7 +44,7 @@ import { updateListService, deleteListService } from '@/services/list'
 import { indexTasksByListService } from '@/services/task'
 import WorkspaceDropdown from './WorkspaceDropdown.vue'
 import WorkspaceList from './WorkspaceList.vue'
-import { TaskModel } from '@/types/entities'
+import { TaskType } from '@/types/entities'
 
 export default defineComponent({
   props: {
@@ -82,11 +82,11 @@ export default defineComponent({
     this.indexTasksByList()
   },
   methods: {
-    addTaskToList (task: TaskModel) {
+    addTaskToList (task: TaskType) {
       this.listTasks.push(task)
     },
-    updateListTask (task: TaskModel) {
-      const taskIndex = this.listTasks.findIndex((lt: TaskModel) => lt._id === task._id)
+    updateListTask (task: TaskType) {
+      const taskIndex = this.listTasks.findIndex((lt: TaskType) => lt._id === task._id)
       if (taskIndex >= 0) this.listTasks[taskIndex] = task
     },
     async indexTasksByList () {
