@@ -4,7 +4,7 @@
       <div class="title text-center flex-grow-1" :class="titleClasses">
         {{ title }}
       </div>
-      <div class="icon">
+      <div class="icon" @click="handleDropDownClose">
         <i class="bi bi-x fs-5" />
       </div>
     </div>
@@ -13,7 +13,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+
+// eslint-disable-next-line
+// @ts-ignore
+// import { Dropdown } from 'bootstrap/dist/js/bootstrap'
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -41,6 +46,18 @@ export default defineComponent({
       required: false,
       type: String,
       default: ''
+    }
+  },
+  data () {
+    return {
+      show: true,
+      dds: []
+    }
+  },
+  methods: {
+    handleDropDownClose () {
+      // const dd = new Dropdown(document.getElementById(this.$attrs.id))
+      // console.log(this.$attrs, dd)
     }
   }
 })

@@ -21,7 +21,6 @@ import KanbanSider from '@/components/KanbanSider.vue'
 import KanbanSiderMenu from '@/components/KanbanSiderMenu.vue'
 import KanbanTaskListContainer from '@/components/KanbanTaskListContainer.vue'
 import { getBoardByIdService } from '@/services/board'
-import { mapState } from 'vuex'
 export default defineComponent({
   components: {
     KanbanNavigation,
@@ -35,10 +34,10 @@ export default defineComponent({
       siderState: true
     }
   },
-  computed: {
-    ...mapState({
-      currentBoard: 'currentBoard'
-    })
+  provide () {
+    return {
+      getBoardById: this.getBoardById
+    }
   },
   mounted () {
     this.siderState = Boolean(localStorage.getItem('kanbanSiderMenuState'))

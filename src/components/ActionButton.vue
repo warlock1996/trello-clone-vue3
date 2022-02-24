@@ -29,5 +29,10 @@ export default defineComponent({
   &:hover {
     background: #091e4214;
   }
+  &:active {
+    background-color: #e4f0f6;
+    color: #0079bf;
+    outline: 0;
+  }
 }
 </style>

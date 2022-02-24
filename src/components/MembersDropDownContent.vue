@@ -25,12 +25,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Avatar from '@/components/Avatar.vue'
-import { MemberModel } from '@/types/entities'
+import { MemberType } from '@/types/entities'
 
 export default defineComponent({
   props: {
     boardMembers: {
-      type: Array as () => Array<MemberModel>,
+      type: Array as () => Array<MemberType>,
       required: true
     },
     taskMembers: {
@@ -39,7 +39,7 @@ export default defineComponent({
     }
   },
   methods: {
-    handleMemberClick (member: MemberModel) {
+    handleMemberClick (member: MemberType) {
       if (this.isTaskMember(member._id)) this.$emit('removeMember', member)
       else this.$emit('addMember', member)
     },

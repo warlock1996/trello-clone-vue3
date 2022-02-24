@@ -3,13 +3,13 @@
     <date-picker
       :modelValue="defaultDate"
       @update:modelValue="handleDefaultDateChange"
+      :range="Array.isArray(defaultDate)"
       :inline="true"
       :month-change-on-scroll="false"
       :is24="false"
       :month-name-format="'long'"
       format="MM/d/Y"
       :auto-apply="true"
-      :range="hasRange"
       :week-start="0">
       <template #calendar-header="{ index }">
         <div class="text-uppercase">
@@ -29,7 +29,7 @@
       </div>
       <p class="label mb-1" for="duedate">Due date</p>
       <div class="date-picker-wrapper__form__duedate d-flex gap-2 justify-content-start align-items-center">
-        <input v-model="dueDateCheckBox" class="form-check-input" type="checkbox" id="duedate" />
+        <input :disabled="true" :checked="dueDateCheckBox" class="form-check-input" type="checkbox" id="duedate" />
         <input
           :value="formatted.dueDate"
           type="text"
@@ -77,7 +77,7 @@ export default defineComponent({
     return {
       defaultDate: new Date(),
       dueDateCheckBox: true,
-      hasRange: false,
+      hasRange: true,
       days: [
         { i: 0, d: 'Sun' },
         { i: 1, d: 'Mon' },
@@ -102,9 +102,11 @@ export default defineComponent({
     }
   },
   watch: {
-    hasRange (v) {
-      if (v) this.defaultDate = [new Date(), new Date(this.date.dueDate)]
-      else this.defaultDate = new Date(this.date.dueDate)
+    hasRange: {
+      handler (v) {
+        if (v) this.defaultDate = [new Date(), new Date(this.date.dueDate)]
+        else this.defaultDate = new Date(this.date.dueDate)
+      }
     }
   },
   mounted () {
@@ -112,6 +114,7 @@ export default defineComponent({
       this.hasRange = true
       this.defaultDate = [new Date(this.date.startDate), new Date(this.date.dueDate)]
     } else {
+      this.hasRange = false
       this.defaultDate = new Date(this.date.dueDate)
     }
   },
@@ -127,7 +130,7 @@ export default defineComponent({
       if (this.hasRange) {
         payload = { date: { startDate: this.defaultDate[0], dueDate: this.defaultDate[1] } }
       } else {
-        payload = { date: { dueDate: this.defaultDate } }
+        payload = { date: { dueDate: new Date(this.defaultDate) } }
       }
       const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, payload)
       if (!res.error) {

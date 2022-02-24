@@ -3,7 +3,7 @@
     <action-button
       class="invitedd__toggle bg-white dropdown-toggle"
       data-bs-toggle="dropdown"
-      data-bs-auto-close="inside">
+      data-bs-auto-close="false">
       <i class="bi bi-person-plus" />
       Invite
     </action-button>

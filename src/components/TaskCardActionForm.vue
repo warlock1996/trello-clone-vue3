@@ -3,34 +3,33 @@
     <p class="taskcard-action-form__title m-0 mb-0 fw-bold">{{ title }}</p>
     <div class="labelled-select rounded-2">
       <span class="label">Board</span>
-      <select
-        class="board form-select border-0 shadow-none"
-        aria-label="select board"
-      >
-        <option value="1" selected>Board #1</option>
-        <option value="2">Board #2</option>
-        <option value="3">Board #3</option>
+      <select @change="handleBoardChange" class="board form-select border-0 shadow-none" aria-label="select board">
+        <option
+          v-for="board in allBoards"
+          :key="board._id"
+          :value="board._id"
+          :selected="board._id === $route.params.boardId">
+          {{ board.name }}
+        </option>
       </select>
     </div>
     <div class="d-flex gap-2">
       <div class="labelled-select rounded-2">
         <span class="label">List</span>
-        <select
-          class="form-select list border-0 shadow-none"
-          aria-label="select list"
-        >
-          <span class="label">List</span>
-          <option value="1" selected>List #1</option>
-          <option value="2">List #2</option>
-          <option value="3">List #3</option>
+        <select @change="handleListChange" class="form-select list border-0 shadow-none" aria-label="select list">
+          <!-- <span class="label">List</span> -->
+          <option
+            v-for="boardList in selectedBoard.lists"
+            :key="boardList._id"
+            :value="boardList._id"
+            :selected="boardList._id === list._id">
+            {{ boardList.name }}
+          </option>
         </select>
       </div>
       <div class="labelled-select rounded-2 w-75">
         <span class="label">Position</span>
-        <select
-          class="form-select border-0 shadow-none"
-          aria-label="select position"
-        >
+        <select disabled class="form-select border-0 shadow-none" aria-label="select position">
           <span class="label">Position</span>
           <option value="1" selected>Position #1</option>
           <option value="2">Position #2</option>
@@ -38,18 +37,16 @@
         </select>
       </div>
     </div>
-    <button
-      type="submit"
-      @click="null"
-      class="taskcard-action-form__submit btn-primary-1"
-    >
+    <button type="submit" @click.prevent="$emit('submit', form)" class="taskcard-action-form__submit btn-primary-1">
       {{ submitText }}
     </button>
   </form>
 </template>
 
 <script lang="ts">
+import { BoardType } from '@/types/entities'
 import { defineComponent } from 'vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   props: {
@@ -60,6 +57,36 @@ export default defineComponent({
     submitText: {
       type: String,
       default: 'submit'
+    }
+  },
+  data () {
+    return {
+      form: {
+        toBoardId: this.$route.params.boardId,
+        toListId: ''
+      }
+    }
+  },
+  inject: ['list'],
+  methods: {
+    handleBoardChange (e: Event) {
+      const target = e.target as HTMLInputElement
+      this.form.toBoardId = target.value
+    },
+    handleListChange (e: Event) {
+      const target = e.target as HTMLInputElement
+      this.form.toListId = target.value
+    }
+  },
+  computed: {
+    ...mapState({
+      workspace: 'workspace'
+    }),
+    allBoards () {
+      return this.workspace.createdBoards.concat(this.workspace.invitedBoards)
+    },
+    selectedBoard () {
+      return this.allBoards.find((board: BoardType) => board._id === this.form.toBoardId)
     }
   }
 })
@@ -77,7 +104,7 @@ export default defineComponent({
     width: 100%;
     position: relative;
     .label {
-      content: "";
+      content: '';
       z-index: 1;
       position: absolute;
       top: 2px;

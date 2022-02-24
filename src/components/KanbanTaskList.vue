@@ -14,7 +14,7 @@
             class="bi bi-three-dots dropdown-toggle btn-icon"
             role="button"
             data-bs-toggle="dropdown"
-            data-bs-auto-hide="inside" />
+            data-bs-auto-close="inside" />
           <workspace-dropdown title="List actions">
             <workspace-list :items="listOptionItems" @dataItemClick="handleDeleteList">
               <template #delete="item">
@@ -74,6 +74,7 @@ export default defineComponent({
   provide () {
     return {
       list: this.list,
+      indexTasksByList: this.indexTasksByList,
       addTaskToList: this.addTaskToList,
       updateListTask: this.updateListTask
     }

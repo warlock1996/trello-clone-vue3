@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`kanban-task-label d-flex justify-content-center align-items-center badge px-3 text-truncate bg-${color}`"
+    :class="`kanban-task-label d-flex justify-content-center align-items-center rounded-1 badge px-3 text-truncate bg-${color}`"
     :style="customStyles">
     <span v-if="size == 'medium'">
       {{ text }}
@@ -20,6 +20,11 @@ export default defineComponent({
     color: {
       type: String,
       default: 'primary'
+    },
+    size: {
+      type: String,
+      default: 'small',
+      validator: (v) => ['small', 'medium'].includes(v)
     },
     customStyles: {
       type: Object

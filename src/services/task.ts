@@ -14,15 +14,6 @@ export const indexTasksByListService = (boardId: string, listId: string): Promis
   return instance.get(`/task/indexTasksByList/${boardId}/${listId}`)
 }
 
-export const moveTaskService = (
-  boardId: string,
-  fromListId: string,
-  toListId: string,
-  taskId: string
-): Promise<GenericResponse<undefined>> => {
-  return instance.post(`/task/move/${boardId}/${fromListId}/${toListId}/${taskId}`)
-}
-
 export const createTaskService = (
   boardId: string,
   listId: string,
@@ -49,4 +40,43 @@ export const deleteTaskService = (
   subtaskId?: string
 ): Promise<GenericResponse<TaskType>> => {
   return instance.delete(`/task/delete/${boardId}/${listId}/${taskId}/${subtaskId || ''}`)
+}
+
+export const moveTaskService = (
+  fromBoardId: string,
+  toBoardId: string,
+  fromListId: string,
+  toListId: string,
+  taskId: string
+): Promise<GenericResponse<undefined>> => {
+  return instance.post(`/task/move/${fromBoardId}/${toBoardId}/${fromListId}/${toListId}/${taskId}`)
+}
+
+export const copyTaskService = (
+  fromBoardId: string,
+  toBoardId: string,
+  fromListId: string,
+  toListId: string,
+  fromTaskId: string,
+  payload: unknown
+): Promise<GenericResponse<undefined>> => {
+  return instance.post(`/task/copy/${fromBoardId}/${toBoardId}/${fromListId}/${toListId}/${fromTaskId}`, payload)
+}
+
+export const uploadTaskAttachmentService = (
+  boardId: string,
+  listId: string,
+  taskId: string,
+  payload: FormData
+): Promise<GenericResponse<TaskType>> => {
+  return instance.post(`/task/upload/${boardId}/${listId}/${taskId}`, payload)
+}
+
+export const createTaskCommentService = (
+  boardId: string,
+  listId: string,
+  taskId: string,
+  payload: unknown
+): Promise<GenericResponse<TaskType>> => {
+  return instance.post(`/task/comment/${boardId}/${listId}/${taskId}`, payload)
 }

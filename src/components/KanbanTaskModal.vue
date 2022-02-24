@@ -20,9 +20,9 @@
                     :value="task.task"
                     type="text"
                     @keyup.enter="handleTaskNameChange"
-                    class="form-control form-control-sm py-0 d-block w-100 mb-1 shadow-none"
+                    class="form-control form-control-sm ps-0 py-0 d-block w-100 mb-1 shadow-none"
                     style="min-height: auto" />
-                  <div class="quiet px-2">
+                  <div class="quiet ps-0">
                     in list <u>{{ task.task }}</u> <i class="bi bi-eye"></i>
                   </div>
                 </div>
@@ -51,7 +51,6 @@
                       </members-drop-down-content>
                     </workspace-dropdown>
                   </div>
-                  <!-- member avatars and add icon -->
                 </div>
                 <div class="taskmodal__dialog__content__body__title__labels">
                   <p class="mb-1">Labels</p>
@@ -74,7 +73,6 @@
                         @removeLabel="handleRemoveLabelFromTask"></label-drop-down-content>
                     </workspace-dropdown>
                   </div>
-                  <!-- labels and add icon -->
                 </div>
               </section>
               <section
@@ -83,13 +81,14 @@
                 <div class="w-100">
                   <p class="taskmodal__dialog__content__body__desc__title">Description</p>
                   <div class="w-100">
-                    <p
-                      class="taskmodal__dialog__content__body__desc__text px-3 py-2 rounded-1"
+                    <action-button
+                      class="taskmodal__dialog__content__body__desc__text p-2 w-100 pb-5 rounded-1"
                       role="button"
+                      :class="{ 'bg-transparent': task.description }"
                       v-if="!showDescriptionBox"
                       @click="showDescriptionBox = true">
                       {{ task.description || 'Add a more detailed description...' }}
-                    </p>
+                    </action-button>
                     <kanban-add-form
                       v-else
                       :default-value="task.description"
@@ -113,9 +112,11 @@
                 <i class="taskmodal__dialog__content__body__attachments__icon bi bi-paperclip"></i>
                 <div class="w-100">
                   <p class="taskmodal__dialog__content__body__attachments__title">Attachments</p>
-                  <div class="w-100">
-                    <kanban-task-attachment v-for="att in task.attachments" :key="att._id"></kanban-task-attachment>
-                  </div>
+                  <kanban-task-attachment
+                    class="my-2"
+                    v-for="attachment in task.attachments"
+                    :attachment="attachment"
+                    :key="attachment._id"></kanban-task-attachment>
                 </div>
               </section>
               <section class="taskmodal__dialog__content__body__activity my-3">
@@ -126,8 +127,11 @@
                   </div>
                 </div>
                 <div class="taskmodal__dialog__content__body__activity__comments__wrapper">
-                  <kanban-task-comment-input></kanban-task-comment-input>
-                  <kanban-task-comment v-for="comment in task.comments" :key="comment._id"></kanban-task-comment>
+                  <kanban-task-comment-input @comment="handleTaskComment"></kanban-task-comment-input>
+                  <kanban-task-comment
+                    v-for="comment in task.comments"
+                    :comment="comment"
+                    :key="comment._id"></kanban-task-comment>
                 </div>
               </section>
             </div>
@@ -149,7 +153,10 @@
                         @addMember="handleAddMemberToTask"
                         @removeMember="handleRemoveMemberFromTask" />
                     </workspace-dropdown>
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false">
                       <template #prefix>
                         <i class="bi bi-tag"></i>
                         Labels
@@ -168,7 +175,10 @@
                       </template>
                       Checklist
                     </action-button>
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false">
                       <template #prefix>
                         <i class="bi bi-clock"></i>
                       </template>
@@ -177,13 +187,21 @@
                     <workspace-dropdown :title="'Dates'">
                       <dates-drop-down-content :date="task.date" />
                     </workspace-dropdown>
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false">
                       <template #prefix>
                         <i class="bi bi-paperclip"></i>
                       </template>
                       Attachment
                     </action-button>
-                    <workspace-dropdown :title="'Attach from...'" class="p-0 mb-2">
+                    <workspace-dropdown
+                      id="attachment-dropdown"
+                      :title="'Attach from...'"
+                      class="p-0 mb-2"
+                      header-classes="px-2"
+                      divider-classes="mx-2">
                       <attachment-drop-down-content />
                     </workspace-dropdown>
                   </div>
@@ -191,16 +209,25 @@
                 <div class="taskmodal__dialog__content__body__actions__title">
                   Actions
                   <div class="d-flex flex-column gap-2 justify-content-start align-items-start">
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false">
                       <template #prefix>
                         <i class="bi bi-arrow-right"></i>
                       </template>
                       Move
                     </action-button>
                     <workspace-dropdown :title="'Move card'">
-                      <task-card-action-form title="Select destination" submit-text="Move"></task-card-action-form>
+                      <task-card-action-form
+                        title="Select destination"
+                        submit-text="Move"
+                        @submit="handleMoveTask"></task-card-action-form>
                     </workspace-dropdown>
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false">
                       <template #prefix>
                         <i class="bi bi-clipboard"></i>
                       </template>
@@ -245,7 +272,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRef } from 'vue'
+import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'
 import Avatar from '@/components/Avatar.vue'
@@ -261,8 +288,8 @@ import TaskCardActionForm from '@/components/TaskCardActionForm.vue'
 import CopyCardDropDownContent from '@/components/CopyCardDropDownContent.vue'
 import DatesDropDownContent from '@/components/DatesDropDownContent.vue'
 import { mapState } from 'vuex'
-import { editTaskService } from '@/services/task'
-import { LabelType, MemberModel } from '@/types/entities'
+import { createTaskCommentService, editTaskService, moveTaskService } from '@/services/task'
+import { LabelType, MemberType } from '@/types/entities'
 
 export default defineComponent({
   components: {
@@ -281,7 +308,7 @@ export default defineComponent({
     CopyCardDropDownContent,
     DatesDropDownContent
   },
-  inject: ['updateListTask', 'list', 'task', 'taskMembers', 'taskLabels'],
+  inject: ['updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels'],
   data () {
     return {
       showDescriptionBox: false
@@ -307,7 +334,7 @@ export default defineComponent({
         this.updateListTask(res.data)
       }
     },
-    async handleAddMemberToTask (member: MemberModel) {
+    async handleAddMemberToTask (member: MemberType) {
       const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, {
         members: [...this.task.members, member._id]
       })
@@ -315,7 +342,7 @@ export default defineComponent({
         this.updateListTask(res.data)
       }
     },
-    async handleRemoveMemberFromTask (member: MemberModel) {
+    async handleRemoveMemberFromTask (member: MemberType) {
       const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, {
         members: this.task.members.filter((mem: string) => mem !== member._id)
       })
@@ -337,6 +364,25 @@ export default defineComponent({
       })
       if (!res.error) {
         this.updateListTask(res.data)
+      }
+    },
+    async handleTaskComment (comment: string) {
+      const res = await createTaskCommentService(this.$route.params.boardId, this.list._id, this.task._id, { comment })
+      if (!res.error) {
+        this.updateListTask(res.data)
+      }
+    },
+    async handleMoveTask (payload: Record<string, string>) {
+      const res = await moveTaskService(
+        this.$route.params.boardId,
+        payload.toBoardId,
+        this.list._id,
+        payload.toListId,
+        this.task._id
+      )
+      if (!res.error) {
+        // refresh kanban board data on move
+        this.indexTasksByList()
       }
     }
   },
@@ -370,7 +416,7 @@ export default defineComponent({
       &__header {
         position: relative;
         background: rgb(216, 224, 233) !important;
-        height: 150px !important;
+        height: 160px !important;
         overflow: hidden !important;
         &__close {
           position: absolute;
@@ -397,10 +443,10 @@ export default defineComponent({
             font-weight: 600;
           }
           .action-button {
-            padding-top: 6px;
-            padding-bottom: 6px;
-            padding-right: 12px;
-            padding-left: 12px;
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+            padding-right: 12px !important;
+            padding-left: 12px !important;
           }
         }
         &__icon {
@@ -463,7 +509,9 @@ export default defineComponent({
             background: #091e420a;
             min-height: 60px;
             max-height: 500px;
-            overflow-y: scroll;
+            word-break: break-all;
+            text-align: left;
+            overflow-y: auto;
           }
         }
         &__attachments {

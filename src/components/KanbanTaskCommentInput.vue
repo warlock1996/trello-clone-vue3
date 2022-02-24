@@ -15,8 +15,9 @@
         v-if="isFocused || value.length"
         class="comment-input__wrapper__actions d-flex justify-content-between align-items-center pt-3">
         <button
+          class="comment-input__wrapper__actions__btn btn shadow-none border-0 rounded-1"
           :disabled="value.length === 0"
-          class="comment-input__wrapper__actions__btn btn shadow-none border-0 rounded-1">
+          @click="handleCommentEmit">
           Save
         </button>
         <div class="comment-input__wrapper__actions__icons d-flex gap-2">
@@ -44,6 +45,13 @@ export default defineComponent({
   },
   components: {
     Avatar
+  },
+  methods: {
+    handleCommentEmit () {
+      this.isFocused = false
+      this.$emit('comment', this.value)
+      this.value = ''
+    }
   },
   computed: {
     lines () {

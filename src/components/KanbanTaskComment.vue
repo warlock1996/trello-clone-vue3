@@ -1,31 +1,48 @@
 <template>
-  <div class="d-flex gap-2 justify-content-start align-items-start my-3">
-    <avatar :name="'Arslan Ali'" />
+  <div class="d-flex gap-2 justify-content-start align-items-start my-1">
+    <avatar :name="commenter.name" />
     <div class="comment d-flex flex-column gap-1 w-100">
-      <p class="comment__name m-0 d-flex gap-1 justify-content-start align-items-center">
-        Arslan Ali <a class="comment__date" href="#">Dec 28 at 8:50 PM</a>
+      <p class="comment__name m-0 d-flex gap-1 justify-content-start align-items-end">
+        {{ commenter.name }}
+        <span class="comment__date" href="#">{{ new Date(comment.createdAt).toDateString() }}</span>
       </p>
-      <div class="comment__text py-2 px-3 border border-1 rounded-2">some comment</div>
+      <div class="comment__text py-2 px-3 border border-1 rounded-2">{{ comment.comment }}</div>
       <div class="comment__actions d-flex gap-1">
-        <a href="#">Edit</a>
-        <a href="#">Delete</a>
+        <a href="#" @click.stop="handleEditComment">Edit</a>
+        <a href="#" @click.stop="handleDeleteComment">Delete</a>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
 import Avatar from '@/components/Avatar.vue'
+import { CommentType, MemberType } from '@/types/entities'
+import { mapState } from 'vuex'
 export default defineComponent({
   props: {
     comment: {
-      type: String,
-      default: ''
+      type: Object as PropType<CommentType>
     }
   },
+  inject: ['taskMembers'],
   components: {
     Avatar
+  },
+  methods: {
+    handleEditComment () {
+      // write code to edit comment
+    },
+    handleDeleteComment () {
+      // write code to delete comment
+    }
+  },
+  computed: {
+    ...mapState(['currentBoard']),
+    commenter () {
+      return this.currentBoard.members.find((tm: MemberType) => tm._id === this.comment.creator)
+    }
   }
 })
 </script>

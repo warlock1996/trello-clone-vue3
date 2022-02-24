@@ -23,12 +23,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, WritableComputedOptions } from 'vue'
 import KanbanTaskList from '@/components/KanbanTaskList.vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'
 import ActionButton from './ActionButton.vue'
 import { createListService } from '@/services/list'
 import { mapState } from 'vuex'
+import { ListType } from '@/types/entities'
 export default defineComponent({
   components: {
     KanbanTaskList,

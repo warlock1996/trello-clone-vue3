@@ -6,6 +6,7 @@ import toast from './plugins/toast'
 import store from './store'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 import 'bootstrap'
 
 const app = createApp(App)

@@ -9,14 +9,15 @@ export interface TaskDateType {
   dueDate: Date
 }
 
-export interface CommentType {
-  _id: string
+export interface CommentType extends Model {
   comment: string
+  creator: string
 }
 
-export interface AttachmentType {
-  _id: string
-  url: string
+export interface AttachmentType extends Model {
+  name: string
+  uploader: string
+  isCover: boolean
 }
 
 export interface LabelType {
@@ -31,7 +32,7 @@ export interface PermissionType {
   task: Record<string, unknown>
 }
 
-export interface MemberModel extends Model {
+export interface MemberType extends Model {
   name: string
   email: string
   permissions: Array<PermissionType>
@@ -56,7 +57,7 @@ export interface ListType extends Model {
 export interface BoardType extends Model {
   name: string
   lists?: Array<ListType>
-  members?: Array<MemberModel>
+  members?: Array<MemberType>
   labels?: Array<LabelType>
   userId?: string
   starred?: boolean
