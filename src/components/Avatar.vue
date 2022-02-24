@@ -1,6 +1,6 @@
 <template>
   <div
-    class="avatar d-flex justify-content-center align-items-center rounded-circle"
+    class="avatar position-relative d-flex justify-content-center align-items-center rounded-circle"
     :class="dynamicClasses"
     :style="styles">
     {{ abbr }}

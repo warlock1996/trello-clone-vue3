@@ -28,6 +28,7 @@
           <i class="bi bi-lock" />
           Private
         </action-button>
+        <avatar v-for="member in currentBoard.members" :key="member._id" :name="member.name" class="fw-bold"></avatar>
         <invite-drop-down></invite-drop-down>
       </div>
     </div>
@@ -55,12 +56,14 @@ import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
 import { updateBoardService } from '@/services/board'
 import InviteDropDown from '@/components/InviteDropDown.vue'
+import Avatar from '@/components/Avatar.vue'
 import { mapState } from 'vuex'
 
 export default defineComponent({
   components: {
     ActionButton,
-    InviteDropDown
+    InviteDropDown,
+    Avatar
   },
   methods: {
     async handleBoardNameChange () {
