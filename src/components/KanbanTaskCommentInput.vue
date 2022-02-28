@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex gap-2 justify-content-start align-items-start my-2" @click.stop="null">
-    <avatar :name="'Arslan Ali'" />
+  <div class="d-flex gap-2 justify-content-start align-items-start mb-3" @click.stop="null">
+    <avatar class="fw-bold" :name="'Arslan Ali'" />
     <div
       class="comment-input__wrapper d-flex flex-column gap-0 py-2 px-3 border border-1 rounded-2 w-100"
       :class="{ 'focus-shadow': isFocused || value.length }">

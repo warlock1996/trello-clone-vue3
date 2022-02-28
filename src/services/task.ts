@@ -72,6 +72,15 @@ export const uploadTaskAttachmentService = (
   return instance.post(`/task/upload/${boardId}/${listId}/${taskId}`, payload)
 }
 
+export const makeCoverTaskAttachmentService = (
+  boardId: string,
+  listId: string,
+  taskId: string,
+  attachmentId: string
+): Promise<GenericResponse<TaskType>> => {
+  return instance.post(`/task/attachment/makecover/${boardId}/${listId}/${taskId}/${attachmentId}`)
+}
+
 export const createTaskCommentService = (
   boardId: string,
   listId: string,

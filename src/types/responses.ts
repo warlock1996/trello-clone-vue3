@@ -1,8 +1,8 @@
 import { BoardType } from './entities'
 
 export type GenericResponse<T> = {
-  message: string
-  error?: boolean
+  error: boolean
+  message?: string
   token?: string
   data?: T
 }

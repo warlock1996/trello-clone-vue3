@@ -16,13 +16,11 @@
             data-bs-toggle="dropdown"
             data-bs-auto-close="inside" />
           <workspace-dropdown title="List actions">
-            <workspace-list :items="listOptionItems" @dataItemClick="handleDeleteList">
-              <template #delete="item">
-                <div class="d-flex gap-2 align-items-center justify-content-start">
-                  <i class="bi bi-trash"></i>
-                  <span>{{ item.value }}</span>
-                </div>
-              </template>
+            <workspace-list>
+              <workspace-list-item v-for="(item, index) in listOptionItems" :key="index" @click="handleDeleteList">
+                <i class="bi bi-trash"></i>
+                <span>{{ item.value }}</span>
+              </workspace-list-item>
             </workspace-list>
           </workspace-dropdown>
         </div>
@@ -44,6 +42,7 @@ import { updateListService, deleteListService } from '@/services/list'
 import { indexTasksByListService } from '@/services/task'
 import WorkspaceDropdown from './WorkspaceDropdown.vue'
 import WorkspaceList from './WorkspaceList.vue'
+import WorkspaceListItem from './WorkspaceListItem.vue'
 import { TaskType } from '@/types/entities'
 
 export default defineComponent({
@@ -58,6 +57,7 @@ export default defineComponent({
     ListInput,
     WorkspaceDropdown,
     WorkspaceList,
+    WorkspaceListItem,
     KanbanTaskCard: defineAsyncComponent(() => import('@/components/KanbanTaskCard.vue'))
   },
   data () {

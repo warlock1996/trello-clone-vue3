@@ -42,7 +42,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "Activate" */ '../views/Activate.vue'),
     meta: {
       layout: 'default',
-      protected: false
+      protected: true
     }
   },
   {

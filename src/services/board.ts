@@ -1,6 +1,16 @@
 import { instance } from '@/config/axios'
-import { BoardType } from '@/types/entities'
+import { BoardType, MemberType } from '@/types/entities'
 import { AllBoardsResponse, GenericResponse } from '@/types/responses'
+
+export const searchMemberService = (boardId: string, search: string): Promise<GenericResponse<MemberType>> => {
+  return instance.get(`/board/${boardId}/search-members?search=${search}`)
+}
+
+export const inviteMemberService = (boardId: string, emails: Array<string>): Promise<GenericResponse<undefined>> => {
+  return instance.post(`/board/invite/${boardId}`, {
+    emails
+  })
+}
 
 export const allUserBoardsService = (): Promise<GenericResponse<AllBoardsResponse>> => {
   return instance.get('/board/allUserBoards')

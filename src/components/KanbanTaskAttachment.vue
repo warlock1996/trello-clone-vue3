@@ -1,9 +1,6 @@
 <template>
   <div class="kanban-task-attachment d-flex gap-2 justify-content-start align-items-start rounded-1 py-1">
-    <img
-      class="kanban-task-attachment__img"
-      :src="`http://localhost:5000/static/${attachment.name}`"
-      alt="board" />
+    <img class="kanban-task-attachment__img" :src="`http://localhost:5000/static/${attachment.name}`" alt="board" />
     <div class="kanban-task-attachment__details d-flex flex-column">
       <div class="kanban-task-attachment__details__title">{{ attachment.name }}</div>
       <div class="kanban-task-attachment__details__links d-flex gap-1">
@@ -16,13 +13,17 @@
         <a href="#">Edit</a>
       </div>
       <div class="kanban-task-attachment__details__remove d-flex gap-2 mt-1">
-        <i class="bi bi-card-image"></i> <a href="#"> {{ attachment.isCover ? 'Remove Cover' : 'Make Cover' }} </a>
+        <i class="bi bi-card-image"></i>
+        <a @click.prevent="handleMakeAttachmentCover(attachment._id)" class="text-underline">
+          {{ attachment.isCover ? 'Remove Cover' : 'Make Cover' }}
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { makeCoverTaskAttachmentService } from '@/services/task'
 import { AttachmentType } from '@/types/entities'
 import { defineComponent, PropType } from 'vue'
 
@@ -31,6 +32,20 @@ export default defineComponent({
     attachment: {
       type: Object as PropType<AttachmentType>,
       required: true
+    }
+  },
+  inject: ['task', 'list', 'updateListTask'],
+  methods: {
+    async handleMakeAttachmentCover (attachmentId: string) {
+      const res = await makeCoverTaskAttachmentService(
+        this.$route.params.boardId,
+        this.list._id,
+        this.task._id,
+        attachmentId
+      )
+      if (!res.error) {
+        this.updateListTask(res.data)
+      }
     }
   }
 })

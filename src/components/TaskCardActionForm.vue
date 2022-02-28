@@ -59,6 +59,7 @@ export default defineComponent({
       default: 'submit'
     }
   },
+  inject: ['list'],
   data () {
     return {
       form: {
@@ -67,7 +68,6 @@ export default defineComponent({
       }
     }
   },
-  inject: ['list'],
   methods: {
     handleBoardChange (e: Event) {
       const target = e.target as HTMLInputElement

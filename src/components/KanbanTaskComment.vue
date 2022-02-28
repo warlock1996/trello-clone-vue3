@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex gap-2 justify-content-start align-items-start my-1">
-    <avatar :name="commenter.name" />
+  <div class="d-flex gap-2 justify-content-start align-items-start mb-3">
+    <avatar class="fw-bold" :name="commenter.name" />
     <div class="comment d-flex flex-column gap-1 w-100">
       <p class="comment__name m-0 d-flex gap-1 justify-content-start align-items-end">
         {{ commenter.name }}

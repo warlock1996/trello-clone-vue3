@@ -5,8 +5,8 @@
         class="task-card__body card-body rounded-2 p-0"
         @mouseover="showEditIcon = true"
         @mouseout="showEditIcon = false">
-        <div class="task-card__body__cover">
-          <img src="@/assets/images/board.png" class="img-fluid" alt="board" />
+        <div v-if="cover" class="task-card__body__cover">
+          <img :src="`http://localhost:5000/static/${cover.name}`" class="img-fluid" alt="board" />
         </div>
         <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
 
@@ -54,8 +54,7 @@
             <div
               v-if="task.members.length"
               class="task-card__body__details__members d-flex ms-auto gap-1 justify-content-start align-items-center">
-              <avatar v-for="member in taskMembers" size="small" :key="member._id" :name="member.name" class="p-0">
-              </avatar>
+              <avatar-group :members="taskMembers" size="small"> </avatar-group>
             </div>
           </div>
         </div>
@@ -68,16 +67,16 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { mapState } from 'vuex'
-import { LabelType, MemberType } from '@/types/entities'
+import { AttachmentType, LabelType, MemberType } from '@/types/entities'
 import KanbanTaskModal from '@/components/KanbanTaskModal.vue'
 import KanbanTaskLabel from '@/components/KanbanTaskLabel.vue'
-import Avatar from '@/components/Avatar.vue'
+import AvatarGroup from '@/components/AvatarGroup.vue'
 
 export default defineComponent({
   components: {
     KanbanTaskLabel,
     KanbanTaskModal,
-    Avatar
+    AvatarGroup
   },
   props: {
     task: {
@@ -88,6 +87,7 @@ export default defineComponent({
   provide () {
     return {
       task: computed(() => this.task),
+      cover: computed(() => this.cover),
       taskMembers: computed(() => this.taskMembers),
       taskLabels: computed(() => this.taskLabels)
     }
@@ -101,6 +101,9 @@ export default defineComponent({
     },
     taskLabels () {
       return this.currentBoard.labels.filter((label: LabelType) => this.task.labels.includes(label._id))
+    },
+    cover () {
+      return this.task.attachments.find((att: AttachmentType) => att.isCover)
     }
   },
   data () {

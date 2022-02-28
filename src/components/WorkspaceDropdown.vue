@@ -4,7 +4,7 @@
       <div class="title text-center flex-grow-1" :class="titleClasses">
         {{ title }}
       </div>
-      <div class="icon" @click="handleDropDownClose">
+      <div class="icon" @click="$emit('close')">
         <i class="bi bi-x fs-5" />
       </div>
     </div>
@@ -24,7 +24,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   props: {
     title: {
-      required: true,
       type: String,
       default: 'Workspaces'
     },

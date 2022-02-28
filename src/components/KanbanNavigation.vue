@@ -1,6 +1,6 @@
 <template>
   <div class="kanban-nav row py-2 px-3 g-0 align-items-stretch justify-content-start">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <div class="d-flex gap-2 flex-wrap justify-content-start align-items-center">
         <action-button class="ab">
           <template #prefix>
@@ -28,11 +28,11 @@
           <i class="bi bi-lock" />
           Private
         </action-button>
-        <avatar v-for="member in currentBoard.members" :key="member._id" :name="member.name" class="fw-bold"></avatar>
+        <avatar-group :members="currentBoard.members"></avatar-group>
         <invite-drop-down></invite-drop-down>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="d-flex gap-2 flex-wrap justify-content-end align-items-center">
         <action-button class="ab">
           <i class="bi bi-lightning-fill" />
@@ -56,14 +56,14 @@ import { defineComponent } from 'vue'
 import ActionButton from '@/components/ActionButton.vue'
 import { updateBoardService } from '@/services/board'
 import InviteDropDown from '@/components/InviteDropDown.vue'
-import Avatar from '@/components/Avatar.vue'
+import AvatarGroup from '@/components/AvatarGroup.vue'
 import { mapState } from 'vuex'
 
 export default defineComponent({
   components: {
     ActionButton,
     InviteDropDown,
-    Avatar
+    AvatarGroup
   },
   methods: {
     async handleBoardNameChange () {

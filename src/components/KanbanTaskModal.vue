@@ -2,12 +2,12 @@
   <div class="taskmodal modal fade" :id="task.task[0] + task._id">
     <div class="taskmodal__dialog modal-dialog">
       <div class="taskmodal__dialog__content modal-content border-0 rounded-1">
-        <div class="taskmodal__dialog__content__header modal-header d-flex justify-content-center" role="button">
-          <img src="@/assets/images/google.svg" class="img-fluid w-50" alt="board" />
-          <i
-            class="bi bi-x taskmodal__dialog__content__header__close rounded-circle"
-            role="button"
-            data-bs-dismiss="modal"></i>
+        <i class="bi bi-x taskmodal__dialog__content__close rounded-circle" role="button" data-bs-dismiss="modal"></i>
+        <div
+          v-if="cover"
+          class="taskmodal__dialog__content__header modal-header d-flex justify-content-center"
+          role="button">
+          <img :src="`http://localhost:5000/static/${cover.name}`" class="img-fluid w-50" alt="board" />
         </div>
         <div class="taskmodal__dialog__content__body modal-body">
           <div class="row mb-1">
@@ -20,7 +20,7 @@
                     :value="task.task"
                     type="text"
                     @keyup.enter="handleTaskNameChange"
-                    class="form-control form-control-sm ps-0 py-0 d-block w-100 mb-1 shadow-none"
+                    class="form-control form-control-sm ps-0 py-0 d-block w-75 mb-1 shadow-none"
                     style="min-height: auto" />
                   <div class="quiet ps-0">
                     in list <u>{{ task.task }}</u> <i class="bi bi-eye"></i>
@@ -308,7 +308,7 @@ export default defineComponent({
     CopyCardDropDownContent,
     DatesDropDownContent
   },
-  inject: ['updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels'],
+  inject: ['updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels', 'cover'],
   data () {
     return {
       showDescriptionBox: false
@@ -413,27 +413,29 @@ export default defineComponent({
   &__dialog {
     &__content {
       background: #f4f5f7;
+      position: relative;
+      &__close {
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        height: 40px;
+        width: 40px;
+        background: #00000014;
+        color: #42526e;
+        cursor: pointer;
+        &:hover {
+          background-color: #00000029;
+        }
+      }
       &__header {
-        position: relative;
         background: rgb(216, 224, 233) !important;
         height: 160px !important;
         overflow: hidden !important;
-        &__close {
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          right: 10px;
-          top: 10px;
-          font-size: 24px;
-          height: 40px;
-          width: 40px;
-          background: #00000014;
-          color: #42526e;
-          &:hover {
-            background-color: #00000029;
-          }
-        }
       }
       &__body {
         &__actions {

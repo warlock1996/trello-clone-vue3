@@ -1,6 +1,6 @@
 <template>
   <div
-    class="avatar position-relative d-flex justify-content-center align-items-center rounded-circle"
+    class="avatar d-flex justify-content-center align-items-center rounded-circle"
     :class="dynamicClasses"
     :style="styles">
     {{ abbr }}
@@ -25,7 +25,10 @@ export default defineComponent({
   computed: {
     abbr () {
       const str = this.name.split(' ')
-      return str[0].charAt(0) + str[1].charAt(0)
+      if (str.length > 1) {
+        return str[0].charAt(0) + str[1].charAt(0)
+      }
+      return str[0].charAt(0) + str[0].charAt(1)
     },
     dynamicClasses () {
       return { 'p-1': this.size === 'medium', 'p-0': this.size === 'small' }
@@ -52,6 +55,7 @@ export default defineComponent({
   cursor: pointer;
   color: #172b4d;
   font-size: 12px;
+  text-transform: uppercase;
   &:hover {
     background: #c1c7d0;
   }

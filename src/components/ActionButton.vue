@@ -26,6 +26,10 @@ export default defineComponent({
   color: #172b4d;
   border-radius: 3px;
   font-size: 14px;
+  &:disabled {
+    background: #091e4214;
+    pointer-events: none;
+  }
   &:hover {
     background: #091e4214;
   }

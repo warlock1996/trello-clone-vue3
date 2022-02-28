@@ -35,7 +35,11 @@ export interface PermissionType {
 export interface MemberType extends Model {
   name: string
   email: string
-  permissions: Array<PermissionType>
+  password?: string
+  token?: string
+  // eslint-disable-next-line camelcase
+  email_verified_at?: string
+  permissions?: Array<PermissionType>
 }
 
 export interface TaskType extends Model {
