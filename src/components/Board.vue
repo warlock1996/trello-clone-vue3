@@ -1,25 +1,25 @@
 <template>
-  <div
-    class="card border-0"
-    role="button"
-    @mouseover="bookmark = true"
-    @mouseleave="bookmark = false">
+  <div class="card border-0" role="button" @mouseover="bookmark = true" @mouseleave="bookmark = false">
     <div class="card-body border-0 p-2">
       <div class="card-title">{{ name }}</div>
-      <div v-if="bookmark" class="bookmark">
-        <i class="bi bi-star" />
+      <div v-if="bookmark || starred" class="bookmark">
+        <i :class="{ 'bi bi-star-fill text-warning': starred, 'bi bi-star': !starred }" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
     name: {
       type: String,
+      required: true
+    },
+    starred: {
+      type: Boolean,
       required: true
     }
   },

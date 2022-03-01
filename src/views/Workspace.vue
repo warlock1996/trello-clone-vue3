@@ -6,16 +6,18 @@
           <workspace-side-menu class="d-none d-lg-block" />
         </div>
         <div class="col-md-8">
-          <section class="py-2 mb-4 workspace__container__recent">
+          <section class="py-2 mb-2 workspace__container__recent">
             <div class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title">
               <i class="bi bi-clock" />
               <span>Recently viewed</span>
             </div>
             <div class="workspace__container__recent_boards d-flex gap-3 flex-wrap justify-content-start my-2">
-              <!-- <board />
-              <board />
-              <board />
-              <board /> -->
+              <board
+                v-for="b in recentBoards"
+                :key="b._id"
+                :name="b.name"
+                :starred="b.starred"
+                @click="$router.push({ name: 'kanban', params: { boardId: b._id } })" />
             </div>
           </section>
           <section class="py-2 mb-4 workspace__container__owner">
@@ -60,6 +62,7 @@
                 v-for="b in workspace.createdBoards"
                 :key="b._id"
                 :name="b.name"
+                :starred="b.starred"
                 @click="$router.push({ name: 'kanban', params: { boardId: b._id } })" />
             </div>
             <div class="d-flex gap-3 mt-3 flex-wrap justify-content-start my-2">
@@ -100,7 +103,10 @@ export default defineComponent({
   computed: {
     ...mapState({
       workspace: 'workspace'
-    })
+    }),
+    recentBoards () {
+      return JSON.parse(localStorage.getItem('recentBoards'))
+    }
   }
 })
 </script>

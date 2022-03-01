@@ -6,7 +6,7 @@
         @mouseover="showEditIcon = true"
         @mouseout="showEditIcon = false">
         <div v-if="cover" class="task-card__body__cover">
-          <img :src="`http://localhost:5000/static/${cover.name}`" class="img-fluid" alt="board" />
+          <img :src="`http://localhost:5000/static/${cover.name}`" class="img-fluid rounded-top" alt="board" />
         </div>
         <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
 

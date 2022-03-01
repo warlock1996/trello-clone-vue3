@@ -23,7 +23,7 @@
                     class="form-control form-control-sm ps-0 py-0 d-block w-75 mb-1 shadow-none"
                     style="min-height: auto" />
                   <div class="quiet ps-0">
-                    in list <u>{{ task.task }}</u> <i class="bi bi-eye"></i>
+                    in list <u>{{ list.name }}</u>
                   </div>
                 </div>
               </section>
@@ -33,7 +33,7 @@
             <div class="col-md-9">
               <section
                 class="taskmodal__dialog__content__body__members__labels d-flex flex-wrap gap-2 justify-content-start align-items-start my-4 ps-4">
-                <div class="taskmodal__dialog__content__body__title__members">
+                <div v-if="taskMembers.length" class="taskmodal__dialog__content__body__title__members">
                   <p class="mb-1">Members</p>
                   <div class="d-flex flex-wrap gap-1 align-items-center">
                     <avatar v-for="mem in taskMembers" :key="mem._id" :name="mem.name"></avatar>
@@ -52,7 +52,7 @@
                     </workspace-dropdown>
                   </div>
                 </div>
-                <div class="taskmodal__dialog__content__body__title__labels">
+                <div v-if="taskLabels.length" class="taskmodal__dialog__content__body__title__labels">
                   <p class="mb-1">Labels</p>
                   <div class="d-flex flex-wrap gap-1 align-items-center">
                     <kanban-task-label
@@ -308,7 +308,7 @@ export default defineComponent({
     CopyCardDropDownContent,
     DatesDropDownContent
   },
-  inject: ['updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels', 'cover'],
+  inject: ['getBoardById', 'updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels', 'cover'],
   data () {
     return {
       showDescriptionBox: false
@@ -381,8 +381,11 @@ export default defineComponent({
         this.task._id
       )
       if (!res.error) {
-        // refresh kanban board data on move
-        this.indexTasksByList()
+        this.$store.commit('MOVE_CURRENTBOARD_LIST_TASK', {
+          fromListId: this.list._id,
+          toListId: payload.toListId,
+          taskId: this.task._id
+        })
       }
     }
   },

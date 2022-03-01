@@ -21,6 +21,7 @@ import KanbanSider from '@/components/KanbanSider.vue'
 import KanbanSiderMenu from '@/components/KanbanSiderMenu.vue'
 import KanbanTaskListContainer from '@/components/KanbanTaskListContainer.vue'
 import { getBoardByIdService } from '@/services/board'
+import { BoardType } from '@/types/entities'
 export default defineComponent({
   components: {
     KanbanNavigation,
@@ -42,20 +43,39 @@ export default defineComponent({
   mounted () {
     this.siderState = Boolean(localStorage.getItem('kanbanSiderMenuState'))
   },
+  beforeUnmount () {
+    this.$store.commit('RESET_CURRENT_BOARD')
+  },
   watch: {
     '$route.params.boardId': {
       handler: function (id) {
-        this.getBoardById(id)
+        if (id) {
+          this.getBoardById(id)
+        }
       },
-      immediate: true,
-      flush: 'post'
+      immediate: true
     }
   },
   methods: {
+    setRecentBoard (board: Record<string, string>) {
+      const boardIds = JSON.parse(localStorage.getItem('recentBoards'))
+      if (boardIds) {
+        if (boardIds.find((b: BoardType) => b._id === board._id)) return
+        if (boardIds.length < 4) boardIds.unshift(board)
+        else {
+          boardIds.pop()
+          boardIds.unshift(board)
+        }
+        localStorage.setItem('recentBoards', JSON.stringify(boardIds))
+        return
+      }
+      localStorage.setItem('recentBoards', JSON.stringify([board]))
+    },
     async getBoardById (id: string) {
       const res = await getBoardByIdService(id)
       if (!res.error) {
         this.$store.commit('SET_CURRENT_BOARD', res.data)
+        this.setRecentBoard({ _id: id, name: res.data.name, starred: res.data.starred })
       }
     },
     toggleSider () {

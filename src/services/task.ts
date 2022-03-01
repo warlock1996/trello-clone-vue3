@@ -76,9 +76,12 @@ export const makeCoverTaskAttachmentService = (
   boardId: string,
   listId: string,
   taskId: string,
-  attachmentId: string
+  attachmentId: string,
+  isCover: boolean
 ): Promise<GenericResponse<TaskType>> => {
-  return instance.post(`/task/attachment/makecover/${boardId}/${listId}/${taskId}/${attachmentId}`)
+  return instance.post(`/task/attachment/makecover/${boardId}/${listId}/${taskId}/${attachmentId}`, {
+    isCover
+  })
 }
 
 export const createTaskCommentService = (

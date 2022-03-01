@@ -20,6 +20,9 @@ const store = createStore({
     }
   },
   mutations: {
+    RESET_CURRENT_BOARD: (state: MyStore) => {
+      state.currentBoard = { _id: '', name: ' ', createdAt: '', updatedAt: '' }
+    },
     SET_ALL_BOARDS: (state: MyStore, payload) => {
       state.workspace = payload
     },
@@ -37,6 +40,19 @@ const store = createStore({
     },
     ADD_CURRENTBOARD_LIST: (state: MyStore, list) => {
       state.currentBoard.lists.push(list)
+    },
+    COPY_CURRENTBOARD_LIST_TASK: (state: MyStore, { toListId, taskId }) => {
+      const toListIdIndex = state.currentBoard.lists.findIndex((l) => l._id === toListId)
+      state.currentBoard.lists[toListIdIndex].tasks = [...state.currentBoard.lists[toListIdIndex].tasks, taskId]
+    },
+    MOVE_CURRENTBOARD_LIST_TASK: (state: MyStore, { fromListId, toListId, taskId }) => {
+      const fromListIdIndex = state.currentBoard.lists.findIndex((l) => l._id === fromListId)
+      const toListIdIndex = state.currentBoard.lists.findIndex((l) => l._id === toListId)
+
+      state.currentBoard.lists[fromListIdIndex].tasks = state.currentBoard.lists[fromListIdIndex].tasks.filter(
+        (t) => t !== taskId
+      )
+      state.currentBoard.lists[toListIdIndex].tasks = [...state.currentBoard.lists[toListIdIndex].tasks, taskId]
     }
   },
   actions: {}

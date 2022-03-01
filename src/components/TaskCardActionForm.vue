@@ -37,7 +37,7 @@
         </select>
       </div>
     </div>
-    <button type="submit" @click.prevent="$emit('submit', form)" class="taskcard-action-form__submit btn-primary-1">
+    <button :disabled="disable" type="submit" @click.prevent="$emit('submit', form)" class="taskcard-action-form__submit btn-primary-1">
       {{ submitText }}
     </button>
   </form>
@@ -57,21 +57,29 @@ export default defineComponent({
     submitText: {
       type: String,
       default: 'submit'
+    },
+    disable: {
+      type: Boolean,
+      default: false
     }
   },
   inject: ['list'],
   data () {
     return {
       form: {
-        toBoardId: this.$route.params.boardId,
-        toListId: ''
+        toListId: '',
+        toBoardId: this.$route.params.boardId
       }
     }
+  },
+  mounted () {
+    this.form.toListId = this.list._id
   },
   methods: {
     handleBoardChange (e: Event) {
       const target = e.target as HTMLInputElement
       this.form.toBoardId = target.value
+      this.form.toListId = this.selectedBoard.lists[0]._id
     },
     handleListChange (e: Event) {
       const target = e.target as HTMLInputElement

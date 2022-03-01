@@ -14,7 +14,7 @@
       </div>
       <div class="kanban-task-attachment__details__remove d-flex gap-2 mt-1">
         <i class="bi bi-card-image"></i>
-        <a @click.prevent="handleMakeAttachmentCover(attachment._id)" class="text-underline">
+        <a @click.prevent="handleMakeAttachmentCover(attachment)" class="text-underline">
           {{ attachment.isCover ? 'Remove Cover' : 'Make Cover' }}
         </a>
       </div>
@@ -36,12 +36,13 @@ export default defineComponent({
   },
   inject: ['task', 'list', 'updateListTask'],
   methods: {
-    async handleMakeAttachmentCover (attachmentId: string) {
+    async handleMakeAttachmentCover (attachment: AttachmentType) {
       const res = await makeCoverTaskAttachmentService(
         this.$route.params.boardId,
         this.list._id,
         this.task._id,
-        attachmentId
+        attachment._id,
+        !attachment.isCover
       )
       if (!res.error) {
         this.updateListTask(res.data)

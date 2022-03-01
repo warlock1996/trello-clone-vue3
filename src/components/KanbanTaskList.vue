@@ -51,6 +51,9 @@ export default defineComponent({
       type: Object,
       required: true,
       default: () => ({})
+    },
+    tasks: {
+      type: Array
     }
   },
   components: {
@@ -78,9 +81,6 @@ export default defineComponent({
       addTaskToList: this.addTaskToList,
       updateListTask: this.updateListTask
     }
-  },
-  mounted () {
-    this.indexTasksByList()
   },
   methods: {
     addTaskToList (task: TaskType) {
@@ -110,6 +110,14 @@ export default defineComponent({
       if (!res.error) {
         this.$store.commit('DELETE_CURRENTBOARD_LIST', this.list._id)
       }
+    }
+  },
+  watch: {
+    'list.tasks': {
+      handler () {
+        this.indexTasksByList()
+      },
+      immediate: true
     }
   }
 })

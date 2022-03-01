@@ -28,6 +28,7 @@
     <task-card-action-form
       title="Copy to..."
       submit-text="Create card"
+      :disable="keep.task.length < 1"
       @submit="handleCopySubmit"></task-card-action-form>
   </div>
 </template>
@@ -63,7 +64,10 @@ export default defineComponent({
         this.keep
       )
       if (!res.error) {
-        // update board list to show copied data
+        this.$store.commit('COPY_CURRENTBOARD_LIST_TASK', {
+          toListId: payload.toListId,
+          taskId: this.task._id
+        })
       }
     }
   },
