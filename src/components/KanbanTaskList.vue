@@ -126,8 +126,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .task-list {
   background: #ebecf0;
+  height: 100%;
+  overflow-y: scroll;
+
   &__body {
-    max-width: 280px;
+    width: 280px;
     background: #ebecf0;
     &__title {
       input {

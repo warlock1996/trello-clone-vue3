@@ -5,7 +5,7 @@
         <workspace-title class="p-0" :title="'Trello workspace'" />
         <img
           class="kanban-menu-close rounded-1"
-          @click="$emit('toggleSider')"
+          @click.stop="$emit('toggleSider')"
           src="@/assets/svgs/chevron-left.svg"
           alt="chevron-left" />
       </div>

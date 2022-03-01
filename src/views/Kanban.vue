@@ -7,8 +7,14 @@
         </kanban-sider>
       </div>
       <div class="col kanban__row__col-view">
-        <kanban-navigation />
-        <kanban-task-list-container />
+        <div class="row g-0 flex-column">
+          <div class="col kanban__row__col-view-nav">
+            <kanban-navigation />
+          </div>
+          <div class="col list-container">
+            <kanban-task-list-container />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -31,8 +37,7 @@ export default defineComponent({
   },
   data () {
     return {
-      board: null,
-      siderState: true
+      siderState: false
     }
   },
   provide () {
@@ -41,7 +46,7 @@ export default defineComponent({
     }
   },
   mounted () {
-    this.siderState = Boolean(localStorage.getItem('kanbanSiderMenuState'))
+    this.siderState = localStorage.getItem('kanbanSiderMenuState') === 'true'
   },
   beforeUnmount () {
     this.$store.commit('RESET_CURRENT_BOARD')
@@ -75,7 +80,9 @@ export default defineComponent({
       const res = await getBoardByIdService(id)
       if (!res.error) {
         this.$store.commit('SET_CURRENT_BOARD', res.data)
-        this.setRecentBoard({ _id: id, name: res.data.name, starred: res.data.starred })
+        if (!res.data.starred) {
+          this.setRecentBoard({ _id: id, name: res.data.name, starred: res.data.starred })
+        }
       }
     },
     toggleSider () {
@@ -90,13 +97,23 @@ export default defineComponent({
 .kanban {
   background: #6a8ea2;
   height: calc(100% - 45px);
-  overflow-y: scroll;
+  overflow: auto;
   &__row {
     position: relative;
     height: 100%;
     &__col-menu {
       height: 100%;
     }
+    &__col-view {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+  }
+  .list-container {
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
   }
 }
 </style>
