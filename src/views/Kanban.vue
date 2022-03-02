@@ -1,17 +1,17 @@
 <template>
   <div class="container-fluid kanban p-0">
     <div class="row kanban__row g-0">
-      <div class="col-auto kanban__row__col-menu">
+      <div class="col-auto kanban__row__sidebar">
         <kanban-sider :show="siderState" @toggle-sider="toggleSider">
           <kanban-sider-menu :show="siderState" @toggle-sider="toggleSider" />
         </kanban-sider>
       </div>
-      <div class="col kanban__row__col-view">
-        <div class="row g-0 flex-column">
-          <div class="col kanban__row__col-view-nav">
+      <div class="col kanban__row__view">
+        <div class="row g-0 flex-column kanban__row__view__row">
+          <div class="col kanban__row__view__row__nav">
             <kanban-navigation />
           </div>
-          <div class="col list-container">
+          <div class="col kanban__row__view__row__container">
             <kanban-task-list-container />
           </div>
         </div>
@@ -101,19 +101,22 @@ export default defineComponent({
   &__row {
     position: relative;
     height: 100%;
-    &__col-menu {
-      height: 100%;
-    }
-    &__col-view {
-      width: 100%;
+    &__view {
+      width: fit-content;
       height: 100%;
       overflow: auto;
+      &__row {
+        height: 100%;
+        &__nav {
+          flex-grow: 0;
+        }
+        &__container {
+          height: 100%;
+          width: fit-content;
+          overflow: auto;
+        }
+      }
     }
-  }
-  .list-container {
-    max-height: 100%;
-    width: 100%;
-    overflow: auto;
   }
 }
 </style>

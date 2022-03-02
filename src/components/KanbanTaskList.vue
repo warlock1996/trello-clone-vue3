@@ -1,5 +1,12 @@
 <template>
-  <div class="task-list card rounded-2 shadow-1 border-0 dropdown">
+  <div
+    class="task-list card rounded-2 shadow-1 border-0 dropdown"
+    :id="list._id"
+    @dragenter="handleDragEnter"
+    @dragleave="handleDragLeave"
+    @dragover="handleDragOver"
+    @drop="handleDrop"
+    @dragend="handleDragEnd">
     <div class="task-list__body card-body rounded-2 p-2">
       <div class="task-list__body__title card-title d-flex justify-content-between align-items-center">
         <div class="task-list__title">
@@ -25,6 +32,7 @@
           </workspace-dropdown>
         </div>
       </div>
+      <div v-if="marker" ref="task-marker" class="d-flex w-100 bg-secondary border-2 px-2 py-4"></div>
       <div class="task-list__tasks mb-2" v-if="listTasks.length">
         <kanban-task-card class="mb-1" v-for="(task, index) in listTasks" :key="index" :task="task" />
       </div>
@@ -39,7 +47,7 @@
 import { defineAsyncComponent, defineComponent } from 'vue'
 import ListInput from '@/components/ListInput.vue'
 import { updateListService, deleteListService } from '@/services/list'
-import { indexTasksByListService } from '@/services/task'
+import { indexTasksByListService, moveTaskService } from '@/services/task'
 import WorkspaceDropdown from './WorkspaceDropdown.vue'
 import WorkspaceList from './WorkspaceList.vue'
 import WorkspaceListItem from './WorkspaceListItem.vue'
@@ -51,9 +59,6 @@ export default defineComponent({
       type: Object,
       required: true,
       default: () => ({})
-    },
-    tasks: {
-      type: Array
     }
   },
   components: {
@@ -66,6 +71,7 @@ export default defineComponent({
   data () {
     return {
       listTasks: [],
+      marker: false,
       listOptionItems: [
         {
           value: 'delete list',
@@ -110,6 +116,45 @@ export default defineComponent({
       if (!res.error) {
         this.$store.commit('DELETE_CURRENTBOARD_LIST', this.list._id)
       }
+    },
+    handleDragEnter (e: DragEvent) {
+      e.preventDefault()
+      // console.log('[dragenter]', e)
+      this.marker = true
+    },
+    handleDragOver (e: DragEvent) {
+      e.preventDefault()
+      // console.log('[dragover]', e)
+      // this.marker = true
+    },
+    handleDragLeave (e: DragEvent) {
+      console.log('dragleave', e)
+      this.marker = false
+    },
+    handleDrop (e: DragEvent) {
+      e.preventDefault()
+      this.marker = false
+      const data = JSON.parse(e.dataTransfer.getData('text/plain'))
+      this.moveTaskOnDrop(data)
+    },
+    handleDragEnd (e: DragEvent) {
+      e.preventDefault()
+    },
+    async moveTaskOnDrop (data: Record<string, string>) {
+      const res = await moveTaskService(
+        this.$route.params.boardId,
+        this.$route.params.boardId,
+        data.listId,
+        this.list._id,
+        data.taskId
+      )
+      if (!res.error) {
+        this.$store.commit('MOVE_CURRENTBOARD_LIST_TASK', {
+          fromListId: data.listId,
+          toListId: this.list._id,
+          taskId: data.taskId
+        })
+      }
     }
   },
   watch: {
@@ -124,12 +169,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.task-list {
+.task-list{
   background: #ebecf0;
-  height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   &__body {
+    height: 100%;
     width: 280px;
     background: #ebecf0;
     &__title {

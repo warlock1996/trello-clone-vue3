@@ -1,61 +1,70 @@
 <template>
-  <div>
-    <div class="task-card card" role="button" data-bs-toggle="modal" :data-bs-target="`#${task.task[0] + task._id}`">
-      <div
-        class="task-card__body card-body rounded-2 p-0"
-        @mouseover="showEditIcon = true"
-        @mouseout="showEditIcon = false">
-        <div v-if="cover" class="task-card__body__cover">
-          <img :src="`http://localhost:5000/static/${cover.name}`" class="img-fluid rounded-top" alt="board" />
-        </div>
-        <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
+  <div
+    draggable="true"
+    @dragstart.stop="handleDragStart"
+    class="task-card card"
+    role="button"
+    data-bs-toggle="modal"
+    :id="task._id"
+    :data-bs-target="`#${task.task[0] + task._id}`">
+    <div
+      class="task-card__body card-body rounded-2 p-0"
+      @mouseover="showEditIcon = true"
+      @mouseout="showEditIcon = false">
+      <div v-if="cover" class="task-card__body__cover">
+        <img
+          draggable="false"
+          :src="`http://localhost:5000/static/${cover.name}`"
+          class="img-fluid rounded-top"
+          alt="board" />
+      </div>
+      <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
 
-        <div class="task-card__body__details d-flex flex-column gap-1 px-2 py-1">
-          <div v-if="taskLabels.length" class="d-flex flex-wrap gap-1 justify-content-start align-items-center">
-            <kanban-task-label
-              v-for="label in taskLabels"
-              :key="label._id"
-              :text="label.text"
-              :color="label.color"
-              :custom-styles="{
-                height: '10px',
-                minWidth: '10px'
-              }"></kanban-task-label>
+      <div class="task-card__body__details d-flex flex-column gap-1 px-2 py-1">
+        <div v-if="taskLabels.length" class="d-flex flex-wrap gap-1 justify-content-start align-items-center">
+          <kanban-task-label
+            v-for="label in taskLabels"
+            :key="label._id"
+            :text="label.text"
+            :color="label.color"
+            :custom-styles="{
+              height: '10px',
+              minWidth: '10px'
+            }"></kanban-task-label>
+        </div>
+        <div class="task-card__body__title card-title d-flex justify-content-between align-items-center">
+          {{ task.task }}
+        </div>
+        <div class="task-card__body__details d-flex flex-wrap gap-2 justify-content-start align-items-center">
+          <div
+            v-if="task.date.dueDate"
+            class="task-card__body__details__date bg-warning rounded-1 text-white d-flex gap-1 justify-content-start align-items-center">
+            <i class="bi bi-clock"></i>
+            {{ formatDate(task.date.dueDate) }}
           </div>
-          <div class="task-card__body__title card-title d-flex justify-content-between align-items-center">
-            {{ task.task }}
+          <div
+            v-if="task.description.length"
+            class="task-card__body__details__description d-flex gap-1 justify-content-start align-items-center">
+            <i class="bi bi-justify-left"></i>
           </div>
-          <div class="task-card__body__details d-flex flex-wrap gap-2 justify-content-start align-items-center">
-            <div
-              v-if="task.date.dueDate"
-              class="task-card__body__details__date bg-warning rounded-1 text-white d-flex gap-1 justify-content-start align-items-center">
-              <i class="bi bi-clock"></i>
-              {{ formatDate(task.date.dueDate) }}
-            </div>
-            <div
-              v-if="task.description.length"
-              class="task-card__body__details__description d-flex gap-1 justify-content-start align-items-center">
-              <i class="bi bi-justify-left"></i>
-            </div>
-            <div
-              v-if="task.comments.length"
-              class="task-card__body__details__comments d-flex gap-1 justify-content-start align-items-center">
-              <i class="bi bi-chat"></i>
-              <span>{{ task.comments.length }}</span>
-            </div>
-            <div
-              v-if="task.attachments.length"
-              class="task-card__body__details__attachments d-flex gap-1 justify-content-start align-items-center">
-              <i class="bi bi-paperclip"></i>
-              <span>
-                {{ task.attachments.length }}
-              </span>
-            </div>
-            <div
-              v-if="task.members.length"
-              class="task-card__body__details__members d-flex ms-auto gap-1 justify-content-start align-items-center">
-              <avatar-group :members="taskMembers" size="small"> </avatar-group>
-            </div>
+          <div
+            v-if="task.comments.length"
+            class="task-card__body__details__comments d-flex gap-1 justify-content-start align-items-center">
+            <i class="bi bi-chat"></i>
+            <span>{{ task.comments.length }}</span>
+          </div>
+          <div
+            v-if="task.attachments.length"
+            class="task-card__body__details__attachments d-flex gap-1 justify-content-start align-items-center">
+            <i class="bi bi-paperclip"></i>
+            <span>
+              {{ task.attachments.length }}
+            </span>
+          </div>
+          <div
+            v-if="task.members.length"
+            class="task-card__body__details__members d-flex ms-auto gap-1 justify-content-start align-items-center">
+            <avatar-group :members="taskMembers" size="small"> </avatar-group>
           </div>
         </div>
       </div>
@@ -92,6 +101,7 @@ export default defineComponent({
       taskLabels: computed(() => this.taskLabels)
     }
   },
+  inject: ['list'],
   computed: {
     ...mapState({
       currentBoard: 'currentBoard'
@@ -113,6 +123,11 @@ export default defineComponent({
     }
   },
   methods: {
+    handleDragStart (e: DragEvent) {
+      console.log('[handleDragStart]')
+      e.dataTransfer.effectAllowed = 'move'
+      e.dataTransfer.setData('text/plain', JSON.stringify({ listId: this.list._id, taskId: this.task._id }))
+    },
     formatDate (date: string) {
       return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(date))
     }

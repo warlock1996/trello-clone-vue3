@@ -1,7 +1,7 @@
 <template>
-  <div class="task-list d-flex align-items-start justify-content-start gap-2 px-3 py-2">
+  <div class="task-list-container d-flex align-items-start justify-content-start gap-2 px-3 py-2">
     <kanban-task-list v-for="(list, index) in currentBoard.lists" :key="index" :list="list" />
-    <div class="task-list__form p-1 rounded-1" :class="{ bg: showAddForm }">
+    <div class="task-list-container__form p-1 rounded-1" :class="{ bg: showAddForm }">
       <action-button
         v-if="!showAddForm"
         @click="showAddForm = true"
@@ -58,9 +58,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.task-list {
+.task-list-container {
   width: fit-content;
-  height: fit-content;
+  height: 100%;
   &__form {
     width: 280px;
     background: #ffffff3d;

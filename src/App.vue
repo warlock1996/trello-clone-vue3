@@ -65,7 +65,7 @@ export default defineComponent({
   position: relative;
   z-index: 1000;
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .layout-alert {
