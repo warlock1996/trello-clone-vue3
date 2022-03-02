@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown-menu shadow pt-1" style="width: 300px" :style="rootStyles">
+  <div class="dropdown-menu shadow pt-1" :class="{ show: show }" style="width: 300px" :style="rootStyles">
     <div class="dropdown-menu-header d-flex align-items-center" :class="headerClasses">
       <div class="title text-center flex-grow-1" :class="titleClasses">
         {{ title }}
@@ -14,11 +14,6 @@
 </template>
 
 <script lang="ts">
-
-// eslint-disable-next-line
-// @ts-ignore
-// import { Dropdown } from 'bootstrap/dist/js/bootstrap'
-
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -45,18 +40,10 @@ export default defineComponent({
       required: false,
       type: String,
       default: ''
-    }
-  },
-  data () {
-    return {
-      show: true,
-      dds: []
-    }
-  },
-  methods: {
-    handleDropDownClose () {
-      // const dd = new Dropdown(document.getElementById(this.$attrs.id))
-      // console.log(this.$attrs, dd)
+    },
+    show: {
+      type: Boolean,
+      required: true
     }
   }
 })

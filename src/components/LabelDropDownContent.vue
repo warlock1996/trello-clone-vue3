@@ -1,13 +1,11 @@
 <template>
   <div class="d-flex flex-column gap-2 label-dropdown-content">
-    <form>
-      <input
-        v-model="searchText"
-        class="form-control label-dropdown-content__input"
-        type="text"
-        name="label"
-        placeholder="Search labels" />
-    </form>
+    <input
+      v-model="searchText"
+      class="form-control label-dropdown-content__input"
+      type="text"
+      name="label"
+      placeholder="Search labels" />
     <div class="label-dropdown-content__title">Labels</div>
     <ul class="label-dropdown-content__list p-0 m-0">
       <li

@@ -132,10 +132,7 @@ export default defineComponent({
       } else {
         payload = { date: { dueDate: new Date(this.defaultDate) } }
       }
-      const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, payload)
-      if (!res.error) {
-        this.updateListTask(res.data)
-      }
+      this.$emit('dateChange', payload)
     }
   }
 })

@@ -17,7 +17,7 @@
       <div class="labelled-select rounded-2">
         <span class="label">List</span>
         <select @change="handleListChange" class="form-select list border-0 shadow-none" aria-label="select list">
-          <!-- <span class="label">List</span> -->
+          <span class="label">List</span>
           <option
             v-for="boardList in selectedBoard.lists"
             :key="boardList._id"

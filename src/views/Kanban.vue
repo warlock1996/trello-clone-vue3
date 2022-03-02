@@ -112,7 +112,6 @@ export default defineComponent({
         }
         &__container {
           height: 100%;
-          width: fit-content;
           overflow: auto;
         }
       }

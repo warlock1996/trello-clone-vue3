@@ -68,6 +68,7 @@ export default defineComponent({
           toListId: payload.toListId,
           taskId: this.task._id
         })
+        this.$emit('close')
       }
     }
   },

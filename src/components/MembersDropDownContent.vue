@@ -1,12 +1,10 @@
 <template>
   <div class="d-flex flex-column gap-2 members-dropdown-content">
-    <form>
-      <input
-        class="form-control members-dropdown-content__input"
-        type="text"
-        name="members"
-        placeholder="Search members" />
-    </form>
+    <input
+      class="form-control members-dropdown-content__input"
+      type="text"
+      name="members"
+      placeholder="Search members" />
     <div class="members-dropdown-content__members">Board members</div>
     <ul class="members-dropdown-content__list p-0 m-0">
       <li

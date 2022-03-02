@@ -119,21 +119,15 @@ export default defineComponent({
     },
     handleDragEnter (e: DragEvent) {
       e.preventDefault()
-      // console.log('[dragenter]', e)
-      this.marker = true
     },
     handleDragOver (e: DragEvent) {
       e.preventDefault()
-      // console.log('[dragover]', e)
-      // this.marker = true
     },
     handleDragLeave (e: DragEvent) {
       console.log('dragleave', e)
-      this.marker = false
     },
     handleDrop (e: DragEvent) {
       e.preventDefault()
-      this.marker = false
       const data = JSON.parse(e.dataTransfer.getData('text/plain'))
       this.moveTaskOnDrop(data)
     },
@@ -171,8 +165,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .task-list{
   background: #ebecf0;
-  overflow-y: auto;
-
   &__body {
     height: 100%;
     width: 280px;

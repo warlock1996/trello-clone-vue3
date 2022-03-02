@@ -1,8 +1,12 @@
 <template>
-  <div class="taskmodal modal fade" :id="task.task[0] + task._id">
+  <div class="taskmodal modal fade" :id="task.task[0] + task._id" :class="{ show: show }">
     <div class="taskmodal__dialog modal-dialog">
       <div class="taskmodal__dialog__content modal-content border-0 rounded-1">
-        <i class="bi bi-x taskmodal__dialog__content__close rounded-circle" role="button" data-bs-dismiss="modal"></i>
+        <i
+          class="bi bi-x taskmodal__dialog__content__close rounded-circle"
+          role="button"
+          data-bs-dismiss="modal"
+          @click.stop="$emit('close')"></i>
         <div
           v-if="cover"
           class="taskmodal__dialog__content__header modal-header d-flex justify-content-center"
@@ -39,10 +43,12 @@
                     <avatar v-for="mem in taskMembers" :key="mem._id" :name="mem.name"></avatar>
                     <action-button
                       class="taskmodal__dialog__content__body__title__members__add rounded-circle justify-content-center dropdown dropdown-toggle"
-                      data-bs-toggle="dropdown">
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false"
+                      @click="showAddMemberDD = true">
                       <i class="bi bi-plus"></i>
                     </action-button>
-                    <workspace-dropdown title="Members">
+                    <workspace-dropdown title="Members" :show="showAddMemberDD" @close="showAddMemberDD = false">
                       <members-drop-down-content
                         :board-members="currentBoard.members"
                         :task-members="task.members"
@@ -62,10 +68,12 @@
                       :color="label.color" />
                     <action-button
                       class="taskmodal__dialog__content__body__title__labels__add justify-content-center dropdown dropdown-toggle"
-                      data-bs-toggle="dropdown">
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false"
+                      @click="showAddLabelDD = true">
                       <i class="bi bi-plus"></i>
                     </action-button>
-                    <workspace-dropdown title="Labels">
+                    <workspace-dropdown title="Labels" :show="showAddLabelDD" @close="showAddLabelDD = false">
                       <label-drop-down-content
                         :board-labels="currentBoard.labels"
                         :task-labels="task.labels"
@@ -140,13 +148,17 @@
                 <div class="taskmodal__dialog__content__body__actions__title">
                   Add to card
                   <div class="d-flex flex-column gap-2 justify-content-start align-items-start">
-                    <action-button class="w-100 dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                    <action-button
+                      class="w-100 dropdown dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      data-bs-auto-close="false"
+                      @click="showMembersDD = true">
                       <template #prefix>
                         <i class="bi bi-person"></i>
                         Members
                       </template>
                     </action-button>
-                    <workspace-dropdown :title="'Members'">
+                    <workspace-dropdown :title="'Members'" :show="showMembersDD" @close="showMembersDD = false">
                       <members-drop-down-content
                         :board-members="currentBoard.members"
                         :task-members="task.members"
@@ -156,13 +168,14 @@
                     <action-button
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      data-bs-auto-close="false">
+                      data-bs-auto-close="false"
+                      @click="showLabelsDD = true">
                       <template #prefix>
                         <i class="bi bi-tag"></i>
                         Labels
                       </template>
                     </action-button>
-                    <workspace-dropdown :title="'Labels'">
+                    <workspace-dropdown :title="'Labels'" :show="showLabelsDD" @close="showLabelsDD = false">
                       <label-drop-down-content
                         :board-labels="currentBoard.labels"
                         :task-labels="task.labels"
@@ -178,19 +191,21 @@
                     <action-button
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      data-bs-auto-close="false">
+                      data-bs-auto-close="false"
+                      @click="showDateDD = true">
                       <template #prefix>
                         <i class="bi bi-clock"></i>
                       </template>
                       Dates
                     </action-button>
-                    <workspace-dropdown :title="'Dates'">
-                      <dates-drop-down-content :date="task.date" />
+                    <workspace-dropdown :title="'Dates'" :show="showDateDD" @close="showDateDD = false">
+                      <dates-drop-down-content :date="task.date" @dateChange="handleDateChange" />
                     </workspace-dropdown>
                     <action-button
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      data-bs-auto-close="false">
+                      data-bs-auto-close="false"
+                      @click="showAttachmentDD = true">
                       <template #prefix>
                         <i class="bi bi-paperclip"></i>
                       </template>
@@ -201,7 +216,9 @@
                       :title="'Attach from...'"
                       class="p-0 mb-2"
                       header-classes="px-2"
-                      divider-classes="mx-2">
+                      divider-classes="mx-2"
+                      :show="showAttachmentDD"
+                      @close="showAttachmentDD = false">
                       <attachment-drop-down-content />
                     </workspace-dropdown>
                   </div>
@@ -212,13 +229,14 @@
                     <action-button
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      data-bs-auto-close="false">
+                      data-bs-auto-close="false"
+                      @click="showMoveDD = true">
                       <template #prefix>
                         <i class="bi bi-arrow-right"></i>
                       </template>
                       Move
                     </action-button>
-                    <workspace-dropdown :title="'Move card'">
+                    <workspace-dropdown :title="'Move card'" :show="showMoveDD" @close="showMoveDD = false">
                       <task-card-action-form
                         title="Select destination"
                         submit-text="Move"
@@ -227,14 +245,15 @@
                     <action-button
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
-                      data-bs-auto-close="false">
+                      data-bs-auto-close="false"
+                      @click="showCopyDD = true">
                       <template #prefix>
                         <i class="bi bi-clipboard"></i>
                       </template>
                       Copy
                     </action-button>
-                    <workspace-dropdown :title="'Copy card'">
-                      <copy-card-drop-down-content></copy-card-drop-down-content>
+                    <workspace-dropdown :title="'Copy card'" :show="showCopyDD" @close="showCopyDD = false">
+                      <copy-card-drop-down-content @close="showCopyDD = false"></copy-card-drop-down-content>
                     </workspace-dropdown>
                     <action-button class="w-100">
                       <template #prefix>
@@ -308,9 +327,23 @@ export default defineComponent({
     CopyCardDropDownContent,
     DatesDropDownContent
   },
+  props: {
+    show: {
+      type: Boolean,
+      required: true
+    }
+  },
   inject: ['getBoardById', 'updateListTask', 'indexTasksByList', 'list', 'task', 'taskMembers', 'taskLabels', 'cover'],
   data () {
     return {
+      showAddMemberDD: false,
+      showAddLabelDD: false,
+      showMembersDD: false,
+      showLabelsDD: false,
+      showDateDD: false,
+      showAttachmentDD: false,
+      showMoveDD: false,
+      showCopyDD: false,
       showDescriptionBox: false
     }
   },
@@ -372,6 +405,13 @@ export default defineComponent({
         this.updateListTask(res.data)
       }
     },
+    async handleDateChange (payload: Record<string, string>) {
+      const res = await editTaskService(this.$route.params.boardId, this.list._id, this.task._id, payload)
+      if (!res.error) {
+        this.showDateDD = false
+        this.updateListTask(res.data)
+      }
+    },
     async handleMoveTask (payload: Record<string, string>) {
       const res = await moveTaskService(
         this.$route.params.boardId,
@@ -381,12 +421,22 @@ export default defineComponent({
         this.task._id
       )
       if (!res.error) {
+        this.showMoveDD = false
+        this.$emit('close')
         this.$store.commit('MOVE_CURRENTBOARD_LIST_TASK', {
           fromListId: this.list._id,
           toListId: payload.toListId,
           taskId: this.task._id
         })
       }
+    }
+  },
+  watch: {
+    taskMembers (v) {
+      if (!v.length) this.showAddMemberDD = false
+    },
+    taskLabels (v) {
+      if (!v.length) this.showAddLabelDD = false
     }
   },
   computed: {
