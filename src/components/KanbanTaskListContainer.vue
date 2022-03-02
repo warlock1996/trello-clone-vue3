@@ -46,6 +46,7 @@ export default defineComponent({
       const res = await createListService(this.$route.params.boardId, { name: name })
       if (!res.error) {
         this.$store.commit('ADD_CURRENTBOARD_LIST', res.data)
+        this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }
     }
   },
@@ -71,7 +72,6 @@ export default defineComponent({
       background: #ffffff52;
     }
     &__btn {
-      background: transparent;
       font-size: 14px;
       color: #ffffff;
       &:hover {

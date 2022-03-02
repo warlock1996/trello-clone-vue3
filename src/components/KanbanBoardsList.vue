@@ -4,13 +4,18 @@
       v-for="i in items"
       :key="i._id"
       class="list-group-item px-3 py-0 d-flex gap-2 align-items-center justify-content-start"
+      :class="{ active: $route.params.boardId === i._id }"
       @click.stop="$router.push({ name: 'kanban', params: { boardId: i._id } })">
       <div v-if="boardBgColor" class="board-bg rounded-1" :style="{ background: boardBgColor }" />
       <div class="flex-grow-1">
         {{ i.name }}
       </div>
       <i v-if="showSubMenu" class="bi bi-three-dots p-1 px-2 rounded-2 sub-menu" @click.stop="() => {}" />
-      <i v-if="showBookmark" class="bi bi-star p-1 px-2 rounded-1 bookmark" @click.stop="() => {}" />
+      <i
+        v-if="showBookmark"
+        class="p-1 px-2 rounded-1 bookmark"
+        :class="{ 'bi bi-star-fill starred': i.starred, 'bi bi-star': !i.starred }"
+        @click.stop="() => {}" />
     </li>
   </ul>
 </template>
@@ -64,6 +69,10 @@ export default defineComponent({
       }
     }
     .bookmark {
+      &.starred {
+        color: darkgoldenrod;
+        font-weight: 700;
+      }
       &:hover {
         color: darkgoldenrod;
         font-weight: 700;

@@ -22,7 +22,7 @@
             role="button"
             data-bs-toggle="dropdown"
             data-bs-auto-close="inside" />
-          <workspace-dropdown title="List actions">
+          <workspace-dropdown title="List actions" :show="showListActions" @click="showListActions = false">
             <workspace-list>
               <workspace-list-item v-for="(item, index) in listOptionItems" :key="index" @click="handleDeleteList">
                 <i class="bi bi-trash"></i>
@@ -72,6 +72,7 @@ export default defineComponent({
     return {
       listTasks: [],
       marker: false,
+      showListActions: false,
       listOptionItems: [
         {
           value: 'delete list',
@@ -109,12 +110,15 @@ export default defineComponent({
       })
       if (!res.error) {
         this.$store.commit('UPDATE_CURRENTBOARD_LIST', { listId: this.list._id, data: res.data })
+        this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }
     },
     async handleDeleteList () {
       const res = await deleteListService(this.$route.params.boardId, this.list._id)
       if (!res.error) {
+        this.showListActions = false
         this.$store.commit('DELETE_CURRENTBOARD_LIST', this.list._id)
+        this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }
     },
     handleDragEnter (e: DragEvent) {
