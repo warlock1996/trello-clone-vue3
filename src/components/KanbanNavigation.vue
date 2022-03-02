@@ -70,12 +70,14 @@ export default defineComponent({
       const res = await updateBoardService(this.currentBoard._id, { name: this.currentBoard.name })
       if (!res.error) {
         this.$store.commit('SET_CURRENT_BOARD', res.data)
+        this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }
     },
     async handleBoardStarredChange () {
       const res = await updateBoardService(this.currentBoard._id, { starred: !this.currentBoard.starred })
       if (!res.error) {
         this.$store.commit('SET_CURRENT_BOARD', res.data)
+        this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }
     }
   },

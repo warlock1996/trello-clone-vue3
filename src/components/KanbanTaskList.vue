@@ -14,6 +14,7 @@
             type="text"
             class="form-control form-control-sm"
             :value="list.name"
+            ref="listNameInput"
             @keyup.enter="handleListNameChange" />
         </div>
         <div class="task-list__menu">
@@ -34,7 +35,7 @@
       </div>
       <div v-if="marker" ref="task-marker" class="d-flex w-100 bg-secondary border-2 px-2 py-4"></div>
       <div class="task-list__tasks mb-2" v-if="listTasks.length">
-        <kanban-task-card class="mb-1" v-for="(task, index) in listTasks" :key="index" :task="task" />
+        <kanban-task-card class="mb-1" v-for="(task) in listTasks" :key="task._id" :task="task" />
       </div>
       <div class="task-list__add">
         <list-input :listId="list._id" />
@@ -109,6 +110,7 @@ export default defineComponent({
         name: target.value
       })
       if (!res.error) {
+        this.$refs.listNameInput.blur()
         this.$store.commit('UPDATE_CURRENTBOARD_LIST', { listId: this.list._id, data: res.data })
         this.$store.commit('UPDATE_WORKSPACE_BOARDS')
       }

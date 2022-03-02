@@ -44,7 +44,7 @@ export default defineComponent({
       this.resetTimeOut = setTimeout(() => {
         this.layoutAlertText = ''
         this.showLayoutAlert = false
-      }, 60000)
+      }, 1000 * 10)
     },
     setToast (text: string) {
       this.toasts.push(text)

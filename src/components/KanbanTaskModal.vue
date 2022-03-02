@@ -421,12 +421,14 @@ export default defineComponent({
         this.task._id
       )
       if (!res.error) {
-        this.showMoveDD = false
         this.$emit('close')
-        this.$store.commit('MOVE_CURRENTBOARD_LIST_TASK', {
-          fromListId: this.list._id,
-          toListId: payload.toListId,
-          taskId: this.task._id
+        this.showMoveDD = false
+        this.$nextTick(() => {
+          this.$store.commit('MOVE_CURRENTBOARD_LIST_TASK', {
+            fromListId: this.list._id,
+            toListId: payload.toListId,
+            taskId: this.task._id
+          })
         })
       }
     }

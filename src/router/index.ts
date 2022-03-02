@@ -46,6 +46,15 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/accept-invitation/:inviteToken',
+    name: 'AcceptInvitation',
+    component: () => import(/* webpackChunkName: "AcceptInvitation" */ '../views/AcceptInvitation.vue'),
+    meta: {
+      layout: 'default',
+      protected: true
+    }
+  },
+  {
     path: '/workspace',
     name: 'workspace',
     component: () => import(/* webpackChunkName: "Workspace" */ '../views/Workspace.vue'),

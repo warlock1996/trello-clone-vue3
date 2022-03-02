@@ -12,6 +12,10 @@ export const inviteMemberService = (boardId: string, emails: Array<string>): Pro
   })
 }
 
+export const acceptInvitationService = (inviteToken: string): Promise<GenericResponse<undefined>> => {
+  return instance.get(`/board/accept-invitation/${inviteToken}`)
+}
+
 export const allUserBoardsService = (): Promise<GenericResponse<AllBoardsResponse>> => {
   return instance.get('/board/allUserBoards')
 }

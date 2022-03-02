@@ -47,17 +47,17 @@ export default defineComponent({
         {
           icon: 'kanban',
           text: 'Boards',
-          route: '/'
+          route: '/workspace'
         },
         {
           icon: 'person',
           text: 'Members',
-          route: '/'
+          route: '/workspace'
         },
         {
           icon: 'gear',
           text: 'Settings',
-          route: '/'
+          route: '/workspace'
         }
       ]
     }

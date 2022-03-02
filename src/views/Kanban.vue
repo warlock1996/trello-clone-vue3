@@ -45,6 +45,7 @@ export default defineComponent({
       getBoardById: this.getBoardById
     }
   },
+  inject: ['getRecentBoards'],
   mounted () {
     this.siderState = localStorage.getItem('kanbanSiderMenuState') === 'true'
   },
@@ -82,6 +83,7 @@ export default defineComponent({
         this.$store.commit('SET_CURRENT_BOARD', res.data)
         if (!res.data.starred) {
           this.setRecentBoard({ _id: id, name: res.data.name, starred: res.data.starred })
+          this.getRecentBoards()
         }
       }
     },

@@ -1,16 +1,18 @@
 <template>
   <action-button
     class="create-board d-flex flex-column justify-content-center align-items-center p-2 dropdown position-relative">
-    <div class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-offset="10, 20">
+    <div
+      class="dropdown-toggle"
+      data-bs-toggle="dropdown"
+      @click="showCreateBoardDD = true"
+      data-bs-auto-close="false">
       <p class="mb-0">Create new board</p>
       <p class="mb-0">remaining</p>
     </div>
-    <workspace-dropdown title="Create board">
-      <form>
+    <workspace-dropdown title="Create board" :show="showCreateBoardDD" @close="showCreateBoardDD = false">
         <label for="board">Board title</label>
         <input id="board" type="text" v-model="board.name" class="form-control mb-3" />
         <action-button @click.prevent="handleCreateBoard">Create</action-button>
-      </form>
     </workspace-dropdown>
     <i class="bi bi-question-circle position-absolute"></i>
   </action-button>
@@ -29,6 +31,7 @@ export default defineComponent({
   },
   data () {
     return {
+      showCreateBoardDD: false,
       board: {
         name: ''
       }
@@ -38,6 +41,7 @@ export default defineComponent({
     async handleCreateBoard () {
       const res = await createBoardService(this.board)
       if (!res.error) {
+        this.showCreateBoardDD = false
         this.$store.commit('ADD_CREATED_BOARD', res.data)
       }
     }

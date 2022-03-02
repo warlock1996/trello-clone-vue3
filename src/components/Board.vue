@@ -1,8 +1,8 @@
 <template>
-  <div class="card border-0" role="button" @mouseover="bookmark = true" @mouseleave="bookmark = false">
+  <div class="card border-0" role="button" @mouseover="bookmark = true" @mouseleave="bookmark = false" :style="styles">
     <div class="card-body border-0 p-2">
-      <div class="card-title">{{ name }}</div>
-      <div v-if="bookmark || starred" class="bookmark">
+      <div class="card-title" v-if="showName">{{ name }}</div>
+      <div v-if="bookmark || starred" class="bookmark" :class="{ 'invisible': hideStar }">
         <i :class="{ 'bi bi-star-fill text-warning': starred, 'bi bi-star': !starred }" />
       </div>
     </div>
@@ -21,6 +21,18 @@ export default defineComponent({
     starred: {
       type: Boolean,
       required: true
+    },
+    showName: {
+      type: Boolean,
+      default: true
+    },
+    hideStar: {
+      type: Boolean,
+      default: false
+    },
+    styles: {
+      type: Object,
+      required: false
     }
   },
   data () {

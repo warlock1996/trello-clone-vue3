@@ -34,10 +34,12 @@
               role="button"
               aria-expanded="false"
               data-bs-offset="20,20"
+              data-bs-auto-close="false"
+              @click="showWorkspaceDD = true"
               >Workspaces
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Workspaces'">
+            <workspace-dropdown :title="'Workspaces'" :show="showWorkspaceDD" @close="showWorkspaceDD = false">
               <div class="dropdown-header">
                 <div class="my-1">Current workspace</div>
               </div>
@@ -61,16 +63,13 @@
               href="#"
               data-bs-toggle="dropdown"
               role="button"
-              aria-expanded="false">
+              aria-expanded="false"
+              @click.prevent="showRecentDropDown = true">
               Recent
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Recent boards'" :root-styles="{ height: '300px', overflowY: 'scroll' }">
-              <ul class="list-group-item p-0">
-                <li class="dropdown-item px-3 py-2" v-for="rb in workspace.createdBoards" :key="rb._id">
-                  {{ rb.name }}
-                </li>
-              </ul>
+            <workspace-dropdown :title="'Recent boards'" :show="showRecentDropDown" @close="showRecentDropDown = false">
+              <recent-drop-down-content :recent-boards="recentBoards"> </recent-drop-down-content>
             </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start dropdown">
@@ -80,12 +79,15 @@
               href="#"
               data-bs-toggle="dropdown"
               role="button"
-              aria-expanded="false">
+              aria-expanded="false"
+              @click.prevent="showStarredDropDown = true">
               Starred
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Starred'">
-              <div class="d-flex flex-column">
+            <workspace-dropdown :title="'Starred'" :show="showStarredDropDown" @close="showStarredDropDown = false">
+              <recent-drop-down-content v-if="starredBoards.length" :recent-boards="starredBoards">
+              </recent-drop-down-content>
+              <div class="d-flex flex-column" v-else>
                 <img src="@/assets/images/starred.svg" alt="starred " />
                 <p class="text-center">Star important boards to access them quickly and easily.</p>
               </div>
@@ -102,7 +104,7 @@
               Templates
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Templates'" />
+            <workspace-dropdown :title="'Templates'" :show="false" />
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start active">
             <a class="nav-link text-white" aria-current="page" href="#"> Create </a>
@@ -121,11 +123,17 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
+              data-bs-auto-close="false"
               role="button"
-              aria-expanded="false">
+              aria-expanded="false"
+              @click="showInformationDD = true">
               <i class="bi bi-info-circle" />
             </a>
-            <workspace-dropdown :title="'Information'" class="dropdown-menu-end">
+            <workspace-dropdown
+              :title="'Information'"
+              :show="showInformationDD"
+              @close="showInformationDD = false"
+              class="dropdown-menu-end">
               <div class="d-flex flex-column">
                 <img src="@/assets/images/info.png" alt="starred " />
                 <p class="text-center">It’s easy to get your team up and running with Trello playbooks</p>
@@ -139,11 +147,17 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
+              data-bs-auto-close="false"
               role="button"
-              aria-expanded="false">
+              aria-expanded="false"
+              @click="showNotificationDD = true">
               <i class="bi bi-bell" />
             </a>
-            <workspace-dropdown :title="'Notifications'" class="dropdown-menu-end" />
+            <workspace-dropdown
+              :title="'Notifications'"
+              :show="showNotificationDD"
+              @close="showNotificationDD = false"
+              class="dropdown-menu-end" />
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
             <a
@@ -151,11 +165,18 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
+              data-bs-auto-close="false"
               role="button"
-              aria-expanded="false">
+              aria-expanded="false"
+              @click="showAccountDD = true">
               AA
             </a>
-            <workspace-dropdown :title="'Account'" class="dropdown-menu-end p-0" :header-classes="'py-1 px-3'">
+            <workspace-dropdown
+              :title="'Account'"
+              :show="showAccountDD"
+              @close="showAccountDD = false"
+              class="dropdown-menu-end p-0"
+              :header-classes="'py-1 px-3'">
               <ul class="list-group">
                 <li
                   class="dropdown-item bg-transparent px-3 py-2 d-flex gap-2 justify-content-start align-items-start"
@@ -186,9 +207,10 @@
   </nav>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import WorkspaceDropdown from '@/components/WorkspaceDropdown.vue'
+import RecentDropDownContent from '@/components/RecentDropDownContent.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
 import Avatar from '@/components/Avatar.vue'
 import { logOutService } from '@/services/auth'
@@ -197,10 +219,21 @@ import { allUserBoardsService } from '@/services/board'
 import { mapState } from 'vuex'
 
 export default defineComponent({
-  components: { WorkspaceDropdown, WorkspaceTitle, Avatar },
+  components: { WorkspaceDropdown, WorkspaceTitle, Avatar, RecentDropDownContent },
+  data () {
+    return {
+      showWorkspaceDD: false,
+      showInformationDD: false,
+      showNotificationDD: false,
+      showAccountDD: false,
+      showRecentDropDown: false,
+      showStarredDropDown: false
+    }
+  },
   mounted () {
     this.getAllUserBoards()
   },
+  inject: ['recentBoards', 'starredBoards'],
   computed: {
     ...mapState({
       workspace: 'workspace'

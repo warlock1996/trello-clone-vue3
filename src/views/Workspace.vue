@@ -6,7 +6,7 @@
           <workspace-side-menu class="d-none d-lg-block" />
         </div>
         <div class="col-md-8">
-            <section class="py-2 mb-2 workspace__container__recent">
+          <section v-if="starredBoards.length" class="py-2 mb-2 workspace__container__recent">
             <div class="d-flex align-items-end gap-2 justify-content-start mb-3 workspace__container__recent__title">
               <i class="bi bi-star" />
               <span>Starred boards</span>
@@ -48,7 +48,7 @@
                     <template #prefix>
                       <i class="bi bi-kanban" />
                     </template>
-                    Boards
+                    Boards ({{ workspace.createdBoards.length }})
                   </action-button>
                   <action-button>
                     <template #prefix>
@@ -89,7 +89,12 @@
               <i class="bi bi-info-circle" />
             </div>
             <div class="d-flex flex-wrap gap-3 justify-content-start my-2">
-              <board v-for="b in workspace.invitedBoards" :key="b._id" :name="b.name" />
+              <board
+                v-for="b in workspace.invitedBoards"
+                :key="b._id"
+                :name="b.name"
+                :starred="b.starred"
+                @click="$router.push({ name: 'kanban', params: { boardId: b._id } })" />
             </div>
           </section>
         </div>
@@ -99,14 +104,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import Board from '@/components/Board.vue'
 import WorkspaceSideMenu from '@/components/WorkspaceSideMenu.vue'
 import CreateNewBoard from '@/components/CreateNewBoard.vue'
 import ActionButton from '@/components/ActionButton.vue'
 import WorkspaceTitle from '@/components/WorkspaceTitle.vue'
-import { mapState } from 'vuex'
-import { BoardType } from '@/types/entities'
+import { defineComponent } from 'vue'
 export default defineComponent({
   components: {
     Board,
@@ -115,17 +118,7 @@ export default defineComponent({
     CreateNewBoard,
     ActionButton
   },
-  computed: {
-    ...mapState({
-      workspace: 'workspace'
-    }),
-    starredBoards () {
-      return this.workspace.createdBoards.filter((board: BoardType) => board.starred)
-    },
-    recentBoards () {
-      return JSON.parse(localStorage.getItem('recentBoards'))
-    }
-  }
+  inject: ['starredBoards', 'recentBoards', 'workspace']
 })
 </script>
 

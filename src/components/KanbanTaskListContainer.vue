@@ -5,7 +5,7 @@
       <action-button
         v-if="!showAddForm"
         @click="showAddForm = true"
-        class="task-list__form__btn p-2 w-100 justify-content-start">
+        class="task-list__form__btn p-0 text-white w-100 justify-content-start">
         <template #prefix>
           <i class="bi bi-plus"></i>
         </template>
@@ -72,6 +72,7 @@ export default defineComponent({
       background: #ffffff52;
     }
     &__btn {
+      background: transparent;
       font-size: 14px;
       color: #ffffff;
       &:hover {

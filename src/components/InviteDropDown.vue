@@ -9,11 +9,7 @@
       <i class="bi bi-person-plus" />
       Invite
     </action-button>
-    <workspace-dropdown
-      @close="inviteDD = false"
-      title="Invite to board"
-      class="invitedd__dropdown"
-      :class="{ show: inviteDD }">
+    <workspace-dropdown :show="inviteDD" @close="inviteDD = false" title="Invite to board" class="invitedd__dropdown">
       <div class="invitedd__dropdown__content d-flex flex-column justify-content-between">
         <form class="dropdown">
           <input
@@ -29,7 +25,7 @@
             header-classes="d-none"
             divider-classes="d-none"
             class="pt-3 border"
-            :class="{ show: searchedMembers.length }"
+            :show="searchedMembers.length ? true : false"
             :root-styles="{
               width: '100%',
               minWidth: '100%',
@@ -104,6 +100,8 @@ export default defineComponent({
         this.chosenMembers.map((mem: MemberType) => mem.email)
       )
       if (!res.error) {
+        this.search = ''
+        this.chosenMembers = []
         this.inviteDD = false
       }
     },

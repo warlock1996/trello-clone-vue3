@@ -1,15 +1,19 @@
 <template>
   <div class="dropdown-menu shadow pt-1" :class="{ show: show }" style="width: 300px" :style="rootStyles">
-    <div class="dropdown-menu-header d-flex align-items-center" :class="headerClasses">
-      <div class="title text-center flex-grow-1" :class="titleClasses">
-        {{ title }}
+    <div class="dropdown-menu-header" :class="headerClasses">
+      <div class="d-flex gap-2 align-items-center justify-content-between">
+        <div class="title text-center flex-grow-1" :class="titleClasses">
+          {{ title }}
+        </div>
+        <div class="icon" @click="$emit('close')">
+          <i class="bi bi-x fs-5" />
+        </div>
       </div>
-      <div class="icon" @click="$emit('close')">
-        <i class="bi bi-x fs-5" />
-      </div>
+      <hr class="dropdown-divider" :class="dividerClasses" />
     </div>
-    <hr class="dropdown-divider" :class="dividerClasses" />
-    <slot class="dropdown-menu-content px-3 pb-3" />
+    <div class="dropdown-menu-content">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -53,6 +57,10 @@ export default defineComponent({
 .dropdown-menu {
   font-size: 14px;
   font-weight: normal;
+  &-content {
+    max-height: 386px;
+    overflow: auto;
+  }
   .icon {
     cursor: pointer;
   }

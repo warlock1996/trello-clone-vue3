@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group px-2 workspace-sidemenu">
-    <li class="list-group-item d-flex gap-2 border-0 px-2">
+    <li class="list-group-item d-flex gap-2 border-0 px-2 active">
       <i class="bi bi-kanban" />
       <span>Boards</span>
     </li>
@@ -24,7 +24,7 @@ export default defineComponent({})
 <style lang="scss" scoped>
 .workspace-sidemenu {
   position: sticky;
-  top: 50px;
+  top: 60px;
   width: 240px;
   font-size: 14px;
   font-weight: 500;
