@@ -1,10 +1,13 @@
 <template>
-  <action-button
-    class="create-board d-flex flex-column justify-content-center align-items-center p-2 dropdown position-relative">
-    <div class="dropdown-toggle" data-bs-toggle="dropdown" @click="showCreateBoardDD = true" data-bs-auto-close="false">
-      <p class="mb-0">Create new board</p>
-      <p class="mb-0">remaining</p>
-    </div>
+  <div class="create-board dropdown">
+    <action-button
+      @click="showCreateBoardDD = true"
+      data-bs-toggle="dropdown"
+      data-bs-auto-close="false"
+      class="d-flex h-100 w-100 justify-content-center align-items-center p-2 position-relative dropdown-toggle">
+      <p class="mb-0">Create new board <br> remaining</p>
+      <i class="bi bi-question-circle position-absolute"></i>
+    </action-button>
     <workspace-dropdown title="Create board" :show="showCreateBoardDD" @close="showCreateBoardDD = false">
       <Form @submit="handleCreateBoard" v-slot="{ meta: { valid }, errors }">
         <label for="board">Board title</label>
@@ -13,8 +16,7 @@
         <action-button type="submit" :disabled="!valid">Create</action-button>
       </Form>
     </workspace-dropdown>
-    <i class="bi bi-question-circle position-absolute"></i>
-  </action-button>
+  </div>
 </template>
 
 <script lang="ts">
