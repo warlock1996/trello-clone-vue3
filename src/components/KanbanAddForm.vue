@@ -1,47 +1,44 @@
 <template>
   <div class="list-input-form d-flex flex-column gap-2">
-    <textarea
-      v-if="inputType === 'textarea'"
-      v-model="value"
-      type="text"
-      ref="textarea"
-      :style="textAreaStyles"
-      :placeholder="textAreaPlaceholder"
-      class="list-input-form__textarea shadow-0 w-100 rounded-1 p-2"
-    />
-    <input
-      v-else
-      v-model="value"
-      ref="input"
-      type="text"
-      @keydown.enter="$emit('submit', value)"
-      class="form-control"
-      placeholder="Enter list title"
-    />
-    <div class="list-input-form__actions d-flex gap-2 align-items-center">
-      <button
-        @click="$emit('submit', value)"
-        class="list-input-form__actions__btn btn-primary-1"
-        :class="buttonClasses"
-      >
-        {{ buttonText }}
-      </button>
-      <i
-        class="b bi-x flex-grow-1 list-input-form__actions__icon"
-        @click="$emit('close')"
-        role="button"
-      />
-      <i
-        v-if="showSubMenu"
-        class="bi bi-three-dots rounded-1 px-1 list-input-form__actions__icon submenu"
-        role="button"
-      />
-    </div>
+    <Form v-slot="{ errors }" @submit="(values, actions) => $emit('submit', value, values, actions)">
+      <Field
+        v-if="inputType === 'textarea'"
+        v-model="value"
+        as="textarea"
+        name="input"
+        ref="textarea"
+        rules="required"
+        :style="textAreaStyles"
+        :placeholder="textAreaPlaceholder"
+        class="list-input-form__textarea shadow-0 w-100 rounded-1 p-2" />
+      <Field
+        v-else
+        v-model="value"
+        ref="input"
+        name="input"
+        rules="required"
+        type="text"
+        @keydown.enter="$emit('submit', value)"
+        class="form-control"
+        placeholder="Enter list title" />
+      <div class="error text-danger mb-2" v-if="errors['input']">{{ errors['input'] }}</div>
+      <div class="list-input-form__actions d-flex gap-2 align-items-center">
+        <button type="submit" class="list-input-form__actions__btn btn-primary-1" :class="buttonClasses">
+          {{ buttonText }}
+        </button>
+        <i class="b bi-x flex-grow-1 list-input-form__actions__icon" @click="$emit('close')" role="button" />
+        <i
+          v-if="showSubMenu"
+          class="bi bi-three-dots rounded-1 px-1 list-input-form__actions__icon submenu"
+          role="button" />
+      </div>
+    </Form>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import { Form, Field } from 'vee-validate'
 export default defineComponent({
   props: {
     inputType: {
@@ -74,6 +71,10 @@ export default defineComponent({
       default: () => ({})
     }
   },
+  components: {
+    Form,
+    Field
+  },
   data () {
     return {
       value: ''
@@ -81,7 +82,7 @@ export default defineComponent({
   },
   mounted () {
     this.value = this.defaultValue
-    this.$refs[this.inputType].focus()
+    // this.$refs[this.inputType].focus()
   }
 })
 </script>

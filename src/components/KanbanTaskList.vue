@@ -38,7 +38,7 @@
         <kanban-task-card class="mb-1" v-for="(task) in listTasks" :key="task._id" :task="task" />
       </div>
       <div class="task-list__add">
-        <list-input :listId="list._id" />
+        <kanban-add-task-form :listId="list._id" />
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent } from 'vue'
-import ListInput from '@/components/ListInput.vue'
+import KanbanAddTaskForm from '@/components/KanbanAddTaskForm.vue'
 import { updateListService, deleteListService } from '@/services/list'
 import { indexTasksByListService, moveTaskService } from '@/services/task'
 import WorkspaceDropdown from './WorkspaceDropdown.vue'
@@ -63,7 +63,7 @@ export default defineComponent({
     }
   },
   components: {
-    ListInput,
+    KanbanAddTaskForm,
     WorkspaceDropdown,
     WorkspaceList,
     WorkspaceListItem,

@@ -1,14 +1,15 @@
 <template>
   <div>
     <div
+      :id="task._id"
+      @click="showModal = true"
+      data-bs-toggle="modal"
+      :data-bs-target="`#${task.task[0] + task._id}`"
       draggable="true"
-      @dragstart.stop="handleDragStart"
+      @dragstart="handleDragStart"
       class="task-card card"
       role="button"
-      data-bs-toggle="modal"
-      :id="task._id"
-      :data-bs-target="`#${task.task[0] + task._id}`"
-      @click="showModal = true">
+      >
       <div
         class="task-card__body card-body rounded-2 p-0"
         @mouseover="showEditIcon = true"
@@ -34,7 +35,7 @@
                 minWidth: '10px'
               }"></kanban-task-label>
           </div>
-          <div class="task-card__body__title card-title d-flex justify-content-between align-items-center">
+          <div class="task-card__body__title card-title d-flex justify-content-between align-items-center text-break">
             {{ task.task }}
           </div>
           <div class="task-card__body__details d-flex flex-wrap gap-2 justify-content-start align-items-center">

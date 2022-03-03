@@ -7,13 +7,17 @@ export default {
         text: {
           type: String,
           default: ''
+        },
+        variant: {
+          type: String,
+          default: 'light'
         }
       },
       render: function () {
         return h(
           'div',
           {
-            class: 'toast show m-3',
+            class: `toast show mb-1 bg-${this.$props.variant}`,
             role: 'alert',
             'aria-live': 'assertive',
             'aria-atomic': true,
@@ -24,8 +28,7 @@ export default {
           h(
             'div',
             {
-              class:
-                'toast-body d-flex align-items-center justify-content-between gap-2'
+              class: 'toast-body d-flex align-items-center justify-content-between gap-2'
             },
             [
               h('span', {}, this.$props.text),

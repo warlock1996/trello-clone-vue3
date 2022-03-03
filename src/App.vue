@@ -7,7 +7,7 @@
     </div>
     <component :is="$route.meta.layout"></component>
     <div class="toast-container position-fixed top-0 end-0">
-      <toast v-for="(n, index) in toasts" :key="index" :text="n"></toast>
+      <toast v-for="(n, index) in toasts" :key="index" :text="n.text" :variant="n.variant"></toast>
     </div>
   </div>
 </template>
@@ -78,10 +78,13 @@ export default defineComponent({
   z-index: 1001;
 }
 
+// .toast-container {
+//   z-index: 1200;
+// }
 // temp
-.modal-backdrop {
-  display: none;
-}
+// .modal-backdrop {
+//   display: none;
+// }
 
 @font-face {
   font-family: CharlieDisplay-Regular;

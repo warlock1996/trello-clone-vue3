@@ -15,6 +15,7 @@
 import { defineComponent } from 'vue'
 import KanbanAddForm from '@/components/KanbanAddForm.vue'
 import { createTaskService } from '@/services/task'
+import { FormActions } from 'vee-validate'
 export default defineComponent({
   props: {
     listId: {
@@ -22,7 +23,7 @@ export default defineComponent({
       required: true
     }
   },
-  inject: ['addTaskToList'],
+  inject: ['addTaskToList', 'setToast'],
   data () {
     return {
       showInput: false
@@ -32,11 +33,15 @@ export default defineComponent({
     KanbanAddForm
   },
   methods: {
-    async handleAddTask (payload: string) {
-      this.showInput = false
-      const res = await createTaskService(this.$route.params.boardId, this.listId, { task: payload })
-      if (!res.error) {
-        this.addTaskToList(res.data)
+    async handleAddTask (value: string, values: unknown, actions: FormActions<Record<string, unknown>>) {
+      try {
+        const res = await createTaskService(this.$route.params.boardId, this.listId, { task: value })
+        if (!res.error) {
+          this.showInput = false
+          this.addTaskToList(res.data)
+        }
+      } catch (error) {
+        actions.setFieldError('input', error.task.msg)
       }
     }
   }
