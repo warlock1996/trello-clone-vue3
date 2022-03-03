@@ -40,8 +40,8 @@ export default defineComponent({
   data () {
     return {
       user: {
-        email: '',
-        password: ''
+        email: 'post.arslan@outlook.com',
+        password: 'ArslanAli123$'
       }
     }
   },
