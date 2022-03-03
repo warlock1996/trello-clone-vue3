@@ -9,6 +9,12 @@ export default {
     app.config.globalProperties.$axios = instance
     app.config.globalProperties.$axios_auth = auth
 
+    app.config.globalProperties.$setErrors = (errors: any, actions: any) => {
+      Object.keys(errors).forEach((key: string) => {
+        actions.setFieldError(key, errors[key].msg)
+      })
+    }
+
     instance.defaults.headers.common.Authorization = `Bearer ${Cookies.get('token')}`
 
     instance.interceptors.response.use((value) => {

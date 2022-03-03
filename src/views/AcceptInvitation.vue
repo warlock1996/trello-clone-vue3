@@ -1,5 +1,5 @@
 <template>
-  <div class="activate-account-page d-flex align-items-center justify-content-center text-center">
+  <div class="accept-invite-page d-flex align-items-center justify-content-center text-center">
     <div class="container p-4">
       <h3>You have been invited to collaborate on {{ invite.board }}</h3>
       <action-button class="mx-auto btn-primary-1" :disabled="isInviting" @click="handleInvite">
@@ -46,7 +46,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.activate-account-page {
+.accept-invite-page {
   background: whitesmoke;
   height: 100vh;
 }

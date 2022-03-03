@@ -1,28 +1,28 @@
 <template>
   <div class="login-form">
-    <form>
-      <input
+    <Form @submit="handleLogin" v-slot="{ meta: { valid }, errors }">
+      <Field
         v-model="user.email"
-        class="form-control mb-3"
+        rules="required"
+        class="form-control"
         type="email"
         name="email"
         placeholder="Enter email" />
-      <input
+      <div class="error text-danger mb-3 mt-1">{{ errors['email'] }}</div>
+      <Field
         v-model="user.password"
-        class="form-control mb-3"
+        rules="required"
+        class="form-control"
         type="password"
         autocomplete="new-password"
         name="password"
         placeholder="Enter password" />
+      <div class="error text-danger mb-3 mt-1">{{ errors['password'] }}</div>
+
       <div class="d-grid d-block mb-3">
-        <button
-          class="btn btn-success btn-sm text-white"
-          :disabled="loginButtonState"
-          @click.prevent="handleLogin">
-          Log In
-        </button>
+        <button type="submit" class="btn btn-success btn-sm text-white" :disabled="!valid">Log In</button>
       </div>
-    </form>
+    </Form>
     <div class="login-form__methods mb-3">
       <div class="mb-3">OR</div>
       <a class="mb-3" href="#">Log in with SSO</a>
@@ -33,29 +33,37 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { loginService } from '@/services/auth'
+import { Form, Field, FormActions } from 'vee-validate'
 import Cookies from 'js-cookie'
 
 export default defineComponent({
   data () {
     return {
       user: {
-        email: 'post.arslan@outlook.com',
-        password: 'ArslanAli123$'
-      },
-      loginButtonState: false
+        email: '',
+        password: ''
+      }
     }
   },
+  components: {
+    Form,
+    Field
+  },
   mounted () {
-    this.user.email = this.$route.params.email
+    if (this.$route.params.email) {
+      this.user.email = this.$route.params.email
+    }
   },
   methods: {
-    async handleLogin () {
-      this.loginButtonState = true
-      const res = await loginService(this.user)
-      if (!res.error) {
-        Cookies.set('token', res.token)
-        this.loginButtonState = false
-        this.$router.push({ name: 'workspace' })
+    async handleLogin (values: unknown, actions: FormActions<Record<string, unknown>>) {
+      try {
+        const res = await loginService(this.user)
+        if (!res.error) {
+          Cookies.set('token', res.token)
+          this.$router.push({ name: 'workspace' })
+        }
+      } catch (error: any) {
+        this.$setErrors(error, actions)
       }
     }
   }

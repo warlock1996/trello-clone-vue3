@@ -32,7 +32,7 @@ import { BoardType } from '@/types/entities'
 export default defineComponent({
   props: {
     recentBoards: {
-      type: Array as PropType<BoardType>,
+      type: Array as PropType<BoardType[]>,
       required: true
     }
   },

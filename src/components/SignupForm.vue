@@ -1,30 +1,40 @@
 <template>
   <div class="signup-form">
-    <form>
-      <input
+    <Form @submit="handleSignUp" v-slot="{ meta: { valid }, errors }">
+      <Field
         v-model="user.name"
-        class="form-control mb-3"
+        class="form-control mb-1"
+        rules="required"
         type="text"
         name="name"
         placeholder="Enter full name" />
-      <input
+      <div class="error text-danger mb-3">{{ errors['name'] }}</div>
+      <Field
         v-model="user.email"
-        class="form-control mb-3"
+        rules="required|email"
+        class="form-control mb-1"
         type="email"
         name="email"
         placeholder="Enter email" />
-      <input
+      <div class="error text-danger mb-3">{{ errors['email'] }}</div>
+      <Field
         v-model="user.password"
-        class="form-control mb-3"
+        class="form-control mb-1"
         type="password"
         name="password"
+        rules="required"
         placeholder="Enter password" />
-      <input
+      <div class="error text-danger mb-3">{{ errors['password'] }}</div>
+
+      <Field
         v-model="user.confirmPassword"
-        class="form-control mb-3"
+        class="form-control mb-1"
         type="password"
-        name="password"
+        rules="required"
+        name="confirmPassword"
         placeholder="Re-enter password" />
+      <div class="error text-danger mb-3">{{ errors['confirmPassword'] }}</div>
+
       <div class="signup-form__note">
         <p>
           By signing up, you confirm that you've read and accepted our
@@ -34,19 +44,15 @@
         </p>
       </div>
       <div class="d-grid d-block mb-3">
-        <button
-          class="btn btn-success btn-sm text-white"
-          @click.prevent="handleSignUp"
-          :disabled="signupButtonState">
-          Continue
-        </button>
+        <button type="submit" class="btn btn-success btn-sm text-white" :disabled="!valid">Continue</button>
       </div>
-    </form>
+    </Form>
   </div>
 </template>
 
 <script lang="ts">
 import { signUpService } from '@/services/auth'
+import { Form, Field, FormActions } from 'vee-validate'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -57,24 +63,29 @@ export default defineComponent({
         email: 'someuser@gmail.com',
         password: 'ArslanAli123$',
         confirmPassword: 'ArslanAli123$'
-      },
-      signupButtonState: false
+      }
     }
+  },
+  components: {
+    Form,
+    Field
   },
   inject: ['setLayoutAlertText'],
   methods: {
-    async handleSignUp () {
-      this.signupButtonState = true
-      const res = await signUpService(this.user)
-      if (!res.error) {
-        this.setLayoutAlertText(res.message)
-        this.signupButtonState = false
-        this.$router.push({
-          name: 'login',
-          params: {
-            email: this.user.email
-          }
-        })
+    async handleSignUp (values: unknown, actions: FormActions<Record<string, unknown>>) {
+      try {
+        const res = await signUpService(this.user)
+        if (!res.error) {
+          this.setLayoutAlertText(res.message)
+          this.$router.push({
+            name: 'login',
+            params: {
+              email: this.user.email
+            }
+          })
+        }
+      } catch (error) {
+        this.$setErrors(error, actions)
       }
     }
   }

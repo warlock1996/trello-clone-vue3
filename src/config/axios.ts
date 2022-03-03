@@ -8,6 +8,9 @@ export const instance: Axios = axios.create({
 
 export const auth: Axios = axios.create({
   baseURL: 'http://localhost:5000/api'
+  // validateStatus: function (status) {
+  //   // return (status >= 200 && status < 300) || status === 422
+  // }
 })
 
 export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> => {
@@ -16,13 +19,17 @@ export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> 
       case 401:
         Cookies.remove('token')
         router.push({ name: 'login' })
-        return Promise.reject(new Error('UNAUTHORIZED ACCESS !'))
+        console.log(new Error('UNAUTHORIZED ACCESS !'))
+        break
       case 500:
-        return Promise.reject(new Error('SERVER ERROR !'))
+        console.error(new Error('SERVER ERROR !'))
+        break
       case 404:
-        return Promise.reject(new Error('NOT FOUND ERROR !'))
+        console.error(new Error('NOT FOUND ERROR !'))
+        break
       case 422:
-        return Promise.reject(new Error('INVALID PAYLOAD !'))
+        console.error('INVALID PAYLOAD')
+        return Promise.reject(error.response.data)
     }
   } else if (error.request) {
     return Promise.reject(new Error('NO RESPONSE RECEIVED'))
