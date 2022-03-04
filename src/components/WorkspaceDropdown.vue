@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown-menu shadow pt-1" :class="{ show: show }" style="width: 300px" :style="rootStyles">
+  <div class="dropdown-menu shadow pt-1" :class="{ show: show }" style="min-width: 300px" :style="rootStyles">
     <div class="dropdown-menu-header" :class="headerClasses">
       <div class="d-flex gap-2 align-items-center justify-content-between">
         <div class="title text-center flex-grow-1" :class="titleClasses">

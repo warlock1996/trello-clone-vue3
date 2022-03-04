@@ -4,8 +4,9 @@ import router from './router'
 import axios from './plugins/axios'
 import toast from './plugins/toast'
 import store from './store'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import '@/config/rules'
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const app = createApp(App)
 

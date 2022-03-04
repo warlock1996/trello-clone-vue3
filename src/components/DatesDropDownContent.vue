@@ -20,9 +20,10 @@
     <div class="date-picker-wrapper__form">
       <p class="label mb-1" for="startdate">Start date</p>
       <div class="date-picker-wrapper__form__startdate d-flex gap-2 justify-content-start align-items-center mb-2">
-        <input v-model="hasRange" class="form-check-input" type="checkbox" id="startdate" />
+        <input v-model="hasRange" disabled class="form-check-input" type="checkbox" id="startdate" />
         <input
           type="text"
+          disabled
           :value="formatted.startDate"
           class="form-control form-control-sm"
           :class="{ isFocused: hasRange }" />
@@ -50,7 +51,6 @@
 </template>
 
 <script lang="ts">
-import { editTaskService } from '@/services/task'
 import { TaskDateType } from '@/types/entities'
 import { defineComponent, PropType } from 'vue'
 import DatePicker from 'vue3-date-time-picker'
@@ -104,8 +104,9 @@ export default defineComponent({
   watch: {
     hasRange: {
       handler (v) {
+        console.log('watch running !')
         if (v) this.defaultDate = [new Date(), new Date(this.date.dueDate)]
-        else this.defaultDate = new Date(this.date.dueDate)
+        // else this.defaultDate = new Date(this.date.dueDate)
       }
     }
   },
@@ -115,7 +116,9 @@ export default defineComponent({
       this.defaultDate = [new Date(this.date.startDate), new Date(this.date.dueDate)]
     } else {
       this.hasRange = false
-      this.defaultDate = new Date(this.date.dueDate)
+      if (this.date.dueDate) {
+        this.defaultDate = new Date(this.date.dueDate)
+      }
     }
   },
   methods: {

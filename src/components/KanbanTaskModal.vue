@@ -1,12 +1,12 @@
 <template>
-  <div class="taskmodal modal fade" :id="task.task[0] + task._id" :class="{ show: show }">
+  <div class="taskmodal modal fade" :id="`${task.task[0]}${task._id}`" :class="{ show: show }">
     <div class="taskmodal__dialog modal-dialog">
-      <div class="taskmodal__dialog__content modal-content border-0 rounded-1">
+      <div v-if="show" class="taskmodal__dialog__content modal-content border-0 rounded-1">
         <i
           class="bi bi-x taskmodal__dialog__content__close rounded-circle"
-          role="button"
           data-bs-dismiss="modal"
-          @click.stop="$emit('close')"></i>
+          @click="$emit('close')"
+          role="button"></i>
         <div
           v-if="cover"
           class="taskmodal__dialog__content__header modal-header d-flex justify-content-center"
@@ -453,6 +453,7 @@ export default defineComponent({
 .taskmodal {
   &.show {
     background: #000000a3;
+    display: block;
   }
   .dropdown-toggle {
     &::after {

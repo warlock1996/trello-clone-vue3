@@ -1,15 +1,13 @@
 <template>
-  <div>
+  <div class="wrapper" role="button">
     <div
       :id="task._id"
-      @click="showModal = true"
-      data-bs-toggle="modal"
-      :data-bs-target="`#${task.task[0] + task._id}`"
-      draggable="true"
-      @dragstart="handleDragStart"
       class="task-card card"
-      role="button"
-      >
+      draggable="true"
+      data-bs-toggle="modal"
+      :data-bs-target="`#${task.task[0]}${task._id}`"
+      @dragstart="handleDragStart"
+      @click="showModal = true">
       <div
         class="task-card__body card-body rounded-2 p-0"
         @mouseover="showEditIcon = true"
@@ -21,8 +19,7 @@
             class="img-fluid rounded-top"
             alt="board" />
         </div>
-        <i v-show="showEditIcon" @click.stop="() => {}" class="bi bi-pencil task-card__body__editicon"></i>
-
+        <i v-show="showEditIcon" class="bi bi-pencil task-card__body__editicon"></i>
         <div class="task-card__body__details d-flex flex-column gap-1 px-2 py-1">
           <div v-if="taskLabels.length" class="d-flex flex-wrap gap-1 justify-content-start align-items-center">
             <kanban-task-label
@@ -78,18 +75,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import { mapState } from 'vuex'
 import { AttachmentType, LabelType, MemberType } from '@/types/entities'
-import KanbanTaskModal from '@/components/KanbanTaskModal.vue'
 import KanbanTaskLabel from '@/components/KanbanTaskLabel.vue'
 import AvatarGroup from '@/components/AvatarGroup.vue'
 
 export default defineComponent({
   components: {
     KanbanTaskLabel,
-    KanbanTaskModal,
-    AvatarGroup
+    AvatarGroup,
+    KanbanTaskModal: defineAsyncComponent(
+      () => import(/* webpackChunkName: "TaskModal" */ '@/components/KanbanTaskModal.vue')
+    )
   },
   props: {
     task: {

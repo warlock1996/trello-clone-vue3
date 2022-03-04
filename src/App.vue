@@ -82,9 +82,9 @@ export default defineComponent({
 //   z-index: 1200;
 // }
 // temp
-// .modal-backdrop {
-//   display: none;
-// }
+.modal-backdrop {
+  display: none;
+}
 
 @font-face {
   font-family: CharlieDisplay-Regular;
