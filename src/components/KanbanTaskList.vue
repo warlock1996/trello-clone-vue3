@@ -35,7 +35,7 @@
       </div>
       <div v-if="marker" ref="task-marker" class="d-flex w-100 bg-secondary border-2 px-2 py-4"></div>
       <div class="task-list__tasks mb-2" v-if="listTasks.length">
-        <kanban-task-card class="mb-1" v-for="(task) in listTasks" :key="task._id" :task="task" />
+        <kanban-task-card class="mb-1" v-for="task in listTasks" :key="task._id" :task="task" />
       </div>
       <div class="task-list__add">
         <kanban-add-task-form :listId="list._id" />
@@ -169,11 +169,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.task-list{
+.task-list {
+  max-height: 100%;
   background: #ebecf0;
   &__body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 280px;
+    overflow: auto;
     background: #ebecf0;
     &__title {
       input {
@@ -184,6 +188,18 @@ export default defineComponent({
           box-shadow: inset 0 0 0 2px #0079bf;
         }
       }
+    }
+  }
+  &__tasks {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 8px !important;
+      border-radius: 5px;
+      background: #091e4214;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: gray;
     }
   }
 }

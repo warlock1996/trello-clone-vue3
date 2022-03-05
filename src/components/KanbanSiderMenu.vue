@@ -1,5 +1,5 @@
 <template>
-  <div class="card h-100 w-100 kanban-menu rounded-0" @click.stop="() => {}">
+  <div class="card h-100 w-100 kanban-menu rounded-0">
     <div class="card-body p-0">
       <div class="d-flex p-2 justify-content-between">
         <workspace-title class="p-0" :title="'Trello workspace'" />
@@ -11,7 +11,6 @@
       </div>
       <hr class="my-2" />
       <kanban-list :items="menuItems" />
-      <div class="workspace-views my-3 ps-3">Workpace views</div>
       <div class="your-boards my-3">
         <div class="d-flex justify-content-between align-items-center ps-3 p-2">
           <span> Your boards </span>
@@ -73,8 +72,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .kanban-menu {
   .card-body {
-    height: 100%;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
     width: 270px;
     background: inherit;
   }
@@ -88,7 +88,20 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 600;
     color: #5e6c84;
+    max-height: 100%;
+    overflow: hidden;
     &__list {
+      height: 100%;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        width: 8px !important;
+        border-radius: 5px;
+        background: #091e4214;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: gray;
+      }
     }
     .add-board {
       font-size: 24px;

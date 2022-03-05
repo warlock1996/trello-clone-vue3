@@ -64,8 +64,9 @@ export default defineComponent({
 .layout-wrap {
   position: relative;
   z-index: 1000;
-  height: 100vh;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .layout-alert {
@@ -82,9 +83,9 @@ export default defineComponent({
 //   z-index: 1200;
 // }
 // temp
-.modal-backdrop {
-  display: none;
-}
+// .modal-backdrop {
+//   display: none;
+// }
 
 @font-face {
   font-family: CharlieDisplay-Regular;

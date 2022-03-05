@@ -98,23 +98,35 @@ export default defineComponent({
 <style lang="scss" scoped>
 .kanban {
   background: #6a8ea2;
-  height: calc(100% - 45px);
+  height: calc(100vh - 45px);
   overflow: auto;
   &__row {
-    position: relative;
+    &__sidebar {
+      max-height: 100%;
+    }
     height: 100%;
     &__view {
       width: fit-content;
-      height: 100%;
       overflow: auto;
       &__row {
-        height: 100%;
+        height: calc(100vh - 45px);
         &__nav {
           flex-grow: 0;
         }
         &__container {
-          height: 100%;
-          overflow: auto;
+          width: fit-content;
+          overflow-x: auto;
+          flex-grow: 1;
+          &::-webkit-scrollbar {
+            width: 8px !important;
+            height: 8px !important;
+            border-radius: 5px;
+            background: #091e4214;
+          }
+          &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: gray;
+          }
         }
       }
     }

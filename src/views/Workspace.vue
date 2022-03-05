@@ -124,8 +124,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .workspace {
-  min-height: 100vh;
-
+  height: calc(100vh - 45px);
+  overflow-y: auto;
   background: var(--page-bg);
 
   // page reset styles
