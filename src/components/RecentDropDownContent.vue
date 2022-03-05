@@ -2,7 +2,7 @@
   <div class="recent-dropdown">
     <ul class="list-group-item recent-dropdown-list p-0 border-0">
       <li
-        class="recent-dropdown-list-item dropdown-item d-flex gap-2 p-0 my-1 justify-content-start align-items-start"
+        class="recent-dropdown-list-item dropdown-item d-flex gap-2 p-0 my-1 justify-content-start align-items-center"
         v-for="board in recentBoards"
         :key="board._id"
         @click="$router.push({ name: 'kanban', params: { boardId: board._id } })">

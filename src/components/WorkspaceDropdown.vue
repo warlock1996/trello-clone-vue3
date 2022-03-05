@@ -58,7 +58,7 @@ export default defineComponent({
   font-size: 14px;
   font-weight: normal;
   &-content {
-    max-height: 386px;
+    max-height: 450px;
     overflow: auto;
   }
   .icon {

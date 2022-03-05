@@ -1,12 +1,12 @@
 <template>
-  <div class="avatar-group d-flex position-relative align-items-center justify-content-end">
+  <div class="avatar-group d-flex flex-wrap position-relative align-items-center justify-content-end">
     <avatar
-      v-for="(member, index) in members"
+      v-for="member in memberAvatars"
       :key="member._id"
       :name="member.name"
       :size="size"
-      class="avatar-group-item fw-bold m-0 position-absolute"
-      :style="{ right: `${index * 15}px`, borderWidth: '1px' }"></avatar>
+      class="avatar-group-item fw-bold m-0 border-1"></avatar>
+    <action-button v-if="limited > 0" class="rounded-pill p-0 text-white fw-bold"> +{{ limited }} </action-button>
   </div>
 </template>
 
@@ -15,28 +15,40 @@ import { MemberType } from '@/types/entities'
 
 import { defineComponent, PropType } from 'vue'
 import Avatar from '@/components/Avatar.vue'
+import ActionButton from './ActionButton.vue'
 export default defineComponent({
   props: {
     members: {
-      type: Array as PropType<MemberType[]>
+      type: Array as PropType<MemberType[]>,
+      default: (): Array<[]> => []
     },
     size: {
       type: String,
-      default: 'medium',
+      default: 'small',
       validator: (v: string) => ['medium', 'small'].includes(v)
+    },
+    limit: {
+      type: Number,
+      default: 20
     }
   },
   components: {
-    Avatar
+    Avatar,
+    ActionButton
+  },
+  computed: {
+    memberAvatars () {
+      return this.members.slice(0, this.limit)
+    },
+    limited () {
+      return this.members.length - this.limit
+    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .avatar-group {
-  min-width: 80px;
-  height: 28px;
-  width: fit-content;
   &-item {
     top: 0;
     transition: top 0.3s;

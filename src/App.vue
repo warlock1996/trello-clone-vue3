@@ -2,8 +2,11 @@
   <div class="layout-wrap">
     <div
       v-if="showLayoutAlert"
-      class="layout-alert fw-bold text-center px-3 py-2">
-      {{ layoutAlertText }}
+      class="layout-alert fw-bold d-flex gap-2 align-items-center justify-content-center text-center px-3 py-2">
+      <i class="bi bi-info-circle fw-bold"></i>
+      <span>
+        {{ layoutAlertText }}
+      </span>
     </div>
     <component :is="$route.meta.layout"></component>
     <div class="toast-container position-fixed top-0 end-0">
@@ -83,9 +86,9 @@ export default defineComponent({
 //   z-index: 1200;
 // }
 // temp
-// .modal-backdrop {
-//   display: none;
-// }
+.modal-backdrop {
+  display: none;
+}
 
 @font-face {
   font-family: CharlieDisplay-Regular;

@@ -28,6 +28,9 @@ import KanbanSiderMenu from '@/components/KanbanSiderMenu.vue'
 import KanbanTaskListContainer from '@/components/KanbanTaskListContainer.vue'
 import { getBoardByIdService } from '@/services/board'
 import { BoardType } from '@/types/entities'
+import { LocalUserDataType } from '@/types/misc'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
 export default defineComponent({
   components: {
     KanbanNavigation,
@@ -63,19 +66,50 @@ export default defineComponent({
     }
   },
   methods: {
-    setRecentBoard (board: Record<string, string>) {
-      const boardIds = JSON.parse(localStorage.getItem('recentBoards'))
-      if (boardIds) {
-        if (boardIds.find((b: BoardType) => b._id === board._id)) return
-        if (boardIds.length < 4) boardIds.unshift(board)
-        else {
-          boardIds.pop()
-          boardIds.unshift(board)
+    setRecentBoard (board: BoardType) {
+      try {
+        const user = jwtDecode(Cookies.get('token')) as Record<string, string>
+        const localUserData: Array<LocalUserDataType> = JSON.parse(localStorage.getItem('localUserData'))
+        if (!localUserData) {
+          localStorage.setItem(
+            'localUserData',
+            JSON.stringify([
+              {
+                user: user.email,
+                recentBoards: [board]
+              }
+            ])
+          )
+          return
         }
-        localStorage.setItem('recentBoards', JSON.stringify(boardIds))
-        return
+        const userIndex = localUserData.findIndex((data) => data.user === user.email)
+        if (userIndex === -1) {
+          localStorage.setItem(
+            'localUserData',
+            JSON.stringify([
+              ...localUserData,
+              {
+                user: user.email,
+                recentBoards: [board]
+              }
+            ])
+          )
+          return
+        }
+        const currentUserRecentBoards = localUserData[userIndex].recentBoards
+
+        if (currentUserRecentBoards.find((cb) => cb._id === board._id)) return
+
+        if (currentUserRecentBoards.length === 4) currentUserRecentBoards.pop()
+        currentUserRecentBoards.unshift(board)
+
+        localUserData[userIndex].recentBoards = currentUserRecentBoards
+
+        localStorage.setItem('localUserData', JSON.stringify(localUserData))
+      } catch (error) {
+        console.error(error)
+      } finally {
       }
-      localStorage.setItem('recentBoards', JSON.stringify([board]))
     },
     async getBoardById (id: string) {
       const res = await getBoardByIdService(id)
@@ -118,8 +152,6 @@ export default defineComponent({
           overflow-x: auto;
           flex-grow: 1;
           &::-webkit-scrollbar {
-            width: 8px !important;
-            height: 8px !important;
             border-radius: 5px;
             background: #091e4214;
           }

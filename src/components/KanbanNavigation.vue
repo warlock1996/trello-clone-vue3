@@ -28,7 +28,7 @@
           <i class="bi bi-lock" />
           Private
         </action-button>
-        <avatar-group :members="currentBoard.members"></avatar-group>
+        <avatar-group :members="currentBoard.members" size="small" :limit="5"></avatar-group>
         <invite-drop-down></invite-drop-down>
       </div>
     </div>

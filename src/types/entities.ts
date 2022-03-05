@@ -1,7 +1,7 @@
 export interface Model {
   _id: string
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export interface TaskDateType {

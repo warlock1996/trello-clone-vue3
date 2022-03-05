@@ -1,13 +1,10 @@
 <template>
-  <div
-    class="avatar d-flex justify-content-center align-items-center rounded-circle"
-    :class="dynamicClasses"
-    :style="styles">
-    {{ abbr }}
+  <div class="avatar d-flex justify-content-center align-items-center rounded-circle" :style="styles">
+    {{ abbr(name) }}
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -19,20 +16,19 @@ export default defineComponent({
     size: {
       type: String,
       default: 'medium',
-      validator: (v) => ['medium', 'small'].includes(v)
+      validator: (v: string): boolean => ['medium', 'small'].includes(v)
     }
   },
-  computed: {
-    abbr () {
-      const str = this.name.split(' ')
+  methods: {
+    abbr (name: string) {
+      const str = name.split(' ')
       if (str.length > 1) {
         return str[0].charAt(0) + str[1].charAt(0)
       }
       return str[0].charAt(0) + str[0].charAt(1)
-    },
-    dynamicClasses () {
-      return { 'p-1': this.size === 'medium', 'p-0': this.size === 'small' }
-    },
+    }
+  },
+  computed: {
     styles () {
       if (this.size === 'small') {
         return {

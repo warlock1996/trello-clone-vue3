@@ -4,6 +4,7 @@
       <Field
         v-if="inputType === 'textarea'"
         v-model="value"
+        id="textarea"
         as="textarea"
         name="input"
         ref="textarea"
@@ -14,14 +15,15 @@
       <Field
         v-else
         v-model="value"
+        id="input"
         ref="input"
         name="input"
         rules="required"
         type="text"
         @keydown.enter="$emit('submit', value)"
-        class="form-control"
+        class="form-control mb-1"
         placeholder="Enter list title" />
-      <div class="error text-danger mb-2" v-if="errors['input']">{{ errors['input'] }}</div>
+      <div class="error text-danger mb-1">{{ errors['input'] }}</div>
       <div class="list-input-form__actions d-flex gap-2 align-items-center">
         <button type="submit" class="list-input-form__actions__btn btn-primary-1" :class="buttonClasses">
           {{ buttonText }}
@@ -82,7 +84,9 @@ export default defineComponent({
   },
   mounted () {
     this.value = this.defaultValue
+    // focus is not working due to wrapping them inside Form validate component
     // this.$refs[this.inputType].focus()
+    document.getElementById(this.inputType).focus()
   }
 })
 </script>

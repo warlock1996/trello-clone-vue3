@@ -7,6 +7,9 @@ import { computed, defineComponent } from 'vue'
 import WorkspaceNav from '@/components/WorkspaceNavigation.vue'
 import { mapState } from 'vuex'
 import { BoardType } from '@/types/entities'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
+import { LocalUserDataType } from '@/types/misc'
 export default defineComponent({
   components: {
     WorkspaceNav
@@ -16,7 +19,8 @@ export default defineComponent({
       workspace: 'workspace'
     }),
     starredBoards () {
-      return this.workspace.createdBoards.filter((board: BoardType) => board.starred)
+      const allBoards = this.workspace.createdBoards.concat(this.workspace.invitedBoards)
+      return allBoards.filter((board: BoardType) => board.starred)
     }
   },
   data () {
@@ -29,7 +33,18 @@ export default defineComponent({
   },
   methods: {
     getRecentBoards () {
-      this.recentBoards = JSON.parse(localStorage.recentBoards)
+      try {
+        if (localStorage.localUserData) {
+          const decoded = jwtDecode(Cookies.get('token')) as Record<string, unknown>
+          const localUserData: Array<LocalUserDataType> = JSON.parse(localStorage.localUserData)
+          const currentUserData = localUserData.find((data) => data.user === decoded.email)
+          if (currentUserData) {
+            this.recentBoards = currentUserData.recentBoards
+          }
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
   provide () {

@@ -135,7 +135,7 @@
               @close="showInformationDD = false"
               class="dropdown-menu-end">
               <div class="d-flex flex-column">
-                <img src="@/assets/images/info.png" alt="starred " />
+                <img src="@/assets/images/info.png" alt="starred" class="img-fluid" />
                 <p class="text-center">It’s easy to get your team up and running with Trello playbooks</p>
                 <a class="text-center" href="#">Get a new tip.</a>
               </div>
@@ -161,7 +161,7 @@
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle p-0"
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
@@ -169,7 +169,7 @@
               role="button"
               aria-expanded="false"
               @click="showAccountDD = true">
-              AA
+             <avatar :name="user.name"></avatar>
             </a>
             <workspace-dropdown
               :title="'Account'"
@@ -181,10 +181,10 @@
                 <li
                   class="dropdown-item bg-transparent px-3 py-2 d-flex gap-2 justify-content-start align-items-start"
                   role="button">
-                  <avatar :name="'Arslan Ali'" class="p-4 fw-bold"></avatar>
+                  <avatar :name="user.name" class="p-4 fw-bold"></avatar>
                   <div class="d-flex flex-column">
-                    <p class="mb-0">Arslan Ali</p>
-                    <p class="mb-0">post.arslan@outlook.com</p>
+                    <p class="mb-0">{{ user.name }}</p>
+                    <p class="mb-0">{{ user.email }}</p>
                   </div>
                 </li>
                 <hr class="dropdown-divider mx-2" />
@@ -217,6 +217,7 @@ import { logOutService } from '@/services/auth'
 import Cookies from 'js-cookie'
 import { allUserBoardsService } from '@/services/board'
 import { mapState } from 'vuex'
+import decode from 'jwt-decode'
 
 export default defineComponent({
   components: { WorkspaceDropdown, WorkspaceTitle, Avatar, RecentDropDownContent },
@@ -227,10 +228,15 @@ export default defineComponent({
       showNotificationDD: false,
       showAccountDD: false,
       showRecentDropDown: false,
-      showStarredDropDown: false
+      showStarredDropDown: false,
+      user: {
+        email: '',
+        name: ''
+      }
     }
   },
   mounted () {
+    this.decodeUserInfo()
     this.getAllUserBoards()
   },
   inject: ['recentBoards', 'starredBoards'],
@@ -240,6 +246,14 @@ export default defineComponent({
     })
   },
   methods: {
+    decodeUserInfo () {
+      try {
+        const decoded = decode(Cookies.get('token')) as Record<string, string>
+        this.user = decoded
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async getAllUserBoards () {
       const res = await allUserBoardsService()
       if (!res.error) {
@@ -306,11 +320,8 @@ export default defineComponent({
               }
             }
           }
-          &.last a {
-            background-color: #dfe1e6;
-            color: black;
-            border-radius: 50%;
-            padding: 8px;
+          &.last:hover {
+            background: none;
           }
         }
       }
