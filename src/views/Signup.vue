@@ -2,7 +2,7 @@
   <div class="signup">
     <div class="container signup__container">
       <div class="signup__container__logo">
-        <trello-logo />
+        <trello-logo @click="$router.push({ name: 'home' })" />
       </div>
       <auth-card>
         <template #title> Sign up for your account </template>
@@ -15,9 +15,7 @@
               <a href="#"> Already have an account? </a>
             </template>
             <template #b>
-              <a href="#" @click.prevent="$router.push({ name: 'login' })">
-                Log In
-              </a>
+              <a href="#" @click.prevent="$router.push({ name: 'login' })"> Log In </a>
             </template>
           </dotted-inline-list>
         </template>
@@ -25,9 +23,7 @@
     </div>
     <atlassian-footer>
       <template #logo-slot>
-        <img
-          src="@/assets/images/atlassian-logo-blue-small.svg"
-          alt="atlassion-logo-blue-small" />
+        <img src="@/assets/images/atlassian-logo-blue-small.svg" alt="atlassion-logo-blue-small" />
       </template>
     </atlassian-footer>
     <global-footer />
@@ -63,7 +59,7 @@ export default defineComponent({
     position: relative;
     z-index: 2;
     &__logo {
-       display: block;
+      display: block;
       padding-top: 40px;
       padding-bottom: 40px;
       margin: auto;

@@ -2,7 +2,7 @@
   <div class="login">
     <div class="container login__page__container">
       <div class="login__page__container__logo">
-        <trello-logo />
+        <trello-logo @click="$router.push({ name: 'home' })" />
       </div>
       <auth-card>
         <template #title> Log In to Trello </template>
