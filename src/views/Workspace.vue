@@ -130,7 +130,7 @@ export default defineComponent({
 .workspace {
   height: calc(100vh - 45px);
   overflow-y: auto;
-  background: var(--page-bg);
+  background: var(--bg-2);
 
   // page reset styles
   h3 {
@@ -141,7 +141,7 @@ export default defineComponent({
 
     &__recent {
       &__title {
-        color: var(--base-clr);
+        color: var(--dark-clr-1);
         font-weight: 700;
         i {
           font-size: 20px;
@@ -151,7 +151,7 @@ export default defineComponent({
     &__owner,
     &__guest {
       h3 {
-        color: var(--workspaces-title-clr);
+        color: var(--gray-clr-3);
         font-weight: 700;
       }
     }
