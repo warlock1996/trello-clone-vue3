@@ -134,7 +134,7 @@ export default defineComponent({
 
   // page reset styles
   h3 {
-    font-size: 16px;
+    font-size: var(--fs-xs);
   }
   &__container {
     position: relative;
@@ -144,7 +144,7 @@ export default defineComponent({
         color: var(--dark-clr-1);
         font-weight: 700;
         i {
-          font-size: 20px;
+          font-size: var(--fs-lg);
         }
       }
     }
@@ -168,7 +168,7 @@ export default defineComponent({
           height: 32px;
           width: 32px;
           background: linear-gradient(#b22865, #cd5a91);
-          font-size: 20px;
+          font-size: var(--fs-lg);
           text-align: center;
           color: #fff;
         }

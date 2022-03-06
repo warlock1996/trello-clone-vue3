@@ -52,13 +52,13 @@ export default defineComponent({
 .list-input-btn {
   &__btn,
   &__addicon {
-    font-size: 14px;
-    color: #5e6c84;
+    font-size: var(--fs-xss);
+    color: var(--gray-clr-3);
   }
   &__btn {
     &:hover {
-      background: #091e4214;
-      color: #172b4d;
+      background: var(--dark-clr-3);
+      color: var(--dark-clr-1);
     }
   }
 }

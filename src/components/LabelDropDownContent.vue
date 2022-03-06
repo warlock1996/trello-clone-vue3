@@ -55,8 +55,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .label-dropdown-content {
   &__title {
-    font-size: 12px;
-    color: #5e6c84;
+    font-size: var(--fs-xsss);
+    color: var(--gray-clr-3);
     font-weight: 600;
   }
   &__list {

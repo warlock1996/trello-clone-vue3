@@ -55,7 +55,7 @@ export default defineComponent({
   &__item {
     cursor: pointer;
     padding: 6px 12px;
-    color: #091e42;
+    color: var(--dark-clr-2);
     &:hover {
       color: #152745;
       background-color: #04060a14;

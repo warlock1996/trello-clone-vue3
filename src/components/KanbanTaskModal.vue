@@ -107,7 +107,7 @@
                       :show-sub-menu="true"
                       :text-area-styles="{
                         padding: '10px',
-                        boxShadow: 'inset 0 0 0 2px #0079bf',
+                        boxShadow: 'inset 0 0 0 2px var(--primary-clr-5)',
                         height: '120px'
                       }"
                       @close="showDescriptionBox = false"
@@ -478,7 +478,7 @@ export default defineComponent({
         align-items: center;
         right: 10px;
         top: 10px;
-        font-size: 24px;
+        font-size: var(--fs-xl);
         height: 40px;
         width: 40px;
         background: #00000014;
@@ -496,8 +496,8 @@ export default defineComponent({
       &__body {
         &__actions {
           &__title {
-            color: #5e6c84;
-            font-size: 12px;
+            color: var(--gray-clr-3);
+            font-size: var(--fs-xsss);
             font-weight: 600;
           }
           .action-button {
@@ -521,27 +521,27 @@ export default defineComponent({
               align-items: center;
               width: 32px;
               height: 32px;
-              font-size: 20px;
+              font-size: var(--fs-lg);
               font-weight: bolder;
             }
           }
           input {
             background: #0000;
-            font-size: 20px;
+            font-size: var(--fs-lg);
             font-weight: 600;
             border-color: transparent;
             &:focus {
-              box-shadow: inset 0 0 0 2px #0079bf;
+              box-shadow: inset 0 0 0 2px var(--primary-clr-5);
             }
           }
           .quiet {
-            color: #5e6c84;
-            font-size: 14px;
+            color: var(--gray-clr-3);
+            font-size: var(--fs-xss);
           }
           &__members,
           &__labels {
-            color: #5e6c84;
-            font-size: 12px;
+            color: var(--gray-clr-3);
+            font-size: var(--fs-xsss);
             font-weight: 600;
           }
         }
@@ -555,15 +555,15 @@ export default defineComponent({
             top: -5px;
           }
           &__title {
-            font-size: 16px;
-            color: #172b4d;
+            font-size: var(--fs-xs);
+            color: var(--dark-clr-1);
             font-weight: 600;
           }
         }
         &__desc {
           &__text {
-            font-size: 14px;
-            color: #172b4d;
+            font-size: var(--fs-xss);
+            color: var(--dark-clr-1);
             background: #091e420a;
             min-height: 60px;
             max-height: 500px;

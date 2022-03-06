@@ -57,8 +57,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .members-dropdown-content {
   &__members {
-    color: #5e6c84;
-    font-size: 12px;
+    color: var(--gray-clr-3);
+    font-size: var(--fs-xsss);
     font-weight: 600;
   }
   &__list {

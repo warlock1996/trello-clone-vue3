@@ -276,8 +276,8 @@ export default defineComponent({
   position: sticky;
   top: 0;
   z-index: 999;
-  background: #026aa7;
-  font-size: 14px;
+  background: var(--primary-clr-4);
+  font-size: var(--fs-xss);
 
   &__container {
     &__img {

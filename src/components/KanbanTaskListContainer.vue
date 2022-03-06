@@ -73,8 +73,8 @@ export default defineComponent({
     }
     &__btn {
       background: transparent;
-      font-size: 14px;
-      color: #ffffff;
+      font-size: var(--fs-xss);
+      color: var(--light-clr-1);
       &:hover {
         background: transparent;
       }

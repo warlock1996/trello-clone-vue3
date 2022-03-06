@@ -95,11 +95,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .signup-form {
   &__note {
-    font-size: 12px;
-    color: #5e6c84;
+    font-size: var(--fs-xsss);
+    color: var(--gray-clr-3);
   }
   &__methods {
-    font-size: 14px;
+    font-size: var(--fs-xss);
     text-align: center;
   }
 }

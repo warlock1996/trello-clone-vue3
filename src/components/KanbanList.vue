@@ -62,8 +62,8 @@ export default defineComponent({
 .list-group {
   &-item {
     border: none;
-    font-size: 14px;
-    color: #172b4d;
+    font-size: var(--fs-xss);
+    color: var(--dark-clr-1);
     font-weight: normal;
     height: 32px;
     .bookmark,
@@ -77,7 +77,7 @@ export default defineComponent({
     }
     .sub-menu {
       &:hover {
-        background: #091e4214;
+        background: var(--dark-clr-3);
       }
     }
     .bookmark {
@@ -87,7 +87,7 @@ export default defineComponent({
       }
     }
     &:hover {
-      background: #091e4214;
+      background: var(--dark-clr-3);
       .bookmark,
       .sub-menu {
         display: block;

@@ -73,12 +73,12 @@ export default defineComponent({
 }
 
 .layout-alert {
-  font-size: 14px;
+  font-size: var(--fs-xss);
   position: sticky;
   top: 0;
   background: #faf3c0;
   border-bottom: 1px solid #e6c60d;
-  color: #172b4d;
+  color: var(--dark-clr-1);
   z-index: 1001;
 }
 

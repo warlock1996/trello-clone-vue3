@@ -65,13 +65,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .comment-input__wrapper {
   position: relative;
-  font-size: 14px;
-  background: #ffffff;
+  font-size: var(--fs-xss);
+  background: var(--light-clr-1);
   height: 40px;
   transition: height 0.1s;
   &__textarea {
-    background: #ffffff;
-    color: #172b4d;
+    background: var(--light-clr-1);
+    color: var(--dark-clr-1);
     resize: none;
     &:hover {
       cursor: pointer;
@@ -88,12 +88,12 @@ export default defineComponent({
     width: 100%;
     &__btn {
       padding: 6px 12px;
-      font-size: 14px;
-      background: #0079bf;
-      color: #ffffff;
+      font-size: var(--fs-xss);
+      background: var(--primary-clr-5);
+      color: var(--light-clr-1);
       &:hover {
-        background: #026aa7;
-        color: #ffffff;
+        background: var(--primary-clr-4);
+        color: var(--light-clr-1);
       }
       &:disabled {
         background: #091e420a;
@@ -103,12 +103,12 @@ export default defineComponent({
     &__icons {
       i {
         &:before {
-          font-size: 16px;
+          font-size: var(--fs-xs);
           color: #42526e;
         }
         &:hover {
           cursor: pointer;
-          background: #091e4214;
+          background: var(--dark-clr-3);
         }
       }
     }

@@ -100,21 +100,21 @@ export default defineComponent({
     box-shadow: none;
     background: none;
     outline: none;
-    font-size: 14px;
-    background: #ffffff;
+    font-size: var(--fs-xss);
+    background: var(--light-clr-1);
     border: none !important;
     outline: none;
     box-shadow: 0 1px 0 #091e4240;
   }
   &__actions {
     &__icon {
-      font-size: 20px;
-      color: #6b778c;
+      font-size: var(--fs-lg);
+      color: var(--gray-clr-4);
     }
     &__icon.submenu {
       &:hover {
-        background: #091e4214;
-        color: #172b4d;
+        background: var(--dark-clr-3);
+        color: var(--dark-clr-1);
       }
     }
   }

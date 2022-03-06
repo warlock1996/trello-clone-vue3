@@ -62,24 +62,24 @@ export default defineComponent({
     width: 112px;
   }
   &__details {
-    font-size: 14px;
-    color: #172b4d;
+    font-size: var(--fs-xss);
+    color: var(--dark-clr-1);
     &__title {
       font-weight: 600;
     }
     &__links {
       a {
-        color: #5e6c84;
+        color: var(--gray-clr-3);
         &:hover {
-          color: #172b4d;
+          color: var(--dark-clr-1);
         }
       }
     }
     &__remove {
       a {
-        color: #5e6c84;
+        color: var(--gray-clr-3);
         &:hover {
-          color: #172b4d;
+          color: var(--dark-clr-1);
         }
       }
     }

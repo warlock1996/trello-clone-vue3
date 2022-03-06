@@ -80,14 +80,14 @@ export default defineComponent({
   }
   &-close {
     &:hover {
-      background: #091e4214;
+      background: var(--dark-clr-3);
     }
   }
   .workspace-views,
   .your-boards {
-    font-size: 14px;
+    font-size: var(--fs-xss);
     font-weight: 600;
-    color: #5e6c84;
+    color: var(--gray-clr-3);
     max-height: 100%;
     overflow: hidden;
     &__list {
@@ -96,7 +96,7 @@ export default defineComponent({
       &::-webkit-scrollbar {
         width: 8px !important;
         border-radius: 5px;
-        background: #091e4214;
+        background: var(--dark-clr-3);
       }
       &::-webkit-scrollbar-thumb {
         border-radius: 5px;
@@ -104,7 +104,7 @@ export default defineComponent({
       }
     }
     .add-board {
-      font-size: 24px;
+      font-size: var(--fs-xl);
     }
   }
 }

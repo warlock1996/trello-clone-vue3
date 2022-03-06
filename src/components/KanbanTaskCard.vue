@@ -142,22 +142,22 @@ export default defineComponent({
 .task-card {
   &__body {
     position: relative;
-    background: #ffffff;
+    background: var(--light-clr-1);
     box-shadow: 0 1px 0 #091e4240;
     font-weight: 500;
     &:hover {
       background: #f4f5f7;
     }
     &__title {
-      font-size: 14px;
-      color: #172b4d;
+      font-size: var(--fs-xss);
+      color: var(--dark-clr-1);
     }
     &__editicon {
       position: absolute;
       right: 8px;
       top: 8px;
-      font-size: 14px;
-      color: #6b778c;
+      font-size: var(--fs-xss);
+      color: var(--gray-clr-4);
       z-index: 1;
       padding-left: 6px;
       padding-right: 6px;
@@ -170,14 +170,14 @@ export default defineComponent({
       }
     }
     &__details {
-      font-size: 14px;
-      color: #6b778c;
+      font-size: var(--fs-xss);
+      color: var(--gray-clr-4);
       i {
-        font-size: 14px;
+        font-size: var(--fs-xss);
         font-weight: 700;
       }
       &__date {
-        font-size: 12px;
+        font-size: var(--fs-xsss);
         padding: 0px 5px;
       }
     }

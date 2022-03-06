@@ -49,8 +49,8 @@ export default defineComponent({
 .avatar {
   background: #dfe1e6;
   cursor: pointer;
-  color: #172b4d;
-  font-size: 12px;
+  color: var(--dark-clr-1);
+  font-size: var(--fs-xsss);
   text-transform: uppercase;
   &:hover {
     background: #c1c7d0;

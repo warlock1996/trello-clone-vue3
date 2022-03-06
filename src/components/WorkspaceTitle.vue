@@ -46,14 +46,14 @@ export default defineComponent({
   align-items: center;
   width: 35px;
   height: 35px;
-  font-size: 20px;
+  font-size: var(--fs-lg);
   background: linear-gradient(#b22865, #cd5a91);
   font-weight: bold;
-  color: #ffffff;
+  color: var(--light-clr-1);
 }
 .title {
-  font-size: 14px;
-  color: #172b4d;
+  font-size: var(--fs-xss);
+  color: var(--dark-clr-1);
   font-weight: 600;
 }
 </style>

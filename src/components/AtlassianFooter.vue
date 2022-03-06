@@ -70,7 +70,7 @@ export default defineComponent({
     width: 320px;
     max-width: 400px;
     margin: 40px auto;
-    color: #5e6c84;
+    color: var(--gray-clr-3);
   }
   &__atlassian_logo {
     display: block;
@@ -87,8 +87,8 @@ export default defineComponent({
         display: inline;
         margin: auto 5px;
         a {
-          color: #5e6c84;
-          font-size: 14px;
+          color: var(--gray-clr-3);
+          font-size: var(--fs-xss);
           text-decoration: none;
           &:hover {
             text-decoration: underline;

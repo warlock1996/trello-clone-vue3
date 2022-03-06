@@ -72,7 +72,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .login-form__methods {
-  font-size: 14px;
+  font-size: var(--fs-xss);
   text-align: center;
 }
 </style>

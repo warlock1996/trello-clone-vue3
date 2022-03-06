@@ -148,13 +148,13 @@ export default defineComponent({
       max-width: 90px;
       &.isFocused {
         border: none;
-        box-shadow: inset 0 0 0 2px #0079bf;
+        box-shadow: inset 0 0 0 2px var(--primary-clr-5);
       }
     }
     p.label {
-      font-size: 12px;
+      font-size: var(--fs-xsss);
       font-weight: bold;
-      color: #5e6c84;
+      color: var(--gray-clr-3);
     }
   }
 }
@@ -167,7 +167,7 @@ export default defineComponent({
   }
   .dp__menu {
     border: none;
-    font-size: 14px;
+    font-size: var(--fs-xss);
     justify-content: center;
     .dp__action_row {
       display: none;
@@ -185,9 +185,9 @@ export default defineComponent({
       &.dp__active_date {
         border: none;
         border-radius: 4px;
-        color: #ffffff;
+        color: var(--light-clr-1);
         &:hover {
-          color: #ffffff;
+          color: var(--light-clr-1);
         }
         &:active {
           color: rgb(107, 119, 140);

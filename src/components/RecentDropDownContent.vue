@@ -49,14 +49,14 @@ export default defineComponent({
       cursor: pointer;
       &-text {
         &-boardname {
-          font-size: 14px;
+          font-size: var(--fs-xss);
           font-weight: 500;
-          color: #091e42;
+          color: var(--dark-clr-2);
           line-height: 18px;
         }
         &-workspace {
-          font-size: 12px;
-          color: #5e6c84;
+          font-size: var(--fs-xsss);
+          color: var(--gray-clr-3);
           line-height: 16px;
         }
       }

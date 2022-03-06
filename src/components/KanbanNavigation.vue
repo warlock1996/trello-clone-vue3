@@ -94,14 +94,14 @@ export default defineComponent({
   .ab {
     .form-control {
       min-height: 0;
-      font-size: 16px;
+      font-size: var(--fs-xs);
       height: 100%;
-      color: #ffffff;
+      color: var(--light-clr-1);
       font-weight: 700;
       min-width: 50px;
       width: 100px;
     }
-    color: #ffffff;
+    color: var(--light-clr-1);
     background: #ffffff3d;
     &:hover {
       background: #ffffff52;

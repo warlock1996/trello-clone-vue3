@@ -50,23 +50,23 @@ export default defineComponent({
 <style lang="scss" scoped>
 .comment {
   &__name {
-    font-size: 14px;
+    font-size: var(--fs-xss);
     font-weight: 600;
-    color: #172b4d;
+    color: var(--dark-clr-1);
   }
   &__date,
   &__actions {
-    font-size: 12px;
+    font-size: var(--fs-xsss);
     font-weight: normal;
-    color: #5e6c84;
+    color: var(--gray-clr-3);
     a {
-      color: #5e6c84;
+      color: var(--gray-clr-3);
     }
   }
   &__text {
-    font-size: 14px;
-    color: #172b4d;
-    background: #ffffff;
+    font-size: var(--fs-xss);
+    color: var(--dark-clr-1);
+    background: var(--light-clr-1);
   }
 }
 </style>

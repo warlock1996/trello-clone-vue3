@@ -24,7 +24,7 @@ export default defineComponent({})
   &__item {
     display: inline;
     padding: 5px;
-    font-size: 14px;
+    font-size: var(--fs-xss);
     &.last {
       position: relative;
       &::before {

@@ -185,7 +185,7 @@ export default defineComponent({
         background: transparent;
         border: none;
         &:focus {
-          box-shadow: inset 0 0 0 2px #0079bf;
+          box-shadow: inset 0 0 0 2px var(--primary-clr-5);
         }
       }
     }
@@ -195,7 +195,7 @@ export default defineComponent({
     &::-webkit-scrollbar {
       width: 8px !important;
       border-radius: 5px;
-      background: #091e4214;
+      background: var(--dark-clr-3);
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 5px;

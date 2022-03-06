@@ -68,7 +68,7 @@ export default defineComponent({
   &__page__container {
     position: relative;
     z-index: 2;
-    color: #5e6c84;
+    color: var(--gray-clr-3);
     &__logo {
       display: block;
       padding-top: 40px;

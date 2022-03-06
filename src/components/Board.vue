@@ -49,7 +49,7 @@ export default defineComponent({
   height: 100px;
   border-radius: 3px;
   &-title {
-    font-size: 16px;
+    font-size: var(--fs-xs);
     font-weight: 700;
     color: #fff;
   }
@@ -64,7 +64,7 @@ export default defineComponent({
       position: absolute;
       bottom: 10px;
       right: 10px;
-      color: #ffffff;
+      color: var(--light-clr-1);
       cursor: pointer;
       animation: bookmark-anim 0.2s;
       animation-iteration-count: 1;

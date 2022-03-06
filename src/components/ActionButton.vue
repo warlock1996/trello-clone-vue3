@@ -23,19 +23,19 @@ export default defineComponent({
   background: #091e420a;
   border: none;
   box-shadow: none;
-  color: #172b4d;
+  color: var(--dark-clr-1);
   border-radius: 3px;
-  font-size: 14px;
+  font-size: var(--fs-xss);
   &:disabled {
-    background: #091e4214;
+    background: var(--dark-clr-3);
     pointer-events: none;
   }
   &:hover {
-    background: #091e4214;
+    background: var(--dark-clr-3);
   }
   &:active {
     background-color: #e4f0f6;
-    color: #0079bf;
+    color: var(--primary-clr-5);
     outline: 0;
   }
 }

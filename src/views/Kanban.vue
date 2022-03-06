@@ -153,7 +153,7 @@ export default defineComponent({
           flex-grow: 1;
           &::-webkit-scrollbar {
             border-radius: 5px;
-            background: #091e4214;
+            background: var(--dark-clr-3);
           }
           &::-webkit-scrollbar-thumb {
             border-radius: 5px;

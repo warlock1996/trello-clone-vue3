@@ -25,7 +25,7 @@ export default defineComponent({
   display: block;
   max-width: 400px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: var(--light-clr-1);
   border-radius: 3px;
   padding: 25px 40px;
   box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
@@ -38,9 +38,9 @@ export default defineComponent({
   &__body {
     max-width: 400px;
     &__title {
-      color: #5e6c84;
+      color: var(--gray-clr-3);
       text-align: center;
-      font-size: 16px;
+      font-size: var(--fs-xs);
       font-weight: 400;
     }
   }

@@ -36,7 +36,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff;
+    background: var(--light-clr-1);
     border-radius: 50%;
     height: 24px;
     width: 24px;

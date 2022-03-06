@@ -90,7 +90,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 p.label {
-  font-size: 12px;
+  font-size: var(--fs-xsss);
   font-weight: 700;
 }
 </style>

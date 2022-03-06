@@ -103,7 +103,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .taskcard-action-form {
   &__title {
-    font-size: 12px;
+    font-size: var(--fs-xsss);
   }
   &__submit {
     width: fit-content;
@@ -117,22 +117,22 @@ export default defineComponent({
       position: absolute;
       top: 2px;
       padding-left: 7px;
-      font-size: 12px;
-      color: #5e6c84;
+      font-size: var(--fs-xsss);
+      color: var(--gray-clr-3);
     }
   }
   select {
     position: relative;
-    font-size: 14px;
+    font-size: var(--fs-xss);
     height: 42px;
     line-height: 2.8;
     background: #091e420a;
     &:hover {
-      background: #091e4214;
+      background: var(--dark-clr-3);
     }
     &:active {
       background: #e4f0f6;
-      color: #0079bf;
+      color: var(--primary-clr-5);
     }
   }
 }

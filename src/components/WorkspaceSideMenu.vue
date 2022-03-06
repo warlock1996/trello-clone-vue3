@@ -26,21 +26,21 @@ export default defineComponent({})
   position: sticky;
   top: 60px;
   width: 240px;
-  font-size: 14px;
+  font-size: var(--fs-xss);
   font-weight: 500;
   li {
     background: transparent;
-    color: #172b4d;
+    color: var(--dark-clr-1);
     font-weight: bold;
     &:hover {
-      color: #091e42;
+      color: var(--dark-clr-2);
       background: rgba(9, 30, 66, 0.08);
       border-radius: 4px;
       cursor: pointer;
     }
     &.active {
       background-color: #e4f0f6;
-      color: #0079bf;
+      color: var(--primary-clr-5);
       border-radius: 4px;
       cursor: pointer;
     }
