@@ -126,7 +126,7 @@ export default defineComponent({
     font-size: var(--fs-xss);
     height: 42px;
     line-height: 2.8;
-    background: #091e420a;
+    background: var(--dark-clr-5);
     &:hover {
       background: var(--dark-clr-3);
     }

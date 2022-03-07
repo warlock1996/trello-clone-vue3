@@ -20,7 +20,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .action-button {
-  background: #091e420a;
+  background: var(--dark-clr-5);
   border: none;
   box-shadow: none;
   color: var(--dark-clr-1);

@@ -81,5 +81,11 @@ export default defineComponent({
       z-index: 1;
     }
   }
+  .list-group-item {
+      cursor: pointer;
+      &:hover {
+        background: var(--dark-clr-5);
+      }
+  }
 }
 </style>

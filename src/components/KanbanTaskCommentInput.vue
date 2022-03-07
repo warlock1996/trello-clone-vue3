@@ -96,7 +96,7 @@ export default defineComponent({
         color: var(--light-clr-1);
       }
       &:disabled {
-        background: #091e420a;
+        background: var(--dark-clr-5);
         color: #a5adba;
       }
     }
@@ -104,7 +104,7 @@ export default defineComponent({
       i {
         &:before {
           font-size: var(--fs-xs);
-          color: #42526e;
+          color: var(--gray-clr-6);
         }
         &:hover {
           cursor: pointer;

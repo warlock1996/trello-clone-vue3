@@ -51,11 +51,11 @@ export default defineComponent({
   &-title {
     font-size: var(--fs-xs);
     font-weight: var(--fw-heavy);
-    color: #fff;
+    color: var(--light-clr-1);
   }
   &-body {
     border-radius: 3px;
-    background: rgb(131, 140, 145);
+    background: #838c91;
     &:hover {
       background: #97a0af;
     }

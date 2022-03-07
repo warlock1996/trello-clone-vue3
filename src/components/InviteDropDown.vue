@@ -17,7 +17,7 @@
             type="search"
             class="form-control"
             placeholder="Email address or name"
-            @input="handleSearch" />
+            @input="debouncedSearch" />
 
           <workspace-dropdown
             v-if="search.length"
@@ -82,10 +82,18 @@ export default defineComponent({
       chosenMembers: [],
       searchedMembers: [],
       inviteDD: false,
-      disabledSendInvite: true
+      disabledSendInvite: true,
+      searchTimeout: null
     }
   },
   methods: {
+    debouncedSearch () {
+      clearTimeout(this.searchTimeout)
+      this.searchTimeout = setTimeout(() => {
+        this.handleSearch()
+        clearTimeout(this.searchTimeout)
+      }, 300)
+    },
     async handleSearch () {
       if (!this.search.length) return
       const res = await searchMemberService(this.$route.params.boardId, this.search)

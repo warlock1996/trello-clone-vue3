@@ -56,7 +56,7 @@ export default defineComponent({
 .kanban-task-attachment {
   cursor: pointer;
   &:hover {
-    background: #091e420a;
+    background: var(--dark-clr-5);
   }
   &__img {
     width: 112px;

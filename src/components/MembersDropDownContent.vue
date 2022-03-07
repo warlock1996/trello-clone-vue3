@@ -1,14 +1,17 @@
 <template>
   <div class="d-flex flex-column gap-2 members-dropdown-content">
-    <input
-      class="form-control members-dropdown-content__input"
-      type="text"
-      name="members"
-      placeholder="Search members" />
-    <div class="members-dropdown-content__members">Board members</div>
+    <div class="members-dropdown-content__sticky">
+      <input
+        class="form-control members-dropdown-content__input"
+        type="text"
+        v-model="search"
+        name="members"
+        placeholder="Search members" />
+      <div class="members-dropdown-content__sticky__members my-1">Board members</div>
+    </div>
     <ul class="members-dropdown-content__list p-0 m-0">
       <li
-        v-for="mem in boardMembers"
+        v-for="mem in searchedBoardMembers"
         :key="mem._id"
         @click="handleMemberClick(mem)"
         class="members-dropdown-content__list__item d-flex gap-2 p-1 rounded-1 align-items-center justify-content-start">
@@ -36,6 +39,11 @@ export default defineComponent({
       required: true
     }
   },
+  data () {
+    return {
+      search: ''
+    }
+  },
   methods: {
     handleMemberClick (member: MemberType) {
       if (this.isTaskMember(member._id)) this.$emit('removeMember', member)
@@ -50,22 +58,36 @@ export default defineComponent({
   },
   components: {
     Avatar
+  },
+  computed: {
+    searchedBoardMembers () {
+      if (this.search.length) {
+        return this.boardMembers.filter((member: MemberType) => member.name.indexOf(this.search) >= 0)
+      }
+      return this.boardMembers
+    }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .members-dropdown-content {
-  &__members {
-    color: var(--gray-clr-3);
-    font-size: var(--fs-xsss);
-    font-weight: var(--fw-bolder);
+  &__sticky {
+    position: sticky;
+    top: 0;
+    background: var(--light-clr-1);
+    &__members {
+      color: var(--gray-clr-3);
+      font-size: var(--fs-xsss);
+      font-weight: var(--fw-bolder);
+    }
   }
   &__list {
+    overflow: auto;
     &__item {
       cursor: pointer;
       &:hover {
-        background: #091e420a;
+        background: var(--dark-clr-5);
       }
     }
   }

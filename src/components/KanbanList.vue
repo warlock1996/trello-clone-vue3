@@ -4,7 +4,7 @@
       v-for="i in items"
       :key="i.text"
       class="list-group-item px-3 py-0 d-flex gap-2 align-items-center justify-content-start"
-      @click="$router.push(i.route)">
+      @click.stop="$router.push(i.route)">
       <div v-if="boardBgColor" class="board-bg rounded-1" :style="{ background: boardBgColor }" />
       <i v-if="i.icon" :class="`bi bi-${i.icon}`" />
       <div class="flex-grow-1">
@@ -78,7 +78,7 @@ export default defineComponent({
       }
     }
     &:active {
-      background: #e4f0f6;
+      background: var(--dark-clr-3);
     }
     i {
       font-size: 15px;

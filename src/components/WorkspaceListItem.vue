@@ -14,7 +14,7 @@ export default defineComponent({})
 .datalist__item {
   cursor: pointer;
   &:hover {
-    background: #091e420a;
+    background: var(--dark-clr-5);
   }
 }
 </style>

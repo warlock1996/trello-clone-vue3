@@ -483,7 +483,7 @@ export default defineComponent({
         height: 40px;
         width: 40px;
         background: #00000014;
-        color: #42526e;
+        color: var(--gray-clr-6);
         cursor: pointer;
         &:hover {
           background-color: #00000029;
@@ -510,7 +510,7 @@ export default defineComponent({
         }
         &__icon {
           font-size: 23px;
-          color: #42526e;
+          color: var(--gray-clr-6);
           font-weight: var(--fw-bolder);
         }
         &__title {
@@ -551,7 +551,7 @@ export default defineComponent({
         &__activity {
           i {
             font-size: 23px;
-            color: #42526e;
+            color: var(--gray-clr-6);
             position: relative;
             top: -5px;
           }
@@ -565,7 +565,7 @@ export default defineComponent({
           &__text {
             font-size: var(--fs-xss);
             color: var(--dark-clr-1);
-            background: #091e420a;
+            background: var(--dark-clr-5);
             min-height: 60px;
             max-height: 500px;
             word-break: break-all;

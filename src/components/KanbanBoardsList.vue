@@ -12,9 +12,8 @@
       </div>
       <i v-if="showSubMenu" class="bi bi-three-dots p-1 px-2 rounded-2 sub-menu" @click.stop="() => {}" />
       <i
-        v-if="showBookmark"
         class="p-1 px-2 rounded-1 bookmark"
-        :class="{ 'bi bi-star-fill starred': i.starred, 'bi bi-star': !i.starred }"
+        :class="{ 'bi bi-star-fill starred d-block': i.starred, 'bi bi-star': !i.starred }"
         @click.stop="() => {}" />
     </li>
   </ul>
@@ -85,7 +84,8 @@ export default defineComponent({
         display: block;
       }
     }
-    &:active, &.active {
+    &:active,
+    &.active {
       background: var(--bg-dynamic);
       color: var(--light-clr-1);
     }

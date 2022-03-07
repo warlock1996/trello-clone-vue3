@@ -173,14 +173,14 @@ export default defineComponent({
       display: none;
     }
     .dp__active_date {
-      background: rgb(66, 82, 110);
+      background: var(--gray-clr-6);
       border: none;
     }
     .dp__today {
       border: none;
       color: rgb(0, 82, 204);
       border-radius: 0;
-      border-bottom: 2px solid rgb(0, 82, 204);
+      border-bottom: 2px solid var(--primary-clr-2);
       font-weight: var(--fw-bold);
       &.dp__active_date {
         border: none;
@@ -190,7 +190,7 @@ export default defineComponent({
           color: var(--light-clr-1);
         }
         &:active {
-          color: rgb(107, 119, 140);
+          color: #6b778c;
         }
       }
       &:hover {
