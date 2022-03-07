@@ -45,7 +45,7 @@
                       class="taskmodal__dialog__content__body__title__members__add rounded-circle justify-content-center dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showAddMemberDD = true">
+                      @click="showAddMemberDD = !showAddMemberDD">
                       <i class="bi bi-plus"></i>
                     </action-button>
                     <workspace-dropdown title="Members" :show="showAddMemberDD" @close="showAddMemberDD = false">
@@ -70,7 +70,7 @@
                       class="taskmodal__dialog__content__body__title__labels__add justify-content-center dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showAddLabelDD = true">
+                      @click="showAddLabelDD = !showAddLabelDD">
                       <i class="bi bi-plus"></i>
                     </action-button>
                     <workspace-dropdown title="Labels" :show="showAddLabelDD" @close="showAddLabelDD = false">
@@ -152,7 +152,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showMembersDD = true">
+                      @click="showMembersDD = !showMembersDD">
                       <template #prefix>
                         <i class="bi bi-person"></i>
                         Members
@@ -169,7 +169,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showLabelsDD = true">
+                      @click="showLabelsDD = !showLabelsDD">
                       <template #prefix>
                         <i class="bi bi-tag"></i>
                         Labels
@@ -192,7 +192,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showDateDD = true">
+                      @click="showDateDD = !showDateDD">
                       <template #prefix>
                         <i class="bi bi-clock"></i>
                       </template>
@@ -205,7 +205,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showAttachmentDD = true">
+                      @click="showAttachmentDD = !showAttachmentDD">
                       <template #prefix>
                         <i class="bi bi-paperclip"></i>
                       </template>
@@ -230,7 +230,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showMoveDD = true">
+                      @click="showMoveDD = !showMoveDD">
                       <template #prefix>
                         <i class="bi bi-arrow-right"></i>
                       </template>
@@ -246,7 +246,7 @@
                       class="w-100 dropdown dropdown-toggle"
                       data-bs-toggle="dropdown"
                       data-bs-auto-close="false"
-                      @click="showCopyDD = true">
+                      @click="showCopyDD = !showCopyDD">
                       <template #prefix>
                         <i class="bi bi-clipboard"></i>
                       </template>

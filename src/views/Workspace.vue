@@ -128,7 +128,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .workspace {
-  height: calc(100vh - 45px);
+  height: calc(100vh - 43px);
   overflow-y: auto;
   background: var(--bg-2);
 

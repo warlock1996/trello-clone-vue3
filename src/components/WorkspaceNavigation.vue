@@ -33,8 +33,6 @@
               data-bs-toggle="dropdown"
               role="button"
               aria-expanded="false"
-              data-bs-offset="20,20"
-              data-bs-auto-close="false"
               @click="showWorkspaceDD = true"
               >Workspaces
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
@@ -104,7 +102,9 @@
               Templates
               <img class="caret-down" src="@/assets/svgs/caret-down.svg" alt="caret-down" />
             </a>
-            <workspace-dropdown :title="'Templates'" :show="false" />
+            <workspace-dropdown :title="'Templates'" :show="false" >
+              <p class="m-0 text-center">You cannot create templates for now !</p>
+            </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start active">
             <a class="nav-link text-white" aria-current="page" href="#"> Create </a>
@@ -123,7 +123,6 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
-              data-bs-auto-close="false"
               role="button"
               aria-expanded="false"
               @click="showInformationDD = true">
@@ -147,7 +146,6 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
-              data-bs-auto-close="false"
               role="button"
               aria-expanded="false"
               @click="showNotificationDD = true">
@@ -158,7 +156,7 @@
               :show="showNotificationDD"
               @close="showNotificationDD = false"
               class="dropdown-menu-end">
-            <p class="m-0 mx-auto text-center"> No new notifications </p>
+              <p class="m-0 mx-auto text-center">No new notifications</p>
             </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
@@ -167,11 +165,10 @@
               aria-current="page"
               href="#"
               data-bs-toggle="dropdown"
-              data-bs-auto-close="false"
               role="button"
               aria-expanded="false"
               @click="showAccountDD = true">
-             <avatar :name="user.name"></avatar>
+              <avatar :name="user.name"></avatar>
             </a>
             <workspace-dropdown
               :title="'Account'"

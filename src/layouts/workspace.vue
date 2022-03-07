@@ -30,6 +30,10 @@ export default defineComponent({
   },
   mounted () {
     this.getRecentBoards()
+    document.querySelector('body').style.background = 'var(--primary-clr-5)'
+  },
+  beforeUnmount () {
+    document.querySelector('body').style.background = 'var(--bg-1)'
   },
   methods: {
     getRecentBoards () {

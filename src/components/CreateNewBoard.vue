@@ -3,7 +3,6 @@
     <action-button
       @click="showCreateBoardDD = true"
       data-bs-toggle="dropdown"
-      data-bs-auto-close="false"
       class="d-flex h-100 w-100 justify-content-center align-items-center p-2 position-relative dropdown-toggle">
       <p class="mb-0">Create new board <br> remaining</p>
       <i class="bi bi-question-circle position-absolute"></i>
