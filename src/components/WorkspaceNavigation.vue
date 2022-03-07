@@ -157,7 +157,9 @@
               :title="'Notifications'"
               :show="showNotificationDD"
               @close="showNotificationDD = false"
-              class="dropdown-menu-end" />
+              class="dropdown-menu-end">
+            <p class="m-0 mx-auto text-center"> No new notifications </p>
+            </workspace-dropdown>
           </li>
           <li class="workspacenav__container__navbar__nav__list__item nav-item text-start last dropdown">
             <a
@@ -188,14 +190,14 @@
                   </div>
                 </li>
                 <hr class="dropdown-divider mx-2" />
-                <li class="dropdown-item px-3 py-2">Profile and visibility</li>
-                <li class="dropdown-item px-3 py-2" role="button">Activity</li>
-                <li class="dropdown-item px-3 py-2" role="button">Cards</li>
-                <li class="dropdown-item px-3 py-2" role="button">Settings</li>
+                <li class="dropdown-item px-3 py-2" disabled>Profile and visibility</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Activity</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Cards</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Settings</li>
                 <hr class="dropdown-divider mx-2" />
-                <li class="dropdown-item px-3 py-2" role="button">Settings</li>
-                <li class="dropdown-item px-3 py-2" role="button">Help</li>
-                <li class="dropdown-item px-3 py-2" role="button">Shortcuts</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Settings</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Help</li>
+                <li class="dropdown-item px-3 py-2" role="button" disabled>Shortcuts</li>
                 <hr class="dropdown-divider mx-2" />
                 <li class="dropdown-item px-3 py-2" role="button" @click.stop="handleLogOut">Log out</li>
               </ul>
@@ -276,7 +278,7 @@ export default defineComponent({
   position: sticky;
   top: 0;
   z-index: 999;
-  background: var(--primary-clr-4);
+  background: var(--bg-dynamic);
   font-size: var(--fs-xss);
 
   &__container {
@@ -286,9 +288,12 @@ export default defineComponent({
     &__navbar__nav {
       &__list {
         &__item {
+          a {
+            padding: 6px 10px 6px 12px;
+          }
+          border-radius: 3px;
           &:hover {
             background: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
           }
           .input-wrapper {
             position: relative;
@@ -319,6 +324,9 @@ export default defineComponent({
                 background: #fff;
               }
             }
+          }
+          &.active {
+            background: rgba(255, 255, 255, 0.3);
           }
           &.last:hover {
             background: none;

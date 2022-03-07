@@ -50,7 +50,7 @@ export default defineComponent({
       &-text {
         &-boardname {
           font-size: var(--fs-xss);
-          font-weight: 500;
+          font-weight: var(--fw-bold);
           color: var(--dark-clr-2);
           line-height: 18px;
         }

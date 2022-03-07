@@ -1,8 +1,12 @@
 <template>
-  <div class="card h-100 w-100 kanban-menu rounded-0">
-    <div class="card-body p-0">
+  <div class="card h-100 w-100 kanban-menu rounded-0 border-0">
+    <div class="card-body p-0 border-0">
       <div class="d-flex p-2 justify-content-between">
-        <workspace-title class="p-0" :title="'Trello workspace'" />
+        <workspace-title
+          class="p-0 title"
+          :title-styles="{ color: 'var(--light-clr-1)' }"
+          :title="'Trello workspace'"
+          subtitle="Free" />
         <img
           class="kanban-menu-close rounded-1"
           @click.stop="$emit('toggleSider')"
@@ -71,14 +75,19 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .kanban-menu {
+  &.card {
+    background: transparent;
+  }
   .card-body {
     display: flex;
     flex-direction: column;
     max-height: 100%;
     width: 270px;
-    background: inherit;
+    background: transparent;
+    color: var(--light-clr-1);
   }
   &-close {
+    color: var(--light-clr-1);
     &:hover {
       background: var(--dark-clr-3);
     }
@@ -86,8 +95,8 @@ export default defineComponent({
   .workspace-views,
   .your-boards {
     font-size: var(--fs-xss);
-    font-weight: 600;
-    color: var(--gray-clr-3);
+    font-weight: var(--fw-bolder);
+    color: var(--light-clr-1);
     max-height: 100%;
     overflow: hidden;
     &__list {
@@ -96,11 +105,11 @@ export default defineComponent({
       &::-webkit-scrollbar {
         width: 8px !important;
         border-radius: 5px;
-        background: var(--dark-clr-3);
+        background: var(--bg-dynamic);
       }
       &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background: gray;
+        background: var(--bg-dynamic);
       }
     }
     .add-board {

@@ -4,11 +4,11 @@
       {{ title[0] }}
     </div>
     <div class="title flex-grow-1">
-      <div class="d-flex flex-column">
-        <div :style="titleStyles">
+      <div class="d-flex flex-column" :style="titleStyles">
+        <div>
           {{ title }}
         </div>
-        <div v-if="subtitle.length">
+        <div v-if="subtitle">
           {{ subtitle }}
         </div>
       </div>
@@ -31,7 +31,6 @@ export default defineComponent({
       default: () => ({})
     },
     subtitle: {
-      required: false,
       type: String,
       default: ''
     }
@@ -48,12 +47,15 @@ export default defineComponent({
   height: 35px;
   font-size: var(--fs-lg);
   background: linear-gradient(#b22865, #cd5a91);
-  font-weight: bold;
+  font-weight: var(--fw-bold);
   color: var(--light-clr-1);
 }
 .title {
   font-size: var(--fs-xss);
   color: var(--dark-clr-1);
-  font-weight: 600;
+  font-weight: var(--fw-bolder);
+}
+.subtitle {
+  font-size: var(--fs-xsss);
 }
 </style>

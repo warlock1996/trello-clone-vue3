@@ -50,7 +50,7 @@ export default defineComponent({
   border-radius: 3px;
   &-title {
     font-size: var(--fs-xs);
-    font-weight: 700;
+    font-weight: var(--fw-heavy);
     color: #fff;
   }
   &-body {

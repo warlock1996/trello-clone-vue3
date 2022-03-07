@@ -5,7 +5,7 @@
       <action-button
         v-if="!showAddForm"
         @click="showAddForm = true"
-        class="task-list__form__btn p-0 text-white w-100 justify-content-start">
+        class="task-list-container__form__btn p-0 text-white w-100 bg-transparent justify-content-start">
         <template #prefix>
           <i class="bi bi-plus"></i>
         </template>

@@ -4,30 +4,14 @@
       v-for="i in items"
       :key="i.text"
       class="list-group-item px-3 py-0 d-flex gap-2 align-items-center justify-content-start"
-      @click="$router.push(i.route)"
-    >
-      <div
-        v-if="boardBgColor"
-        class="board-bg rounded-1"
-        :style="{ background: boardBgColor }"
-      />
-      <i
-        v-if="i.icon"
-        :class="`bi bi-${i.icon}`"
-      />
+      @click="$router.push(i.route)">
+      <div v-if="boardBgColor" class="board-bg rounded-1" :style="{ background: boardBgColor }" />
+      <i v-if="i.icon" :class="`bi bi-${i.icon}`" />
       <div class="flex-grow-1">
         {{ i.text }}
       </div>
-      <i
-        v-if="showSubMenu"
-        class="bi bi-three-dots p-1 px-2 rounded-2 sub-menu"
-        @click.stop="() => {}"
-      />
-      <i
-        v-if="showBookmark"
-        class="bi bi-star p-1 px-2 rounded-1 bookmark"
-        @click.stop="() => {}"
-      />
+      <i v-if="showSubMenu" class="bi bi-three-dots p-1 px-2 rounded-2 sub-menu" @click.stop="() => {}" />
+      <i v-if="showBookmark" class="bi bi-star p-1 px-2 rounded-1 bookmark" @click.stop="() => {}" />
     </li>
   </ul>
 </template>
@@ -63,8 +47,8 @@ export default defineComponent({
   &-item {
     border: none;
     font-size: var(--fs-xss);
-    color: var(--dark-clr-1);
-    font-weight: normal;
+    color: var(--list-item-clr);
+    font-weight: var(--fw-semibold);
     height: 32px;
     .bookmark,
     .sub-menu {
@@ -83,7 +67,7 @@ export default defineComponent({
     .bookmark {
       &:hover {
         color: darkgoldenrod;
-        font-weight: 700;
+        font-weight: var(--fw-heavy);
       }
     }
     &:hover {

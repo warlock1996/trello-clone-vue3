@@ -41,7 +41,7 @@ export default defineComponent({
       color: var(--gray-clr-3);
       text-align: center;
       font-size: var(--fs-xs);
-      font-weight: 400;
+      font-weight: var(--fw-semibold);
     }
   }
   &__footer {

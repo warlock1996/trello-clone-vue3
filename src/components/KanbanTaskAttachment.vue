@@ -6,11 +6,11 @@
       <div class="kanban-task-attachment__details__links d-flex gap-1">
         <span>{{ attachment.createdAt }}</span>
         <span> - </span>
-        <a href="#">Comment</a>
+        <a href="#" disabled>Comment</a>
         <span> - </span>
-        <a href="#">Delete</a>
+        <a href="#" disabled>Delete</a>
         <span> - </span>
-        <a href="#">Edit</a>
+        <a href="#" disabled>Edit</a>
       </div>
       <div class="kanban-task-attachment__details__remove d-flex gap-2 mt-1">
         <i class="bi bi-card-image"></i>
@@ -65,7 +65,7 @@ export default defineComponent({
     font-size: var(--fs-xss);
     color: var(--dark-clr-1);
     &__title {
-      font-weight: 600;
+      font-weight: var(--fw-bolder);
     }
     &__links {
       a {

@@ -20,7 +20,7 @@
           @click="handleCommentEmit">
           Save
         </button>
-        <div class="comment-input__wrapper__actions__icons d-flex gap-2">
+        <div class="comment-input__wrapper__actions__icons d-flex gap-2" disabled>
           <i class="px-2 py-1 rounded-2 bi bi-paperclip"></i>
           <i class="px-2 py-1 rounded-2 bi bi-at"></i>
           <i class="px-2 py-1 rounded-2 bi bi-emoji-smile"></i>

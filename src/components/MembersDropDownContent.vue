@@ -59,7 +59,7 @@ export default defineComponent({
   &__members {
     color: var(--gray-clr-3);
     font-size: var(--fs-xsss);
-    font-weight: 600;
+    font-weight: var(--fw-bolder);
   }
   &__list {
     &__item {

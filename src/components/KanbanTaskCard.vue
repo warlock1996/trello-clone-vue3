@@ -28,8 +28,8 @@
               :text="label.text"
               :color="label.color"
               :custom-styles="{
-                height: '10px',
-                minWidth: '10px'
+                height: '8px',
+                minWidth: '40px'
               }"></kanban-task-label>
           </div>
           <div class="task-card__body__title card-title d-flex justify-content-between align-items-center text-break">
@@ -144,7 +144,7 @@ export default defineComponent({
     position: relative;
     background: var(--light-clr-1);
     box-shadow: 0 1px 0 #091e4240;
-    font-weight: 500;
+    font-weight: var(--fw-bold);
     &:hover {
       background: #f4f5f7;
     }
@@ -174,7 +174,7 @@ export default defineComponent({
       color: var(--gray-clr-4);
       i {
         font-size: var(--fs-xss);
-        font-weight: 700;
+        font-weight: var(--fw-heavy);;
       }
       &__date {
         font-size: var(--fs-xsss);

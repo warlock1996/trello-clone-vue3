@@ -182,7 +182,7 @@
                         @addLabel="handleAddLabelToTask"
                         @removeLabel="handleRemoveLabelFromTask" />
                     </workspace-dropdown>
-                    <action-button class="w-100">
+                    <action-button class="w-100" disabled>
                       <template #prefix>
                         <i class="bi bi-check2-square"></i>
                       </template>
@@ -219,7 +219,7 @@
                       divider-classes="mx-2"
                       :show="showAttachmentDD"
                       @close="showAttachmentDD = false">
-                      <attachment-drop-down-content />
+                      <attachment-drop-down-content @close="showAttachmentDD = false" />
                     </workspace-dropdown>
                   </div>
                 </div>
@@ -253,27 +253,28 @@
                       Copy
                     </action-button>
                     <workspace-dropdown :title="'Copy card'" :show="showCopyDD" @close="showCopyDD = false">
-                      <copy-card-drop-down-content @close="showCopyDD = false"></copy-card-drop-down-content>
+                      <copy-card-drop-down-content
+                        @close=";(showCopyDD = false), $emit('close')"></copy-card-drop-down-content>
                     </workspace-dropdown>
-                    <action-button class="w-100">
+                    <action-button class="w-100" disabled>
                       <template #prefix>
                         <i class="bi bi-card-image"></i>
                       </template>
                       Make template
                     </action-button>
-                    <action-button class="w-100">
+                    <action-button class="w-100" disabled>
                       <template #prefix>
                         <i class="bi bi-eye"></i>
                       </template>
                       Watch
                     </action-button>
-                    <action-button class="w-100">
+                    <action-button class="w-100" disabled>
                       <template #prefix>
                         <i class="bi bi-archive"></i>
                       </template>
                       Archive
                     </action-button>
-                    <action-button class="w-100">
+                    <action-button class="w-100" disabled>
                       <template #prefix>
                         <i class="bi bi-share"></i>
                       </template>
@@ -498,7 +499,7 @@ export default defineComponent({
           &__title {
             color: var(--gray-clr-3);
             font-size: var(--fs-xsss);
-            font-weight: 600;
+            font-weight: var(--fw-bolder);
           }
           .action-button {
             padding-top: 6px !important;
@@ -510,7 +511,7 @@ export default defineComponent({
         &__icon {
           font-size: 23px;
           color: #42526e;
-          font-weight: 600;
+          font-weight: var(--fw-bolder);
         }
         &__title {
           &__labels,
@@ -522,13 +523,13 @@ export default defineComponent({
               width: 32px;
               height: 32px;
               font-size: var(--fs-lg);
-              font-weight: bolder;
+              font-weight: var(--fw-bolder);
             }
           }
           input {
             background: #0000;
             font-size: var(--fs-lg);
-            font-weight: 600;
+            font-weight: var(--fw-bolder);
             border-color: transparent;
             &:focus {
               box-shadow: inset 0 0 0 2px var(--primary-clr-5);
@@ -542,7 +543,7 @@ export default defineComponent({
           &__labels {
             color: var(--gray-clr-3);
             font-size: var(--fs-xsss);
-            font-weight: 600;
+            font-weight: var(--fw-bolder);
           }
         }
         &__desc,
@@ -557,7 +558,7 @@ export default defineComponent({
           &__title {
             font-size: var(--fs-xs);
             color: var(--dark-clr-1);
-            font-weight: 600;
+            font-weight: var(--fw-bolder);
           }
         }
         &__desc {

@@ -181,7 +181,7 @@ export default defineComponent({
     background: #ebecf0;
     &__title {
       input {
-        font-weight: 500;
+        font-weight: var(--fw-bold);
         background: transparent;
         border: none;
         &:focus {
@@ -195,11 +195,11 @@ export default defineComponent({
     &::-webkit-scrollbar {
       width: 8px !important;
       border-radius: 5px;
-      background: var(--dark-clr-3);
+      background: var(--bg-dynamic);
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 5px;
-      background: gray;
+      background: var(--bg-dynamic);
     }
   }
 }

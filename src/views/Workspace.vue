@@ -142,7 +142,7 @@ export default defineComponent({
     &__recent {
       &__title {
         color: var(--dark-clr-1);
-        font-weight: 700;
+        font-weight: var(--fw-heavy);
         i {
           font-size: var(--fs-lg);
         }
@@ -152,7 +152,7 @@ export default defineComponent({
     &__guest {
       h3 {
         color: var(--gray-clr-3);
-        font-weight: 700;
+        font-weight: var(--fw-heavy);
       }
     }
     &__owner {

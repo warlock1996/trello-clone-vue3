@@ -5,8 +5,25 @@
       :key="member._id"
       :name="member.name"
       :size="size"
-      class="avatar-group-item fw-bold m-0 border-1"></avatar>
-    <action-button v-if="limited > 0" class="rounded-pill p-0 text-white fw-bold"> +{{ limited }} </action-button>
+      class="avatar-group-item fw-bold m-0"></avatar>
+    <action-button
+      v-if="limited > 0"
+      class="rounded-pill p-0 text-white fw-bold dropdown dropdown-toggle"
+      data-bs-toggle="dropdown"
+      @click="showMoreMembers = true">
+      +{{ limited }}
+    </action-button>
+    <workspace-dropdown title="Members" :show="showMoreMembers" @close="showMoreMembers = false">
+      <ul class="list-group">
+        <li
+          class="list-group-item px-0 d-flex gap-2 justify-content-start align-items-center"
+          v-for="member in members"
+          :key="member._id">
+          <avatar :name="member.name" :size="size"></avatar>
+          <span>({{ member.email }})</span>
+        </li>
+      </ul>
+    </workspace-dropdown>
   </div>
 </template>
 
@@ -16,6 +33,7 @@ import { MemberType } from '@/types/entities'
 import { defineComponent, PropType } from 'vue'
 import Avatar from '@/components/Avatar.vue'
 import ActionButton from './ActionButton.vue'
+import WorkspaceDropdown from './WorkspaceDropdown.vue'
 export default defineComponent({
   props: {
     members: {
@@ -34,7 +52,13 @@ export default defineComponent({
   },
   components: {
     Avatar,
-    ActionButton
+    ActionButton,
+    WorkspaceDropdown
+  },
+  data () {
+    return {
+      showMoreMembers: false
+    }
   },
   computed: {
     memberAvatars () {

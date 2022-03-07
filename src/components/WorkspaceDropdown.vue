@@ -56,7 +56,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .dropdown-menu {
   font-size: var(--fs-xss);
-  font-weight: normal;
+  font-weight: var(--fw-semibold);
   &-content {
     max-height: 450px;
     overflow: auto;

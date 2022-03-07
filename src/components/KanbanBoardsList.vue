@@ -51,8 +51,8 @@ export default defineComponent({
   &-item {
     border: none;
     font-size: var(--fs-xss);
-    color: var(--dark-clr-1);
-    font-weight: normal;
+    color: var(--list-item-clr);
+    font-weight: var(--fw-semibold);
     height: 32px;
     .bookmark,
     .sub-menu {
@@ -71,22 +71,23 @@ export default defineComponent({
     .bookmark {
       &.starred {
         color: darkgoldenrod;
-        font-weight: 700;
+        font-weight: var(--fw-heavy);
       }
       &:hover {
         color: darkgoldenrod;
-        font-weight: 700;
+        font-weight: var(--fw-heavy);
       }
     }
     &:hover {
-      background: var(--dark-clr-3);
+      background: var(--bg-dynamic);
       .bookmark,
       .sub-menu {
         display: block;
       }
     }
-    &:active {
-      background: #e4f0f6;
+    &:active, &.active {
+      background: var(--bg-dynamic);
+      color: var(--light-clr-1);
     }
     i {
       font-size: 15px;

@@ -2,9 +2,6 @@
   <div
     :class="`kanban-task-label d-flex justify-content-center align-items-center rounded-1 badge px-3 text-truncate bg-${color}`"
     :style="customStyles">
-    <span v-if="size == 'medium'">
-      {{ text }}
-    </span>
   </div>
 </template>
 

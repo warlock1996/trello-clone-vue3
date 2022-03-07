@@ -57,7 +57,7 @@ export default defineComponent({
   &__title {
     font-size: var(--fs-xsss);
     color: var(--gray-clr-3);
-    font-weight: 600;
+    font-weight: var(--fw-bolder);
   }
   &__list {
     &__item {

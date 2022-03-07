@@ -8,8 +8,8 @@
       </p>
       <div class="comment__text py-2 px-3 border border-1 rounded-2">{{ comment.comment }}</div>
       <div class="comment__actions d-flex gap-1">
-        <a href="#" @click.stop="handleEditComment">Edit</a>
-        <a href="#" @click.stop="handleDeleteComment">Delete</a>
+        <a href="#" @click.stop="handleEditComment" disabled>Edit</a>
+        <a href="#" @click.stop="handleDeleteComment" disabled>Delete</a>
       </div>
     </div>
   </div>
@@ -51,13 +51,13 @@ export default defineComponent({
 .comment {
   &__name {
     font-size: var(--fs-xss);
-    font-weight: 600;
+    font-weight: var(--fw-bolder);
     color: var(--dark-clr-1);
   }
   &__date,
   &__actions {
     font-size: var(--fs-xsss);
-    font-weight: normal;
+    font-weight: var(--fw-semibold);
     color: var(--gray-clr-3);
     a {
       color: var(--gray-clr-3);

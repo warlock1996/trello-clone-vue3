@@ -153,7 +153,7 @@ export default defineComponent({
     }
     p.label {
       font-size: var(--fs-xsss);
-      font-weight: bold;
+      font-weight: var(--fw-bold);
       color: var(--gray-clr-3);
     }
   }
@@ -181,7 +181,7 @@ export default defineComponent({
       color: rgb(0, 82, 204);
       border-radius: 0;
       border-bottom: 2px solid rgb(0, 82, 204);
-      font-weight: bold;
+      font-weight: var(--fw-bold);
       &.dp__active_date {
         border: none;
         border-radius: 4px;

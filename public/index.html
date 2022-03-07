@@ -9,16 +9,19 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       :root {
-        --bg-1: #F9FAFC;
+        --bg-1: #f9fafc;
         --bg-2: #fafbfc;
-        
+
+        --bg-dynamic: hsla(0, 0%, 0%, 0.16);
+        --kanban-bg: #f4f5f7;
+
         --primary-clr-1: #0065ff;
-        --primary-clr-2: #0052CC;
-        --primary-clr-3: #4C9AFF;
-        --primary-clr-4: #026AA7;
+        --primary-clr-2: #0052cc;
+        --primary-clr-3: #4c9aff;
+        --primary-clr-4: #026aa7;
         --primary-clr-5: #0079bf;
         --primary-clr-6: #0056d9;
-        
+
         --dark-clr-1: #172b4d;
         --dark-clr-2: #091e42;
         --dark-clr-3: #091e4214;
@@ -26,16 +29,16 @@
         --dark-clr-5: #091e420a;
 
         --light-clr-1: #ffffff;
-        --light-clr-2: #FAFBFC;
-        --light-clr-3: #DFE1E6;
+        --light-clr-2: #fafbfc;
+        --light-clr-3: #dfe1e6;
 
         --gray-clr-1: #7a869a;
         --gray-clr-2: #8993a4;
-        --gray-clr-3: #5e6c84; 
+        --gray-clr-3: #5e6c84;
         --gray-clr-4: #6b778c;
         --gray-clr-5: #ffffff4d;
 
-        --green-clr-1: #5AAC44;
+        --green-clr-1: #5aac44;
 
         --fs-xxxl: 48px;
         --fs-xxl: 36px;
@@ -47,10 +50,17 @@
         --fs-xss: 14px;
         --fs-xsss: 12px;
 
+        --fw-light: 300;
+        --fw-semibold: 400;
+        --fw-bold: 500;
+        --fw-bolder: 600;
+        --fw-heavy: 700;
+
+        --list-item-clr: var(--light-clr-1);
       }
     </style>
   </head>
-  <body>
+  <body style="background-color: rgb(0, 121, 191);">
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please

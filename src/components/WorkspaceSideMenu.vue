@@ -27,11 +27,11 @@ export default defineComponent({})
   top: 60px;
   width: 240px;
   font-size: var(--fs-xss);
-  font-weight: 500;
+  font-weight: var(--fw-bold);
   li {
     background: transparent;
     color: var(--dark-clr-1);
-    font-weight: bold;
+    font-weight: var(--fw-bold);
     &:hover {
       color: var(--dark-clr-2);
       background: rgba(9, 30, 66, 0.08);

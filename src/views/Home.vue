@@ -352,6 +352,13 @@ export default defineComponent({
 .home {
   @media screen and (max-width: 768px) {
     --fs-xxxl: 32px;
+    --fs-xxl: 28px;
+    --fs-xl: 20px;
+    --fs-lg: 16px;
+    --fs-sm: 14px;
+    --fs-xs: 12px;
+    --fs-xss: 11px;
+    --fs-xsss: 10px;
   }
   h1 {
     font-family: CharlieDisplay-Semibold;

@@ -131,7 +131,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .kanban {
-  background: #6a8ea2;
   height: calc(100vh - 45px);
   overflow: auto;
   &__row {

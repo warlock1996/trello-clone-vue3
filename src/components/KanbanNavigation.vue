@@ -97,7 +97,7 @@ export default defineComponent({
       font-size: var(--fs-xs);
       height: 100%;
       color: var(--light-clr-1);
-      font-weight: 700;
+      font-weight: var(--fw-heavy);
       min-width: 50px;
       width: 100px;
     }
