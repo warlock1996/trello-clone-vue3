@@ -3,11 +3,11 @@ import axios, { Axios, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axi
 import Cookies from 'js-cookie'
 
 export const instance: Axios = axios.create({
-  baseURL: 'http://localhost:5000/api'
+  baseURL: process.env.VUE_APP_API_URL
 })
 
 export const auth: Axios = axios.create({
-  baseURL: 'http://localhost:5000/api'
+  baseURL: process.env.VUE_APP_API_URL
   // validateStatus: function (status) {
   //   // return (status >= 200 && status < 300) || status === 422
   // }
