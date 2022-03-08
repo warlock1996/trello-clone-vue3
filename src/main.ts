@@ -10,7 +10,5 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const app = createApp(App)
 
-console.log(process.env)
-
 app.config.unwrapInjectedRef = true
 app.use(store).use(router).use(axios).use(toast).mount('#app')

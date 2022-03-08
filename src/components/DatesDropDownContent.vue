@@ -104,7 +104,6 @@ export default defineComponent({
   watch: {
     hasRange: {
       handler (v) {
-        console.log('watch running !')
         if (v) this.defaultDate = [new Date(), new Date(this.date.dueDate)]
         // else this.defaultDate = new Date(this.date.dueDate)
       }

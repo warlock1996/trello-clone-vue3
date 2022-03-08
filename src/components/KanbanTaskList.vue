@@ -129,9 +129,6 @@ export default defineComponent({
     handleDragOver (e: DragEvent) {
       e.preventDefault()
     },
-    handleDragLeave (e: DragEvent) {
-      console.log('dragleave', e)
-    },
     handleDrop (e: DragEvent) {
       e.preventDefault()
       const data = JSON.parse(e.dataTransfer.getData('text/plain'))

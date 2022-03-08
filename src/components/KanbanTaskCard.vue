@@ -127,7 +127,6 @@ export default defineComponent({
   },
   methods: {
     handleDragStart (e: DragEvent) {
-      console.log('[handleDragStart]', e.target)
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.setData('text/plain', JSON.stringify({ listId: this.list._id, taskId: this.task._id }))
     },

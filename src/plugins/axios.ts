@@ -18,11 +18,9 @@ export default {
     instance.defaults.headers.common.Authorization = `Bearer ${Cookies.get('token')}`
 
     instance.interceptors.response.use((value) => {
-      console.log(value.data)
       return value.data
     }, errorHandler)
     auth.interceptors.response.use((value) => {
-      console.log(value.data)
       return value.data
     }, errorHandler)
 

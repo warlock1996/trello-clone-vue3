@@ -19,7 +19,7 @@ export const errorHandler = (error: AxiosError): Promise<PromiseRejectedResult> 
       case 401:
         Cookies.remove('token')
         router.push({ name: 'login' })
-        console.log(new Error('UNAUTHORIZED ACCESS !'))
+        console.error(new Error('UNAUTHORIZED ACCESS !'))
         break
       case 500:
         console.error(new Error('SERVER ERROR !'))
