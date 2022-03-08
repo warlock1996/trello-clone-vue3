@@ -11,7 +11,7 @@
           v-if="cover"
           class="taskmodal__dialog__content__header modal-header d-flex justify-content-center"
           role="button">
-          <img :src="process.env.VUE_APP_STATIC_URL`/${cover.name}`" class="img-fluid w-50" alt="board" />
+          <img :src="`${$STATIC_URL}/${cover.name}`" class="img-fluid w-50" alt="board" />
         </div>
         <div class="taskmodal__dialog__content__body modal-body">
           <div class="row mb-1">

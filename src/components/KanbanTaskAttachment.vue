@@ -1,6 +1,6 @@
 <template>
   <div class="kanban-task-attachment d-flex gap-2 justify-content-start align-items-start rounded-1 py-1">
-    <img class="kanban-task-attachment__img" :src="process.env.VUE_APP_STATIC_URL`/${attachment.name}`" alt="board" />
+    <img class="kanban-task-attachment__img" :src="`${$STATIC_URL}/${attachment.name}`" alt="board" />
     <div class="kanban-task-attachment__details d-flex flex-column">
       <div class="kanban-task-attachment__details__title">{{ attachment.name }}</div>
       <div class="kanban-task-attachment__details__links d-flex gap-1">

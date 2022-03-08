@@ -15,7 +15,7 @@
         <div v-if="cover" class="task-card__body__cover">
           <img
             draggable="false"
-            :src="process.env.VUE_APP_STATIC_URL`/${cover.name}`"
+            :src="`${$STATIC_URL}/${cover.name}`"
             class="img-fluid rounded-top"
             alt="board" />
         </div>
