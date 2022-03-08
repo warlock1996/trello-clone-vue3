@@ -59,10 +59,10 @@ export default defineComponent({
   data () {
     return {
       user: {
-        name: 'Some User',
-        email: 'someuser@gmail.com',
-        password: 'ArslanAli123$',
-        confirmPassword: 'ArslanAli123$'
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
       }
     }
   },
