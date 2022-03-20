@@ -79,10 +79,13 @@ export default defineComponent({
     handleBoardChange (e: Event) {
       const target = e.target as HTMLInputElement
       this.form.toBoardId = target.value
-      this.form.toListId = this.selectedBoard.lists[0]._id
+      if (this.selectedBoard.lists.length) {
+        this.form.toListId = this.selectedBoard.lists[0]._id
+      }
     },
     handleListChange (e: Event) {
       const target = e.target as HTMLInputElement
+      console.log(target.value)
       this.form.toListId = target.value
     }
   },

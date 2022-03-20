@@ -414,6 +414,7 @@ export default defineComponent({
       }
     },
     async handleMoveTask (payload: Record<string, string>) {
+      console.log(this.list._id, payload)
       const res = await moveTaskService(
         this.$route.params.boardId,
         payload.toBoardId,
